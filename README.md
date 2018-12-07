@@ -2,7 +2,7 @@
 
 [![Build][bi]][bl] [![Crates][ci]][cl] [![Coverage][cci]][ccl] [![Docs][di]][dl] [![Resolution][iri]][irl] [![Issues][ori]][orl] [![License][li]][ll] ![LoC][lo]
 
-[bi]: https://img.shields.io/travis/org/daxpedda/unchecked_unwrap.svg
+[bi]: https://img.shields.io/travis/daxpedda/unchecked_unwrap.svg
 [bl]: https://travis-ci.org/daxpedda/unchecked_unwrap/
 
 [ci]: https://img.shields.io/crates/v/unchecked_unwrap.svg
@@ -61,7 +61,7 @@ Currently the nightly version of rust is needed for benchmarking.
 ## Alternatives
 
 * **[unsafe-unwrap-rs](https://github.com/nvzqz/unsafe-unwrap-rs/)** - [![Crates.io](https://img.shields.io/crates/v/unsafe-unwrap.svg)](https://crates.io/crates/unsafe-unwrap/)
-* **[unsafe-unwrap][GitHub](https://github.com/Vurich/unsafe-unwrap/)**
+* **[unsafe-unwrap](https://github.com/Vurich/unsafe-unwrap/)**
 
 ## License
 
