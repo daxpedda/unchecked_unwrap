@@ -8,7 +8,7 @@ documentation = "https://docs.rs/crate/unchecked_unwrap/"
 homepage = "https://github.com/daxpedda/unchecked_unwrap"
 repository = "https://github.com/daxpedda/unchecked_unwrap"
 readme = "README.MD"
-keywords = ["unwrap", "unchecked", "expect", "result", "option", "unsafe"]
+keywords = ["unwrap", "unchecked", "expect", "result", "option"]
 categories = ["no-std", "rust-patterns"]
 license = "MIT OR Apache-2.0"
 
