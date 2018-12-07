@@ -13,7 +13,7 @@ os:
 cache:
   cargo: true
   directories:
-    - target/kcov-master/build
+    - if [ "$TRAVIS_RUST_VERSION" == "nightly" ]; then target/kcov-master/build; fi
 
 env:
   global:
@@ -43,8 +43,8 @@ matrix:
         - cargo test
         - cargo doc
         - cargo bench
-        - cargo install cargo-update || echo "cargo-update already installed"
-        - cargo install cargo-travis || echo "cargo-travis already installed"
+        - cargo install cargo-update
+        - cargo install cargo-travis
         - cargo install-update -a
         - cargo coverage
         - bash <(curl -s https://codecov.io/bash) -s target/kcov
