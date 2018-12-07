@@ -1,3 +1,4 @@
+extern crate unchecked_unwrap;
 use unchecked_unwrap::*;
 
 #[test]
