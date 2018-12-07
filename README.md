@@ -5,8 +5,8 @@
 [bi]: https://img.shields.io/travis/com/daxpedda/unchecked_unwrap.svg
 [bl]: https://travis-ci.com/daxpedda/unchecked_unwrap/
 
-[ci]: https://img.shields.io/crates/daxpedda/unchecked_unwrap.svg
-[cl]: https://crates.io/crates/v/unchecked_unwrap/
+[ci]: https://img.shields.io/crates/v/unchecked_unwrap.svg
+[cl]: https://crates.io/crates/unchecked_unwrap/
 
 [cci]: https://img.shields.io/codecov/c/github/daxpedda/unchecked_unwrap.svg
 [ccl]: https://codecov.io/github/daxpedda/unchecked_unwrap/
