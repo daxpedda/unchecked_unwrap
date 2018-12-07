@@ -1,12 +1,15 @@
 # unchecked_unwrap
 
-[![Build][bi]][bl] [![Crates][ci]][cl] [![Docs][di]][dl] [![Resolution][iri]][irl] [![Issues][ori]][orl] [![License][li]][ll] ![LoC][lo]
+[![Build][bi]][bl] [![Crates][ci]][cl] [![Coverage][cci]][ccl] [![Docs][di]][dl] [![Resolution][iri]][irl] [![Issues][ori]][orl] [![License][li]][ll] ![LoC][lo]
 
 [bi]: https://img.shields.io/travis/com/daxpedda/unchecked_unwrap.svg
 [bl]: https://travis-ci.com/daxpedda/unchecked_unwrap/
 
 [ci]: https://img.shields.io/crates/daxpedda/unchecked_unwrap.svg
-[cl]: https://crates.io/crates/unchecked_unwrap/
+[cl]: https://crates.io/crates/v/unchecked_unwrap/
+
+[cci]: https://img.shields.io/codecov/c/github/daxpedda/unchecked_unwrap.svg
+[ccl]: https://codecov.io/github/daxpedda/unchecked_unwrap/
 
 [di]: https://docs.rs/unchecked_unwrap/badge.svg
 [dl]: https://docs.rs/unchecked_unwrap/
