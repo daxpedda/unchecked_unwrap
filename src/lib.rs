@@ -6,7 +6,6 @@
 
 #![no_std]
 #![warn(clippy::cargo, clippy::pedantic, clippy::restriction)]
-#![doc(html_playground_url = "https://play.rust-lang.org/")]
 
 /// Trait for [`unchecked_unwrap`](trait.UncheckedUnwrap.html#method.unchecked_unwrap).
 pub trait UncheckedUnwrap<T> {
@@ -31,16 +30,13 @@ pub trait UncheckedUnwrap<T> {
     /// # Examples
     ///
     /// ```
-    /// # use unchecked_unwrap::UncheckedUnwrap;
+    /// use unchecked_unwrap::*;
+    ///
     /// let x = Some("air");
-    /// unsafe {
-    ///     assert_eq!(x.unchecked_unwrap(), "air");
-    /// }
+    /// assert_eq!(unsafe { x.unchecked_unwrap() }, "air");
     ///
     /// let x: Result<u32, &str> = Ok(2);
-    /// unsafe {
-    ///     assert_eq!(x.unchecked_unwrap(), 2);
-    /// }
+    /// assert_eq!(unsafe { x.unchecked_unwrap() }, 2);
     /// ```
     unsafe fn unchecked_unwrap(self) -> T;
 }
@@ -106,16 +102,13 @@ pub trait UncheckedExpect<T> {
     /// # Examples
     ///
     /// ```
-    /// # use unchecked_unwrap::UncheckedExpect;
+    /// # use unchecked_unwrap::*;
+    ///
     /// let x = Some("value");
-    /// unsafe {
-    ///     assert_eq!(x.unchecked_expect("the world is ending"), "value");
-    /// }
+    /// assert_eq!(unsafe { x.unchecked_expect("the world is ending") }, "value");
     ///
     /// let x: Result<u32, &str> = Ok(2);
-    /// unsafe {
-    ///     assert_eq!(x.unchecked_expect("the sky is falling down"), 2);
-    /// }
+    /// assert_eq!(unsafe { x.unchecked_expect("the sky is falling down") }, 2);
     /// ```
     unsafe fn unchecked_expect(self, msg: &str) -> T;
 }
