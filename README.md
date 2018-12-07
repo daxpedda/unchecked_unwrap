@@ -18,7 +18,7 @@
 [orl]: http://isitmaintained.com/project/daxpedda/uywi
 
 [li]: https://img.shields.io/badge/license-MIT%2FApache--2.0-blue.svg
-[li]: LICENSE
+[ll]: LICENSE
 
 [lo]: https://tokei.rs/b1/github/daxpedda/unchecked_unwrap
 
