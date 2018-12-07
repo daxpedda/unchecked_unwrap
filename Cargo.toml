@@ -1,0 +1,24 @@
+[package]
+name = "unchecked_unwrap"
+version = "0.1.0"
+authors = ["daxpedda <daxpedda@users.noreply.github.com>"]
+edition = "2018"
+description = "Adds a unchecked version of `unwrap()` and `expect()` to Option and Result."
+documentation = "https://docs.rs/crate/unchecked_unwrap/"
+homepage = "https://github.com/daxpedda/unchecked_unwrap"
+repository = "https://github.com/daxpedda/unchecked_unwrap"
+readme = "README.MD"
+keywords = ["unwrap", "unchecked", "expect", "result", "option", "unsafe"]
+categories = ["no-std", "rust-patterns"]
+license = "MIT OR Apache-2.0"
+
+[badges]
+travis-ci = { repository = "daxpedda/unchecked_unwrap" }
+codecov = { repository = "daxpedda/unchecked_unwrap" }
+is-it-maintained-issue-resolution = { repository = "daxpedda/unchecked_unwrap" }
+is-it-maintained-open-issues = { repository = "daxpedda/unchecked_unwrap" }
+maintenance = { status = "actively-developed" }
+
+[features]
+default = ["debug_checks"]
+debug_checks = []
