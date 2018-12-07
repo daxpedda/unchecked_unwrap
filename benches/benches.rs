@@ -53,6 +53,7 @@ mod checked {
 mod unchecked {
     extern crate test;
     use self::test::{black_box, Bencher};
+    extern crate unchecked_unwrap;
     use unchecked_unwrap::*;
 
     #[bench]

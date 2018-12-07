@@ -9,7 +9,10 @@ os:
   - osx
   - windows
 
-cache: cargo
+cache:
+  cargo: true
+  directories:
+    - target/kcov-master/build
 
 env:
   global:
@@ -21,9 +24,6 @@ script:
   - cargo doc
 
 matrix:
-  fast_finish: true
-  allow_failures:
-    - rust: nightly
   include:
     - os: linux
       rust: nightly
@@ -36,18 +36,22 @@ matrix:
             - libdw-dev
             - binutils-dev
             - cmake
-      before_script:
+      script:
+        - cargo build
+        - cargo test
+        - cargo doc
+        - cargo bench
         - cargo install cargo-update || echo "cargo-update already installed"
         - cargo install cargo-travis || echo "cargo-travis already installed"
         - cargo install-update -a
-      after_success:
-        - cargo bench
         - cargo coverage
         - bash <(curl -s https://codecov.io/bash) -s target/kcov
         - cargo doc-upload
-    - os:
-      - osx
-      - windows
+    - os: osx
+      rust: nightly
+      after_sucess:
+        - cargo bench
+    - os: windows
       rust: nightly
       after_sucess:
         - cargo bench
