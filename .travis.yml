@@ -3,7 +3,6 @@ language: rust
 rust:
   - stable
   - beta
-  - nightly
 
 os:
   - linux
@@ -17,11 +16,9 @@ env:
     - RUST_BACKTRACE=1
 
 script:
-  - |
-    cargo build &&
-    cargo test &&
-    cargo bench &&
-    cargo doc
+  - cargo build
+  - cargo test
+  - cargo doc
 
 matrix:
   fast_finish: true
@@ -44,6 +41,13 @@ matrix:
         - cargo install cargo-travis || echo "cargo-travis already installed"
         - cargo install-update -a
       after_success:
+        - cargo bench
         - cargo coverage
         - bash <(curl -s https://codecov.io/bash) -s target/kcov
         - cargo doc-upload
+    - os:
+      - osx
+      - windows
+      rust: nightly
+      after_sucess:
+        - cargo bench
