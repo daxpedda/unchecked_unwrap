@@ -7,13 +7,8 @@ rust:
 
 os:
   - linux
-  - osx
-  - windows
 
-cache:
-  cargo: true
-  directories:
-    - target/kcov-master/build
+cache: cargo
 
 env:
   global:
@@ -30,6 +25,10 @@ matrix:
     - os: linux
       rust: nightly
       sudo: required
+      cache:
+        cargo: true
+        directories:
+          - target/kcov-master/build
       addons:
         apt:
           packages:

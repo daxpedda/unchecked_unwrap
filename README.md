@@ -47,7 +47,7 @@ assert_eq!(unsafe { x.unchecked_expect("the sky is falling down") }, 2);
 
 ## Crate features
 
-**debug_checks**: Enables `panic`s in debug profile. On by default.
+**debug_checks**: On by default. Enables the normal checking behaviour with panics when `debug-assertions` is enabled.
 
 ## Testing
 
@@ -70,4 +70,4 @@ You can choose between one of them if you use this work.
 
 See the [LICENSE](LICENSE) file for details
 
-`SPDX-License-Identifier: NIT OR Apache-2.0`
+`SPDX-License-Identifier: MIT OR Apache-2.0`

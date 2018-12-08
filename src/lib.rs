@@ -14,8 +14,7 @@ pub trait UncheckedUnwrap<T> {
     ///
     /// # Panics
     ///
-    /// Only panics if the crate features `debug_assertions` and `debug_checks` are
-    /// on.
+    /// Only panics if `debug_assertions` and the feature `debug_checks` is enabled.
     ///
     /// Panics if the value is a [`None`] or [`Err`], if [`Result`] with a panic massage provided by
     /// the [`Err`]'s value.
@@ -86,8 +85,7 @@ pub trait UncheckedExpect<T> {
     ///
     /// # Panics
     ///
-    /// Only panics if the crate features `debug_assertions` and `debug_checks` are
-    /// on.
+    /// Only panics if `debug_assertions` and the feature `debug_checks` is enabled.
     ///
     /// Panics if the value is a [`None`] or [`Err`], with a custom panic message provided by `msg`
     /// and if [`Result`] with the content of the [`Err`].
