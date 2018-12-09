@@ -9,7 +9,6 @@ cache: cargo
 env:
   global:
   - RUST_BACKTRACE=1
-  - secure: aBjsZSlqFOsbEy3bMMmzO+VlOZA2pOiUFGGYQ+QoTcXv02ygGHMPBdXSUh8IdKiepmABgSL13vBBsSXezeWsyosAvoUbCPWiB/Xkx8+5J8vm2PukkwIn6UbeOhGGoZ75l/xM4P62ApmpU4N5bSFZQEBua0kNThnroUNJCd8inPclW/Fq+M5m39iCSfo1QVHERAv5BLU9vx9LNtVMaKB3pV0a8pZuxFxH9JLISNWo+pGzSH5NQwXL+ae11T+uxA/5GZS3BQZdeLyo4ZSazLMMe8fFjvGKuJhq37+QVmg7kHTeDDsmGuYzwtA3NdBnLgVLeUmUDsmQ9yAW9TaLUPmpB3UWzWHJW5E03fg+qj+C0pAah7apqKC5xR94UuIZcsvz9SFghCtCxMWLzxc2yjN8ho5J7WeB2mmFsddAWYJirwwBWBbxuPIcj8t1n4OrRBck889oNBJr/XotyhyHHrIHupRf8eyyaGGGjDSCemFTYZfD4tCd6X4vb2UrXdj42Xf47NQ86qSbGOh/MKVWcYUMz0Fk2j+H7BYPtdxTIxGzQxRlGFfDxLMo8Njq7j3ud8zIWbd3OFCex56goGTwpZ3tV+b8UD6VjJw2nJMts7hWdO2mnBfHRholyfVTpNv9QCRN0z2d9C2vKz7/YlQ7lavj+ExV0NjfmVte4klH8QCZCwc=
 script:
 - cargo build
 - cargo test
@@ -33,7 +32,7 @@ matrix:
         - binutils-dev
         - cmake
     before_install:
-    - openssl aes-256-cbc -k "$doc_upload" -in doc_upload.enc -out doc_upload -d
+    - openssl aes-256-cbc -K $encrypted_ea461eafb522_key -iv $encrypted_ea461eafb522_iv -in doc_upload_key.enc -out doc_upload_key -d
     script:
     - cargo build
     - cargo test

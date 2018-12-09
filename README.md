@@ -18,7 +18,7 @@
 [ll]: LICENSE
 
 [mlci]: https://tokei.rs/b1/github/daxpedda/unchecked_unwrap/
-[mlci]: https://github.com/daxpedda/unchecked_unwrap/
+[mlcl]: https://github.com/daxpedda/unchecked_unwrap/
 
 **[Stable](https://github.com/daxpedda/unchecked_unwrap/tree/stable/):** [![Build][sbi]][sbl] [![Coverage][scci]][sccl]
 
@@ -33,7 +33,7 @@
 [mbi]: https://img.shields.io/travis/daxpedda/unchecked_unwrap/stable.svg?label=build:%20master
 [mbl]: https://travis-ci.org/daxpedda/unchecked_unwrap/branches/
 
-[mcci]: https://img.shields.io/codecov/c/github/daxpedda/unchecked_unwrap/stable.svg?label=coverage:%20master
+[mcci]: https://img.shields.io/codecov/c/github/daxpedda/unchecked_unwrap/master.svg?label=coverage:%20master
 [mccl]: https://codecov.io/github/daxpedda/unchecked_unwrap/branch/master/
 
 Adds an unchecked version of `unwrap()` and `expect()` to `Option` and `Result` for the rust programmming language.
