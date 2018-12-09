@@ -43,7 +43,7 @@ matrix:
     - cargo install-update -a
     - cargo coverage
     - bash <(curl -s https://codecov.io/bash) -s target/kcov
-    - cargo doc-upload --token doc_upload
+    - cargo doc-upload --token doc_upload_key
   exclude:
   - os: linux
     rust: nightly
