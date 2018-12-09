@@ -1,29 +1,40 @@
 # unchecked_unwrap
 
-[![Build][bi]][bl] [![Crates][ci]][cl] [![Coverage][cci]][ccl] [![Docs][di]][dl] [![Resolution][iri]][irl] [![Issues][ori]][orl] [![License][li]][ll] ![LoC][lo]
-
-[bi]: https://img.shields.io/travis/daxpedda/unchecked_unwrap.svg
-[bl]: https://travis-ci.org/daxpedda/unchecked_unwrap/
+[![Crates][ci]][cl] [![Docs][di]][dl] [![Resolution][iri]][irl] [![Issues][ori]][orl] [![License][li]][ll] [![LoC][mlci]][mlcl]
 
 [ci]: https://img.shields.io/crates/v/unchecked_unwrap.svg
 [cl]: https://crates.io/crates/unchecked_unwrap/
 
-[cci]: https://img.shields.io/codecov/c/github/daxpedda/unchecked_unwrap.svg
-[ccl]: https://codecov.io/github/daxpedda/unchecked_unwrap/
-
 [di]: https://docs.rs/unchecked_unwrap/badge.svg
 [dl]: https://docs.rs/unchecked_unwrap/
 
-[iri]: http://isitmaintained.com/badge/resolution/daxpedda/uywi.svg
-[irl]: http://isitmaintained.com/project/daxpedda/uywi
+[iri]: http://isitmaintained.com/badge/resolution/daxpedda/unchecked_unwrap.svg
+[irl]: http://isitmaintained.com/project/daxpedda/unchecked_unwrap
 
-[ori]: http://isitmaintained.com/badge/open/daxpedda/uywi.svg
-[orl]: http://isitmaintained.com/project/daxpedda/uywi
+[ori]: http://isitmaintained.com/badge/open/daxpedda/unchecked_unwrap.svg
+[orl]: http://isitmaintained.com/project/daxpedda/unchecked_unwrap
 
 [li]: https://img.shields.io/badge/license-MIT%2FApache--2.0-blue.svg
 [ll]: LICENSE
 
-[lo]: https://tokei.rs/b1/github/daxpedda/unchecked_unwrap
+[mlci]: https://tokei.rs/b1/github/daxpedda/unchecked_unwrap/
+[mlci]: https://github.com/daxpedda/unchecked_unwrap/
+
+**[Stable](https://github.com/daxpedda/unchecked_unwrap/tree/stable/):** [![Build][sbi]][sbl] [![Coverage][scci]][sccl]
+
+[sbi]: https://img.shields.io/travis/daxpedda/unchecked_unwrap/stable.svg?label=build:%20stable
+[sbl]: https://travis-ci.org/daxpedda/unchecked_unwrap/branches/
+
+[scci]: https://img.shields.io/codecov/c/github/daxpedda/unchecked_unwrap/stable.svg?label=coverage:%20stable
+[sccl]: https://codecov.io/github/daxpedda/unchecked_unwrap/branch/stable/
+
+**[Master](https://github.com/daxpedda/unchecked_unwrap/):** [![Build][mbi]][mbl] [![Coverage][mcci]][mccl]
+
+[mbi]: https://img.shields.io/travis/daxpedda/unchecked_unwrap/stable.svg?label=build:%20master
+[mbl]: https://travis-ci.org/daxpedda/unchecked_unwrap/branches/
+
+[mcci]: https://img.shields.io/codecov/c/github/daxpedda/unchecked_unwrap/stable.svg?label=coverage:%20master
+[mccl]: https://codecov.io/github/daxpedda/unchecked_unwrap/branch/master/
 
 Adds an unchecked version of `unwrap()` and `expect()` to `Option` and `Result` for the rust programmming language.
 

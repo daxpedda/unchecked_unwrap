@@ -1,8 +1,8 @@
 //! Adds an unchecked way to yield the content of an [`Ok`] in [`Result`] or [`Some`] in [`Option`]
 //! equivalent to [`unwrap`](Result::unwrap) and [`expect`](Result::expect).
 //!
-//! Compiling with the `Debug` profile the usual checks can be enabled by the `debug_checks` crate
-//! feature, which is enabled by default.
+//! ## Features
+//! `debug_checks`: On by default. Enables the normal checking behaviour with panics when `debug-assertions` is enabled.
 
 #![no_std]
 #![warn(clippy::cargo, clippy::pedantic, clippy::restriction)]
