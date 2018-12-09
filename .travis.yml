@@ -32,7 +32,7 @@ matrix:
         - binutils-dev
         - cmake
     before_install:
-    - openssl aes-256-cbc -K $encrypted_ea461eafb522_key -iv $encrypted_ea461eafb522_iv -in doc_upload_key.enc -out doc_upload_key -d
+    - $(npm bin)/set-up-ssh --key "$encrypted_ea461eafb522_key" --iv "$encrypted_ea461eafb522_iv" --path-encrypted-key ".travis/github_deploy_key.enc"
     script:
     - cargo build
     - cargo test
@@ -43,7 +43,7 @@ matrix:
     - cargo install-update -a
     - cargo coverage
     - bash <(curl -s https://codecov.io/bash) -s target/kcov
-    - cargo doc-upload --token doc_upload_key
+    - cargo doc-upload
   exclude:
   - os: linux
     rust: nightly
