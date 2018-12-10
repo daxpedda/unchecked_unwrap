@@ -13,7 +13,9 @@ before_cache:
 - rm -rf "$HOME/.cargo/registry"
 
 install:
-- curl https://sh.rustup.rs -sSf | sh -s -- --default-toolchain="$TRAVIS_RUST_VERSION" -y
+- command -v cargo >/dev/null 2>&1 || { curl https://sh.rustup.rs -sSf | sh -s -- --default-toolchain=$TRAVIS_RUST_VERSION -y }
+- source $HOME/.cargo/env
+- rustup update
 
 before_script:
 - cargo build
@@ -60,10 +62,8 @@ jobs:
 
   - os: linux
     env:
-      global:
-      - RUST_VERSION=beta
+    - RUST_VERSION=beta
 
   - os: linux
     env:
-      global:
-      - RUST_VERSION=stable
+    - RUST_VERSION=stable
