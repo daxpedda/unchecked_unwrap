@@ -32,7 +32,8 @@ matrix:
         - binutils-dev
         - cmake
     before_install:
-    - openssl aes-256-cbc -K $encrypted_ea461eafb522_key -iv $encrypted_ea461eafb522_iv -in ".travis/github_deploy_key.enc" -out ".travis/github_deploy_key" -d
+    - openssl aes-256-cbc -K $encrypted_ea461eafb522_key -iv $encrypted_ea461eafb522_iv
+      -in ".travis/github_deploy_key.enc" -out ".travis/github_deploy_key" -d
     - chmod 600 ".travis/github_deploy_key"
     - eval $(ssh-agent -s)
     - ssh-add ".travis/github_deploy_key"
@@ -50,3 +51,6 @@ matrix:
   exclude:
   - os: linux
     rust: nightly
+before_install:
+- openssl aes-256-cbc -K $encrypted_ea461eafb522_key -iv $encrypted_ea461eafb522_iv
+  -in github_deploy_key.enc -out .travis/github_deploy_key -d
