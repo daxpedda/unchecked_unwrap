@@ -13,7 +13,7 @@ before_cache:
 - rm -rf "$HOME/.cargo/registry"
 
 install:
-- if command -v cargo >/dev/null 2>&1;
+- if [ command -v cargo >/dev/null 2>&1 ];
   then rustup update;
   else curl https://sh.rustup.rs -sSf | sh -s -- --default-toolchain=$TRAVIS_RUST_VERSION -y;
   source $HOME/.cargo/env;
@@ -53,19 +53,19 @@ jobs:
     - ssh-add ".travis/github_deploy_key"
     script:
     - cargo bench
-    - if [ "$TRAVIS_PULL_REQUEST" == false]; then
-        cargo install cargo-update || echo "cargo-update already installed"
-        cargo install cargo-travis || echo "cargo-travis already installed"
-        cargo install-update -a
-        cargo coverage
-        bash <(curl -s https://codecov.io/bash) -s target/kcov
+    - if [ "$TRAVIS_PULL_REQUEST" == false ]; then
+        cargo install cargo-update || echo "cargo-update already installed";
+        cargo install cargo-travis || echo "cargo-travis already installed";
+        cargo install-update -a;
+        cargo coverage;
+        bash <(curl -s https://codecov.io/bash) -s target/kcov;
         cargo doc-upload --branch $TRAVIS_BRANCH;
       fi
 
   - os: linux
     env:
-    - RUST_VERSION=beta
+    - TRAVIS_RUST_VERSION=beta
 
   - os: linux
     env:
-    - RUST_VERSION=stable
+    - TRAVIS_RUST_VERSION=stable
