@@ -13,7 +13,10 @@ before_cache:
 - rm -rf "$HOME/.cargo/registry"
 
 install:
-- command -v cargo >/dev/null 2>&1 || { curl https://sh.rustup.rs -sSf | sh -s -- --default-toolchain=$TRAVIS_RUST_VERSION -y }
+- if command -v cargo >/dev/null 2>&1;
+  then rustup update;
+  else curl https://sh.rustup.rs -sSf | sh -s -- --default-toolchain=$TRAVIS_RUST_VERSION -y;
+  fi
 - source $HOME/.cargo/env
 - rustup update
 
