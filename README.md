@@ -1,12 +1,9 @@
 # unchecked_unwrap
 
-[![Crates][ci]][cl] [![Docs][di]][dl] [![Resolution][iri]][irl] [![Issues][ori]][orl] [![License][li]][ll] [![LoC][mlci]][mlcl]
+[![Crates][ci]][cl] [![Resolution][iri]][irl] [![Issues][ori]][orl] [![License][li]][ll] [![LoC][mlci]][mlcl]
 
 [ci]: https://img.shields.io/crates/v/unchecked_unwrap.svg
 [cl]: https://crates.io/crates/unchecked_unwrap/
-
-[di]: https://docs.rs/unchecked_unwrap/badge.svg
-[dl]: https://docs.rs/unchecked_unwrap/
 
 [iri]: http://isitmaintained.com/badge/resolution/daxpedda/unchecked_unwrap.svg
 [irl]: http://isitmaintained.com/project/daxpedda/unchecked_unwrap
@@ -20,18 +17,24 @@
 [mlci]: https://tokei.rs/b1/github/daxpedda/unchecked_unwrap/
 [mlcl]: https://github.com/daxpedda/unchecked_unwrap/
 
-**[Stable](https://github.com/daxpedda/unchecked_unwrap/tree/stable/):** [![Build][sbi]][sbl] [![Coverage][scci]][sccl]
+**[Stable](https://github.com/daxpedda/unchecked_unwrap/tree/stable/):** [![Build][sbi]][sbl] [![Docs][sdi]][sdl] [![Coverage][scci]][sccl]
 
 [sbi]: https://img.shields.io/travis/daxpedda/unchecked_unwrap/stable.svg?label=build:%20stable
 [sbl]: https://travis-ci.org/daxpedda/unchecked_unwrap/branches/
 
+[sdi]: https://docs.rs/unchecked_unwrap/badge.svg
+[sdl]: https://docs.rs/unchecked_unwrap/
+
 [scci]: https://img.shields.io/codecov/c/github/daxpedda/unchecked_unwrap/stable.svg?label=coverage:%20stable
 [sccl]: https://codecov.io/github/daxpedda/unchecked_unwrap/branch/stable/
 
-**[Master](https://github.com/daxpedda/unchecked_unwrap/):** [![Build][mbi]][mbl] [![Coverage][mcci]][mccl]
+**[Master](https://github.com/daxpedda/unchecked_unwrap/):** [![Build][mbi]][mbl] [![Docs][mdi]][mdl] [![Coverage][mcci]][mccl]
 
 [mbi]: https://img.shields.io/travis/daxpedda/unchecked_unwrap/stable.svg?label=build:%20master
 [mbl]: https://travis-ci.org/daxpedda/unchecked_unwrap/branches/
+
+[mdi]: https://docs.rs/unchecked_unwrap/badge.svg
+[mdl]: https://daxpedda.github.io/unchecked_unwrap/master/index.html
 
 [mcci]: https://img.shields.io/codecov/c/github/daxpedda/unchecked_unwrap/master.svg?label=coverage:%20master
 [mccl]: https://codecov.io/github/daxpedda/unchecked_unwrap/branch/master/

@@ -1,27 +1,39 @@
-language: rust
-rust:
-- stable
-- beta
-- nightly
-os:
-- linux
-cache: cargo
+language: minimal
+
+cache:
+  directories:
+  - "$HOME/.rustup"
+  - "$HOME/.cargo"
+
 env:
   global:
   - RUST_BACKTRACE=1
-script:
+
+before_cache:
+- rm -rf "$HOME/.cargo/registry"
+
+install:
+- curl https://sh.rustup.rs -sSf | sh -s -- --default-toolchain=$RUST_VERSION -y
+
+before_script:
 - cargo build
 - cargo test
-- cargo doc
-- if [ "$TRAVIS_RUST_VERSION" == "nightly" ]; then cargo bench; fi
-matrix:
+- if [ "$TRAVIS_RUST_VERSION" != "nightly" ];
+  then cargo doc;
+  else cargo rustdoc -- -Z unstable-options --enable-index-page;
+  fi
+
+jobs:
   include:
   - os: linux
-    rust: nightly
+    env:
+      global:
+      - RUST_VERSION=nightly
     sudo: required
     cache:
-      cargo: true
       directories:
+      - "$HOME/.rustup"
+      - "$HOME/.cargo"
       - target/kcov-master/build
     addons:
       apt:
@@ -31,23 +43,28 @@ matrix:
         - libdw-dev
         - binutils-dev
         - cmake
-        - sshpass
     before_install:
     - openssl aes-256-cbc -K $encrypted_ea461eafb522_key -iv $encrypted_ea461eafb522_iv -in ".travis/github_deploy_key.enc" -out ".travis/github_deploy_key" -d
     - chmod 600 ".travis/github_deploy_key"
     - eval "$(ssh-agent -s)"
     - ssh-add ".travis/github_deploy_key"
     script:
-    - cargo build
-    - cargo test
-    - cargo doc
     - cargo bench
-    - cargo install cargo-update || echo "cargo-update already installed"
-    - cargo install cargo-travis || echo "cargo-travis already installed"
-    - cargo install-update -a
-    - cargo coverage
-    - bash <(curl -s https://codecov.io/bash) -s target/kcov
-    - cargo doc-upload
-  exclude:
+    - if [ "$TRAVIS_PULL_REQUEST" == false]; then
+        cargo install cargo-update || echo "cargo-update already installed"
+        cargo install cargo-travis || echo "cargo-travis already installed"
+        cargo install-update -a
+        cargo coverage
+        bash <(curl -s https://codecov.io/bash) -s target/kcov
+        cargo doc-upload --branch $TRAVIS_BRANCH
+      fi
+
   - os: linux
-    rust: nightly
+    env:
+      global:
+      - RUST_VERSION=beta
+
+  - os: linux
+    env:
+      global:
+      - RUST_VERSION=stable
