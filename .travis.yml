@@ -32,8 +32,10 @@ matrix:
         - binutils-dev
         - cmake
     before_install:
-    - openssl aes-256-cbc -K $encrypted_ea461eafb522_key -iv $encrypted_ea461eafb522_iv -in ".travis/github_deploy_key.enc" -out "$HOME/.ssh/github_deploy_key" -d
-    - chmod 600 "$HOME/.ssh/github_deploy_key"
+    - openssl aes-256-cbc -K $encrypted_ea461eafb522_key -iv $encrypted_ea461eafb522_iv -in ".travis/github_deploy_key.enc" -out "github_deploy_key" -d
+    - chmod 600 "github_deploy_key"
+    - eval $(ssh-agent -s)
+    - ssh-add github_deploy_key
 
     script:
     - cargo build
