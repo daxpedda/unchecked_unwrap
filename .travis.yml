@@ -36,7 +36,7 @@ matrix:
     - openssl aes-256-cbc -K $encrypted_ea461eafb522_key -iv $encrypted_ea461eafb522_iv -in ".travis/github_deploy_key.enc" -out ".travis/github_deploy_key" -d
     - chmod 600 ".travis/github_deploy_key"
     - eval "$(ssh-agent -s)"
-    - sshpass -p "" ssh-add ".travis/github_deploy_key"
+    - ssh-add ".travis/github_deploy_key"
     - ssh-agent -k
     script:
     - cargo build
