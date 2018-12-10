@@ -15,10 +15,9 @@ before_cache:
 install:
 - if command -v cargo >/dev/null 2>&1;
   then rustup update;
-  else curl https://sh.rustup.rs -sSf | sh -s -- --default-toolchain=$TRAVIS_RUST_VERSION -y;
+  else curl https://sh.rustup.rs -sSf | sh -s -- --default-toolchain=$TRAVIS_RUST_VERSION -y
+  source $HOME/.cargo/env;
   fi
-- source $HOME/.cargo/env
-- rustup update
 
 before_script:
 - cargo build
@@ -60,7 +59,7 @@ jobs:
         cargo install-update -a
         cargo coverage
         bash <(curl -s https://codecov.io/bash) -s target/kcov
-        cargo doc-upload --branch $TRAVIS_BRANCH
+        cargo doc-upload --branch $TRAVIS_BRANCH;
       fi
 
   - os: linux
