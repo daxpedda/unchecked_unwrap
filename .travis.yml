@@ -27,8 +27,7 @@ jobs:
   include:
   - os: linux
     env:
-      global:
-      - TRAVIS_RUST_VERSION=nightly
+    - TRAVIS_RUST_VERSION=nightly
     sudo: required
     cache:
       directories:
