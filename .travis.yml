@@ -37,7 +37,6 @@ matrix:
     - chmod 600 ".travis/github_deploy_key"
     - eval "$(ssh-agent -s)"
     - ssh-add ".travis/github_deploy_key"
-    - ssh-agent -k
     script:
     - cargo build
     - cargo test
