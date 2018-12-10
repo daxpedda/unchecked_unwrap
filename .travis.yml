@@ -13,7 +13,7 @@ before_cache:
 - rm -rf "$HOME/.cargo/registry"
 
 install:
-- curl https://sh.rustup.rs -sSf | sh -s -- --default-toolchain=$RUST_VERSION -y
+- curl https://sh.rustup.rs -sSf | sh -s -- --default-toolchain="$TRAVIS_RUST_VERSION" -y
 
 before_script:
 - cargo build
@@ -28,7 +28,7 @@ jobs:
   - os: linux
     env:
       global:
-      - RUST_VERSION=nightly
+      - TRAVIS_RUST_VERSION=nightly
     sudo: required
     cache:
       directories:
