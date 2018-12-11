@@ -98,7 +98,7 @@ jobs:
     - rm -rf "$HOME/.cargo/registry"
     before_install:
     - curl https://sh.rustup.rs -sSf | sh -s -- --default-toolchain=$TRAVIS_RUST_VERSION -y
-    - source $HOME/.cargo/bin
+    - PATH=%PATH%;$HOME/.cargo/bin
     - rustup update
     before_script:
     - cargo build
