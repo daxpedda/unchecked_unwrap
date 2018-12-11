@@ -57,7 +57,7 @@ jobs:
     # upload the documentation
     - if [ "$TRAVIS_PULL_REQUEST" == false ]; then
         cargo install cargo-update || echo "cargo-update already installed";
-        cargo install cargo-travis || echo "cargo-travis already installed";
+        cargo install cargo-travis --git "https://github.com/daxpedda/cargo-travis.git" || echo "cargo-travis already installed";
         cargo install-update -a;
         cargo coverage;
         bash <(curl -s https://codecov.io/bash) -s target/kcov;
