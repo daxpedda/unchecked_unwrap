@@ -81,7 +81,8 @@ jobs:
     - TRAVIS_RUST_VERSION=nightly
 
   - os: windows
-    language: sh
+    language: go
+    go: "1.10"
     env:
     - RUST_BACKTRACE=1
     - TRAVIS_RUST_VERSION=nightly
