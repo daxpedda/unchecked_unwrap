@@ -15,13 +15,16 @@ cache:
   - target/kcov-master/build
 
 before_cache:
- # we dont want to cache crates
+# we dont want to cache crates
 - rm -rf "$HOME/.cargo/registry"
 
 before_install:
 - curl https://sh.rustup.rs -sSf | sh -s -- --default-toolchain=$TRAVIS_RUST_VERSION -y
 - source $HOME/.cargo/env
 - rustup update
+- if [ "$TRAVIS_RUST_VERSION" == "nightly" ]; then
+    cargo bench;
+  fi
 
 before_script:
 - cargo build
@@ -47,22 +50,21 @@ jobs:
         - binutils-dev
         - cmake
     script:
-    - cargo bench
+    # upload test coverage
+    # decrypt deploy key
+    # start ssh agent in background
+    # add deploy key to ssh
+    # upload the documentation
     - if [ "$TRAVIS_PULL_REQUEST" == false ]; then
         cargo install cargo-update || echo "cargo-update already installed";
         cargo install cargo-travis || echo "cargo-travis already installed";
         cargo install-update -a;
         cargo coverage;
-        # upload test coverage
         bash <(curl -s https://codecov.io/bash) -s target/kcov;
-        # decrypt deploy key
         openssl aes-256-cbc -K $encrypted_ea461eafb522_key -iv $encrypted_ea461eafb522_iv -in ".travis/github_deploy_key.enc" -out ".travis/github_deploy_key" -d;
         chmod 600 ".travis/github_deploy_key";
-        # start ssh agent in background
         eval "$(ssh-agent -s)";
-        # add deploy key to ssh
         ssh-add ".travis/github_deploy_key";
-        # upload the documentation
         cargo doc-upload --branch $TRAVIS_BRANCH;
       fi
 
