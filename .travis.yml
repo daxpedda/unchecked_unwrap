@@ -1,4 +1,5 @@
-language: minimal # we plan to cache the rust compiler to shorten build times
+# we plan to cache the rust compiler to shorten build times
+language: minimal
 
 env:
   global:
@@ -6,12 +7,16 @@ env:
 
 cache:
   directories:
-  - "$HOME/.rustup" # cache rust compiler
-  - "$HOME/.cargo" # cache cargo, for cargo subcommands
-  - target/kcov-master/build # cache kcov, we don't want to recompile it every time, only used in nightly
+  # cache rust compiler
+  - "$HOME/.rustup"
+  # cache cargo, for cargo subcommands
+  - "$HOME/.cargo"
+  # cache kcov, we don't want to recompile it every time, only used in nightly
+  - target/kcov-master/build
 
 before_cache:
-- rm -rf "$HOME/.cargo/registry" # we dont want to cache crates
+ # we dont want to cache crates
+- rm -rf "$HOME/.cargo/registry"
 
 before_install:
 - curl https://sh.rustup.rs -sSf | sh -s -- --default-toolchain=$TRAVIS_RUST_VERSION -y
@@ -48,12 +53,17 @@ jobs:
         cargo install cargo-travis || echo "cargo-travis already installed";
         cargo install-update -a;
         cargo coverage;
-        bash <(curl -s https://codecov.io/bash) -s target/kcov; # upload test coverage
-        openssl aes-256-cbc -K $encrypted_ea461eafb522_key -iv $encrypted_ea461eafb522_iv -in ".travis/github_deploy_key.enc" -out ".travis/github_deploy_key" -d; # dencrypt deploy key
+        # upload test coverage
+        bash <(curl -s https://codecov.io/bash) -s target/kcov;
+        # decrypt deploy key
+        openssl aes-256-cbc -K $encrypted_ea461eafb522_key -iv $encrypted_ea461eafb522_iv -in ".travis/github_deploy_key.enc" -out ".travis/github_deploy_key" -d;
         chmod 600 ".travis/github_deploy_key";
+        # start ssh agent in background
         eval "$(ssh-agent -s)";
-        ssh-add ".travis/github_deploy_key"; # add deploy key to ssh
-        cargo doc-upload --branch $TRAVIS_BRANCH; # upload the documentation
+        # add deploy key to ssh
+        ssh-add ".travis/github_deploy_key";
+        # upload the documentation
+        cargo doc-upload --branch $TRAVIS_BRANCH;
       fi
 
   - os: linux
