@@ -1,30 +1,30 @@
-language: minimal
-
-cache:
-  directories:
-  - "$HOME/.rustup"
-  - "$HOME/.cargo"
+language: minimal # we plan to cache the rust compiler to shorten build times
 
 env:
   global:
   - RUST_BACKTRACE=1
 
-before_cache:
-- rm -rf "$HOME/.cargo/registry"
+cache:
+  directories:
+  - "$HOME/.rustup" # cache rust compiler
+  - "$HOME/.cargo" # cache cargo, for cargo subcommands
+  - target/kcov-master/build # cache kcov, we don't want to recompile it every time, only used in nightly
 
-install:
-- if [ command -v cargo >/dev/null 2>&1 ];
-  then rustup update;
-  else curl https://sh.rustup.rs -sSf | sh -s -- --default-toolchain=$TRAVIS_RUST_VERSION -y;
-  source $HOME/.cargo/env;
-  fi
+before_cache:
+- rm -rf "$HOME/.cargo/registry" # we dont want to cache crates
+
+before_install:
+- curl https://sh.rustup.rs -sSf | sh -s -- --default-toolchain=$TRAVIS_RUST_VERSION -y
+- source $HOME/.cargo/env
+- rustup update
 
 before_script:
 - cargo build
 - cargo test
-- if [ "$TRAVIS_RUST_VERSION" != "nightly" ];
-  then cargo doc;
-  else cargo rustdoc -- -Z unstable-options --enable-index-page;
+- if [ "$TRAVIS_RUST_VERSION" != "nightly" ]; then
+    cargo doc;
+  else
+    cargo rustdoc -- -Z unstable-options --enable-index-page;
   fi
 
 jobs:
@@ -33,11 +33,6 @@ jobs:
     env:
     - TRAVIS_RUST_VERSION=nightly
     sudo: required
-    cache:
-      directories:
-      - "$HOME/.rustup"
-      - "$HOME/.cargo"
-      - target/kcov-master/build
     addons:
       apt:
         packages:
@@ -46,11 +41,6 @@ jobs:
         - libdw-dev
         - binutils-dev
         - cmake
-    before_install:
-    - openssl aes-256-cbc -K $encrypted_ea461eafb522_key -iv $encrypted_ea461eafb522_iv -in ".travis/github_deploy_key.enc" -out ".travis/github_deploy_key" -d
-    - chmod 600 ".travis/github_deploy_key"
-    - eval "$(ssh-agent -s)"
-    - ssh-add ".travis/github_deploy_key"
     script:
     - cargo bench
     - if [ "$TRAVIS_PULL_REQUEST" == false ]; then
@@ -58,8 +48,12 @@ jobs:
         cargo install cargo-travis || echo "cargo-travis already installed";
         cargo install-update -a;
         cargo coverage;
-        bash <(curl -s https://codecov.io/bash) -s target/kcov;
-        cargo doc-upload --branch $TRAVIS_BRANCH;
+        bash <(curl -s https://codecov.io/bash) -s target/kcov; # upload test coverage
+        openssl aes-256-cbc -K $encrypted_ea461eafb522_key -iv $encrypted_ea461eafb522_iv -in ".travis/github_deploy_key.enc" -out ".travis/github_deploy_key" -d; # dencrypt deploy key
+        chmod 600 ".travis/github_deploy_key";
+        eval "$(ssh-agent -s)";
+        ssh-add ".travis/github_deploy_key"; # add deploy key to ssh
+        cargo doc-upload --branch $TRAVIS_BRANCH; # upload the documentation
       fi
 
   - os: linux
