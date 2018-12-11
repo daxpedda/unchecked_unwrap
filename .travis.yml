@@ -1,3 +1,8 @@
+branches:
+  only:
+  - master
+  - stable
+
 # we plan to cache the rust compiler to shorten build times
 language: minimal
 
@@ -15,17 +20,26 @@ cache:
   - target/kcov-master/build
 
 before_cache:
-# we dont want to cache crates
+# we don't want to cache crates
 - rm -rf "$HOME/.cargo/registry"
 
 before_install:
+# download the rust installer
 - curl https://sh.rustup.rs -sSf | sh -s -- --default-toolchain=$TRAVIS_RUST_VERSION -y
-- source $HOME/.cargo/env
+# different command needed for windows
+- if [ "$TRAVIS_OS_NAME" != "windows" ]; then
+    source $HOME/.cargo/env;
+  else
+    export PATH=$HOME/.cargo/bin:$PATH;
+  fi
+# FIXME: find out if the installer is enough to update
+# FIXME: if installer already updates, we should only download the installer if rust isn't installed
 - rustup update
 
 before_script:
 - cargo build
 - cargo test
+# nightly has additional features we want to test and use
 - if [ "$TRAVIS_RUST_VERSION" != "nightly" ]; then
     cargo doc;
   else
@@ -38,6 +52,7 @@ jobs:
   - os: linux
     env:
     - TRAVIS_RUST_VERSION=nightly
+    - secure: Y4okpPvkQ/osFU+6KjIfn3U6bG2hGHugeicTx1tiOztdXg35S+BsUGY+WjQYwPPLrdWZ8W40UEx5klNCgscs5cJr7o3ZvX8AwGbF9xTzALFZa7wWKqznCpM5GlFFQQ5BuG5fbMKO/yHOcXLMZV5AmN1MI2AaD2hRwVw+KJpNFeaaZ4k4a/eufG+Zoip0b/cSpbRdcAFrNqpJ7vpne1Ds0UC11rZ8UGWdW7Tc56PeXzOsju4ElQwbnrNjJzGv/hmcFe7TlFau5VssdxkHiZp5F8I6cS5xAaHQtOaXIehbxul8CXM57RrZKj5Y+6e0ZWICi7bB84jJbL/jffU0kgNCm6Sdk8DcMY9zoWtu3RDXULVLcW4h8PKaBo7RDjGygUV3lNi06UZ8M/LJv9zv3bFjbY+vzTcGHivvuypv5Of2eggGjPnNEeY+SKBRuP+So70gAnJWHX9yCivgE8bsgiFFHKLapQZ1wIAqM3/59JHg0QydqoJ8lMpDmyl+YY7bDEDWVPGCXmrbwNdin1n33uKOf8N3Qz6it8MSEQ0P0NTFfjQ/ebWrvadIs8eH2BrLMQYstUSYtD4C0M9c+0sOoePd4rEiqw2Mh03hC6SAtWamHUVsUeGKlLpB5nD+7R7f6b1cFqIP17kRm/M1ob/wPVKPCGQrORNCUtBjYKx/XQ6JgR0=
     sudo: required
     addons:
       apt:
@@ -49,7 +64,7 @@ jobs:
         - cmake
     script:
     # install and update cargo subcommands
-    # check cargo-travis for updates
+    # run coverage
     # upload test coverage
     # decrypt deploy key
     # start ssh agent in background
@@ -61,7 +76,7 @@ jobs:
         cargo install-update -a -g;
         cargo coverage;
         bash <(curl -s https://codecov.io/bash) -s target/kcov;
-        openssl aes-256-cbc -K $encrypted_ea461eafb522_key -iv $encrypted_ea461eafb522_iv -in ".travis/github_deploy_key.enc" -out ".travis/github_deploy_key" -d;
+        echo $github_deploy_key | gpg --passphrase-fd 0 ".travis/github_deploy_key.gpg"
         chmod 600 ".travis/github_deploy_key";
         eval "$(ssh-agent -s)";
         ssh-add ".travis/github_deploy_key";
