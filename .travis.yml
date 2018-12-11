@@ -25,17 +25,26 @@ before_cache:
 - rm -rf "$HOME/.cargo/registry"
 
 before_install:
-# download the rust installer
-- curl https://sh.rustup.rs -sSf | sh -s -- --default-toolchain=$TRAVIS_RUST_VERSION -y
 # different command needed for windows
 - if [ "$TRAVIS_OS_NAME" != "windows" ]; then
-    source $HOME/.cargo/env;
+    source $HOME/.cargo/env || echo "path not found";
   else
-    export PATH=$HOME/.cargo/bin:$PATH;
+    export PATH=$HOME/.cargo/bin:$PATH || echo "path not found";
   fi
-# FIXME: find out if the installer is enough to update
-# FIXME: if installer already updates, we should only download the installer if rust isn't installed
-- rustup update
+# check if rustup is installed
+# update
+# otherwise download and install
+# set path again
+- if rustup; then
+    rustup update;
+  else
+    curl https://sh.rustup.rs -sSf | sh -s -- --default-toolchain=$TRAVIS_RUST_VERSION -y;
+    if [ "$TRAVIS_OS_NAME" != "windows" ]; then
+      source $HOME/.cargo/env || echo "path not found";
+    else
+      export PATH=$HOME/.cargo/bin:$PATH || echo "path not found";
+    fi;
+  fi
 
 before_script:
 - cargo build
