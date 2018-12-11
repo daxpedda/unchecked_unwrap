@@ -55,7 +55,7 @@ jobs:
     # start ssh agent in background
     # add deploy key to ssh
     # upload the documentation
-    - if [ "$TRAVIS_PULL_REQUEST" == false ]; then
+    - if [ "${TRAVIS_PULL_REQUEST}" == false ]; then
         cargo install cargo-update || echo "cargo-update already installed";
         cargo install cargo-travis --git "https://github.com/daxpedda/cargo-travis.git" || echo "cargo-travis already installed";
         cargo install-update -a -g;
@@ -98,7 +98,7 @@ jobs:
     - rm -rf "$HOME/.cargo/registry"
     before_install:
     - curl https://sh.rustup.rs -sSf | sh -s -- --default-toolchain=$TRAVIS_RUST_VERSION -y
-    - PATH=%PATH%;$HOME/.cargo/bin
+    - export PATH=$HOME/.cargo/bin:$PATH
     - rustup update
     before_script:
     - cargo build
