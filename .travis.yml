@@ -49,7 +49,7 @@ jobs:
         - libdw-dev
         - binutils-dev
         - cmake
-    after_success:
+    script:
     # upload test coverage
     # decrypt deploy key
     # start ssh agent in background
