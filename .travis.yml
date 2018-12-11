@@ -81,8 +81,7 @@ jobs:
     - TRAVIS_RUST_VERSION=nightly
 
   - os: windows
-    language: node_js
-    node_js: "10"
+    language: sh
     env:
     - RUST_BACKTRACE=1
     - TRAVIS_RUST_VERSION=nightly
