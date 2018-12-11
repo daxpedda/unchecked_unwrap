@@ -50,10 +50,10 @@ jobs:
         - binutils-dev
         - cmake
     script:
-    - if [ "$TRAVIS_PULL_REQUEST" == false ] && ! [ cargo install cargo-travis --git "https://github.com/daxpedda/cargo-travis.git" ]; then
-          cargo uninstall cargo-travis;
-          cargo install cargo-travis --git "https://github.com/daxpedda/cargo-travis.git";
-        fi;
+    - if [ "$TRAVIS_PULL_REQUEST" == false ] && ! cargo install cargo-travis --git "https://github.com/daxpedda/cargo-travis.git"; then
+        cargo uninstall cargo-travis;
+        cargo install cargo-travis --git "https://github.com/daxpedda/cargo-travis.git";
+      fi
     # upload test coverage
     # decrypt deploy key
     # start ssh agent in background
