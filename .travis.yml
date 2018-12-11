@@ -82,6 +82,6 @@ jobs:
 
   - os: windows
     language: node_js
-    node_js: "10.14.1"
+    node_js: "7"
     env:
     - TRAVIS_RUST_VERSION=nightly
