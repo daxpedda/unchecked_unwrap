@@ -81,6 +81,6 @@ jobs:
     - TRAVIS_RUST_VERSION=nightly
 
   - os: windows
-    language: shell
+    language: sh
     env:
     - TRAVIS_RUST_VERSION=nightly
