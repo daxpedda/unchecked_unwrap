@@ -81,7 +81,7 @@ jobs:
     - TRAVIS_RUST_VERSION=nightly
 
   - os: windows
-    language: c
+    language: sh
     env:
     - RUST_BACKTRACE=1
     - TRAVIS_RUST_VERSION=nightly
@@ -98,7 +98,7 @@ jobs:
     - rm -rf "$HOME/.cargo/registry"
     before_install:
     - curl https://sh.rustup.rs -sSf | sh -s -- --default-toolchain=$TRAVIS_RUST_VERSION -y
-    - source $HOME/.cargo/env
+    - source $HOME/.cargo/bin
     - rustup update
     before_script:
     - cargo build
