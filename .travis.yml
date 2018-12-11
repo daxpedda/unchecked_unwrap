@@ -49,16 +49,17 @@ jobs:
         - libdw-dev
         - binutils-dev
         - cmake
-    script:
+    after_success:
     # upload test coverage
     # decrypt deploy key
     # start ssh agent in background
     # add deploy key to ssh
     # upload the documentation
     - if [ "$TRAVIS_PULL_REQUEST" == false ]; then
-        cargo install cargo-update || echo "cargo-update already installed";
-        cargo install cargo-travis --git "https://github.com/daxpedda/cargo-travis.git" || echo "cargo-travis already installed";
-        cargo install-update -a;
+        if ! [ cargo install cargo-travis --git "https://github.com/daxpedda/cargo-travis.git" ]; then
+          cargo uninstall cargo-travis;
+          cargo install cargo-travis --git "https://github.com/daxpedda/cargo-travis.git";
+        fi;
         cargo coverage;
         bash <(curl -s https://codecov.io/bash) -s target/kcov;
         openssl aes-256-cbc -K $encrypted_ea461eafb522_key -iv $encrypted_ea461eafb522_iv -in ".travis/github_deploy_key.enc" -out ".travis/github_deploy_key" -d;

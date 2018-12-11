@@ -21,7 +21,7 @@ pub trait UncheckedUnwrap<T> {
     ///
     /// # Safety
     ///
-    /// Callers  of this function are responsible that [`Option`] or [`Result`] carries a [`Some`] or
+    /// Callers of this function are responsible that [`Option`] or [`Result`] carries a [`Some`] or
     /// [`Ok`].
     ///
     /// Failing that, the returned value may reference invalid memory or cause undefined behaviour.
