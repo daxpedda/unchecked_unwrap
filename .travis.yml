@@ -59,7 +59,7 @@ jobs:
         cargo install cargo-update || echo "cargo-update already installed";
         cargo install cargo-travis --git "https://github.com/daxpedda/cargo-travis.git" || echo "cargo-travis already installed";
         cargo install-update -a -g;
-        for file in target/debug/examplerust-*[^\.d]; do
+        for file in target/debug/*[^\.d]; do
           mkdir -p "target/cov/$(basename $file)";
           ./kcov-build/usr/local/bin/kcov --exclude-pattern=/.cargo,/usr/lib --verify "target/cov/$(basename $file)" "$file";
         done;
