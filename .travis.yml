@@ -60,7 +60,7 @@ jobs:
         cargo install cargo-travis --git "https://github.com/daxpedda/cargo-travis.git" || echo "cargo-travis already installed";
         cargo install cargo-update || echo "cargo-update already installed";
         cargo install-update -a -g;
-        cargo tarpaulin --out Xml
+        cargo tarpaulin --out Xml;
         bash <(curl -s https://codecov.io/bash);
         echo $github_deploy_key | gpg --passphrase-fd 0 ".travis/github_deploy_key.gpg";
         chmod 600 ".travis/github_deploy_key";
