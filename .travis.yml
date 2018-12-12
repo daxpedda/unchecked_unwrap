@@ -17,6 +17,8 @@ cache:
   - "$HOME/.rustup"
   # cache cargo, for cargo subcommands
   - "$HOME/.cargo"
+  # trying to fix windows
+  - "$HOME/.cargo/bin/"
   # cache kcov, we don't want to recompile it every time, only used in nightly
   - target/kcov-master/build
 
