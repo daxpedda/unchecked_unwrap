@@ -56,14 +56,12 @@ jobs:
     # add deploy key to ssh
     # upload the documentation
     - if [ "${TRAVIS_PULL_REQUEST}" == false ]; then
-        cargo install cargo-update || echo "cargo-update already installed";
+        RUSTFLAGS="--cfg procmacro2_semver_exempt" cargo install cargo-tarpaulin || echo "cargo-update already installed";
         cargo install cargo-travis --git "https://github.com/daxpedda/cargo-travis.git" || echo "cargo-travis already installed";
+        cargo install cargo-update || echo "cargo-update already installed";
         cargo install-update -a -g;
-        for file in target/debug/*[^\.d]; do
-          mkdir -p "target/cov/$(basename $file)";
-          ./kcov-build/usr/local/bin/kcov --exclude-pattern=/.cargo,/usr/lib --verify "target/cov/$(basename $file)" "$file";
-        done;
-        bash <(curl -s https://codecov.io/bash) -s target/kcov;
+        cargo tarpaulin --out Xml
+        bash <(curl -s https://codecov.io/bash);
         echo $github_deploy_key | gpg --passphrase-fd 0 ".travis/github_deploy_key.gpg";
         chmod 600 ".travis/github_deploy_key";
         eval "$(ssh-agent -s)";
