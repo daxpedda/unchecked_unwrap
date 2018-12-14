@@ -49,24 +49,24 @@ jobs:
         - kcov
     script:
     # install and update cargo subcommands
-    # run coverage
-    # upload test coverage
     # decrypt deploy key
     # start ssh agent in background
     # add deploy key to ssh
     # upload the documentation
+    # run coverage
+    # upload test coverage
     - if [ "${TRAVIS_PULL_REQUEST}" == false ]; then
         RUSTFLAGS="--cfg procmacro2_semver_exempt" cargo install cargo-tarpaulin || echo "cargo-update already installed";
         cargo install cargo-travis --git "https://github.com/daxpedda/cargo-travis.git" || echo "cargo-travis already installed";
         cargo install cargo-update || echo "cargo-update already installed";
         cargo install-update -a -g;
-        cargo tarpaulin --out Xml;
-        bash <(curl -s https://codecov.io/bash);
         echo $github_deploy_key | gpg --passphrase-fd 0 ".travis/github_deploy_key.gpg";
         chmod 600 ".travis/github_deploy_key";
         eval "$(ssh-agent -s)";
         ssh-add ".travis/github_deploy_key";
         cargo doc-upload --branch $TRAVIS_BRANCH;
+        cargo tarpaulin --out Xml;
+        bash <(curl -s https://codecov.io/bash);
       fi
 
   - os: linux
