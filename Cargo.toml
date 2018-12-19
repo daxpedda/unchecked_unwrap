@@ -28,6 +28,6 @@ debug_checks = []
 test = false
 bench = false
 
-[profile.test.release]
+[profile.test]
 debug = 2
 debug-assertions = false
