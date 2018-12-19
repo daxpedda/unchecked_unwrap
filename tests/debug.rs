@@ -1,4 +1,4 @@
-extern crate unchecked_unwrap;
+#![cfg(debug_assertions)]
 use unchecked_unwrap::*;
 
 #[test]

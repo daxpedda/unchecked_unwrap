@@ -40,6 +40,7 @@
 [mccl]: https://codecov.io/github/daxpedda/unchecked_unwrap/branch/master/
 
 Adds an unchecked version of `unwrap()` and `expect()` to `Option` and `Result` for the rust programmming language.
+Supports `no_std`.
 
 ## Usage
 

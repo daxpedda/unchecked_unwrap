@@ -23,3 +23,7 @@ maintenance = { status = "actively-developed" }
 [features]
 default = ["debug_checks"]
 debug_checks = []
+
+[lib]
+test = false
+bench = false
