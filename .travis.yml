@@ -22,8 +22,8 @@ before_cache:
 before_script:
 - cargo build
 - cargo build --release
-- cargo test
-- cargo test --release
+#- cargo test
+#- cargo test --release
 # nightly has additional features we want to test and use
 - if [ "$TRAVIS_RUST_VERSION" != "nightly" ]; then
     cargo doc;
