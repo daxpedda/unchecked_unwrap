@@ -27,7 +27,3 @@ debug_checks = []
 [lib]
 test = false
 bench = false
-
-[profile.test]
-debug = 2
-debug-assertions = false

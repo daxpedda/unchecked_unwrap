@@ -22,13 +22,14 @@ before_cache:
 before_script:
 - cargo build
 - cargo build --release
-#- cargo test
-#- cargo test --release
+- cargo test
+- cargo test --release
 # nightly has additional features we want to test and use
 - if [ "$TRAVIS_RUST_VERSION" != "nightly" ]; then
     cargo doc;
   else
     cargo rustdoc -- -Z unstable-options --enable-index-page;
+    cargo bench;
   fi
 
 jobs:
@@ -57,6 +58,7 @@ jobs:
         ssh-add ".travis/github_deploy_key";
         cargo doc-upload --branch $TRAVIS_BRANCH;
         cargo tarpaulin --out Xml;
+        cargo tarpaulin --release --out Xml;
         bash <(curl -s https://codecov.io/bash);
       fi
 
