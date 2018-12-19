@@ -57,7 +57,6 @@ jobs:
         eval "$(ssh-agent -s)";
         ssh-add ".travis/github_deploy_key";
         cargo doc-upload --branch $TRAVIS_BRANCH;
-        cargo tarpaulin --release --out Xml;
         cargo tarpaulin --out Xml;
         bash <(curl -s https://codecov.io/bash);
       fi
