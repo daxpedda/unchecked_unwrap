@@ -5,7 +5,7 @@
 //! `debug_checks`: On by default. Enables the normal checking behaviour with panics when `debug-assertions` is enabled.
 
 #![no_std]
-#![warn(clippy::cargo, clippy::pedantic, clippy::restriction)]
+#![warn(clippy::cargo, clippy::pedantic, clippy::nursery)]
 
 /// Trait for [`unchecked_unwrap`](trait.UncheckedUnwrap.html#method.unchecked_unwrap).
 pub trait UncheckedUnwrap<T> {
