@@ -56,7 +56,7 @@ jobs:
     # upload the documentation
     - if [ "${TRAVIS_PULL_REQUEST}" == false ]; then
         RUSTFLAGS="--cfg procmacro2_semver_exempt" cargo install cargo-tarpaulin --git "https://github.com/daxpedda/tarpaulin.git" --branch "develop" || echo "cargo-tarpaulin already installed";
-        cargo install cargo-travis --force || echo "cargo-travis already installed";
+        cargo install cargo-travis --git "https://github.com/roblabla/cargo-travis.git" --force || echo "cargo-travis already installed";
         cargo install cargo-update || echo "cargo-update already installed";
         cargo install-update -a -g;
         cargo coverage -- --release;
