@@ -56,7 +56,7 @@ jobs:
         cargo install-update cargo-travis -g;
         cargo tarpaulin --skip-clean --out Xml;
         bash <(curl -s https://codecov.io/bash);
-        RUSTFLAGS="-C opt-level=0 -C debug-assertions=0" cargo tarpaulin --skip-clean -v --release --out Xml;
+        RUSTFLAGS="-C opt-level=0 -C debug-assertions=off" cargo tarpaulin --skip-clean -v --release --out Xml;
         bash <(curl -s https://codecov.io/bash);
         echo $github_deploy_key | gpg --passphrase-fd 0 ".travis/github_deploy_key.gpg";
         chmod 600 ".travis/github_deploy_key";
