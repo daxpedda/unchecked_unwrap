@@ -43,7 +43,7 @@ pub trait UncheckedUnwrap<T> {
 impl<T> UncheckedUnwrap<T> for Option<T> {
     /// Unwraps a [`Option`], yielding the content of an [`Some`].
     /// This is the unchecked alternative to [`unwrap`](Option::unwrap).
-    #[inline]
+    #[inline(never)]
     unsafe fn unchecked_unwrap(self) -> T {
         if cfg!(debug_assertions) {
             #[cfg(feature = "debug_checks")]
@@ -62,7 +62,7 @@ impl<T> UncheckedUnwrap<T> for Option<T> {
 impl<T, E: core::fmt::Debug> UncheckedUnwrap<T> for Result<T, E> {
     /// Unwraps a [`Result`], yielding the content of an [`Ok`].
     /// This is the unchecked alternative to [`unwrap`](Result::unwrap).
-    #[inline]
+    #[inline(never)]
     unsafe fn unchecked_unwrap(self) -> T {
         if cfg!(debug_assertions) {
             #[cfg(feature = "debug_checks")]
@@ -114,7 +114,7 @@ pub trait UncheckedExpect<T> {
 impl<T> UncheckedExpect<T> for Option<T> {
     /// Unwraps an [`Option`], yielding the content of a [`Some`].
     /// This is the unchecked alternative to [`expect`](Option::expect).
-    #[inline]
+    #[inline(never)]
     unsafe fn unchecked_expect(self, msg: &str) -> T {
         if cfg!(debug_assertions) {
             #[cfg(feature = "debug_checks")]
@@ -132,7 +132,7 @@ impl<T> UncheckedExpect<T> for Option<T> {
 impl<T, E: core::fmt::Debug> UncheckedExpect<T> for Result<T, E> {
     /// Unwraps a [`Result`], yielding the content of an [`Ok`].
     /// This is the unchecked alternative to [`expect`](Result::expect).
-    #[inline]
+    #[inline(never)]
     unsafe fn unchecked_expect(self, msg: &str) -> T {
         if cfg!(debug_assertions) {
             #[cfg(feature = "debug_checks")]
