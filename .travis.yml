@@ -52,8 +52,6 @@ jobs:
         cargo install cargo-travis --git "https://github.com/daxpedda/cargo-travis.git" || echo "cargo-travis already installed";
         cargo install cargo-update || echo "cargo-update already installed";
         cargo install-update -a -g;
-        cargo tarpaulin --skip-clean --out Xml;
-        bash <(curl -s https://codecov.io/bash);
         cargo tarpaulin --skip-clean --release --out Xml;
         bash <(curl -s https://codecov.io/bash);
         echo $github_deploy_key | gpg --passphrase-fd 0 ".travis/github_deploy_key.gpg";
