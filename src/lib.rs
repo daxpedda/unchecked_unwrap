@@ -138,7 +138,7 @@ impl<T, E: core::fmt::Debug> UncheckedExpect<T> for Result<T, E> {
             #[cfg(feature = "debug_checks")]
             return self.expect(msg);
         }
-        panic!("asd");
+
         if let Ok(x) = self {
             x
         } else {
