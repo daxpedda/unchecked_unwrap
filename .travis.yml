@@ -20,10 +20,14 @@ before_cache:
 - rm -rf "$HOME/.cargo/registry"
 
 before_script:
+- rustup component add clippy
+- rustup component add fmt
 - cargo build
 - cargo build --release
 - cargo test
 - cargo test --release
+- cargo clippy --all-targets --all-features --profile test -- -D warnings
+- cargo fmt --all -- --check
 # nightly has additional features we want to test and use
 - if [ "$TRAVIS_RUST_VERSION" != "nightly" ]; then
     cargo doc;
@@ -56,7 +60,7 @@ jobs:
         cargo install-update cargo-travis -g;
         cargo tarpaulin --skip-clean --out Xml;
         bash <(curl -s https://codecov.io/bash);
-        RUSTFLAGS="-C opt-level=0 -C debug-assertions=off" cargo tarpaulin --skip-clean -v --release --out Xml;
+        cargo tarpaulin --skip-clean --release --out Xml;
         bash <(curl -s https://codecov.io/bash);
         echo $github_deploy_key | gpg --passphrase-fd 0 ".travis/github_deploy_key.gpg";
         chmod 600 ".travis/github_deploy_key";
