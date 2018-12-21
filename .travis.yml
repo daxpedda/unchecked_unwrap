@@ -27,7 +27,6 @@ before_script:
     cargo doc;
   else
     cargo rustdoc -- -Z unstable-options --enable-index-page;
-    cargo bench;
   fi
 
 jobs:
