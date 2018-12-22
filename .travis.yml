@@ -37,6 +37,8 @@ before_script:
     cargo rustdoc -- -Z unstable-options --enable-index-page;
     cargo bench;
   fi
+# remove default scripts
+script:
 
 jobs:
   include:
