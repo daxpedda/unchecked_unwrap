@@ -26,12 +26,14 @@ before_script:
 - cargo build --release
 - cargo test
 - cargo test --release
-- cargo clippy --all-targets --all-features --profile test -- -D warnings
+- cargo clippy --all-features -- -D warnings
+- cargo clippy --all-features --tests -- -D warnings
 - cargo fmt --all -- --check
 # nightly has additional features we want to test and use
 - if [ "$TRAVIS_RUST_VERSION" != "nightly" ]; then
     cargo doc;
   else
+    cargo clippy --all-features --benches -- -D warnings
     cargo rustdoc -- -Z unstable-options --enable-index-page;
     cargo bench;
   fi

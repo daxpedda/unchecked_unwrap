@@ -80,8 +80,8 @@ impl<T> UncheckedExpect<T> for Option<T> {
         if cfg!(debug_assertions) {
             #[cfg(feature = "debug_checks")]
             self.expect(msg)
-        } else if let Some(x) = self {
-            x
+        } else if let Some(value) = self {
+            value
         } else {
             core::hint::unreachable_unchecked()
         }
@@ -95,8 +95,8 @@ impl<T, E: core::fmt::Debug> UncheckedExpect<T> for Result<T, E> {
         if cfg!(debug_assertions) {
             #[cfg(feature = "debug_checks")]
             self.expect(msg)
-        } else if let Ok(x) = self {
-            x
+        } else if let Ok(value) = self {
+            value
         } else {
             core::hint::unreachable_unchecked()
         }
@@ -111,8 +111,8 @@ impl<T> UncheckedUnwrap<T> for Option<T> {
             #[cfg(feature = "debug_checks")]
             #[allow(clippy::option_unwrap_used)]
             self.unwrap()
-        } else if let Some(x) = self {
-            x
+        } else if let Some(value) = self {
+            value
         } else {
             core::hint::unreachable_unchecked()
         }
@@ -127,8 +127,8 @@ impl<T, E: core::fmt::Debug> UncheckedUnwrap<T> for Result<T, E> {
             #[cfg(feature = "debug_checks")]
             #[allow(clippy::result_unwrap_used)]
             self.unwrap()
-        } else if let Ok(x) = self {
-            x
+        } else if let Ok(value) = self {
+            value
         } else {
             core::hint::unreachable_unchecked()
         }
