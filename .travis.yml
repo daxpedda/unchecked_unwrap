@@ -34,7 +34,7 @@ script:
     cargo doc --verbose;
   else
     cargo clippy --all-features --benches --verbose -- -D warnings;
-    cargo rustdoc --verbose -- -Z unstable-options --enable-index-page;
+    cargo rustdoc --verbose;
     cargo bench --verbose;
   fi
 
@@ -68,8 +68,8 @@ jobs:
     - if [ "${TRAVIS_PULL_REQUEST}" == false ]; then
         cargo install cargo-update || echo "cargo-update already installed";
         RUSTFLAGS="--cfg procmacro2_semver_exempt" cargo install cargo-tarpaulin --git "https://github.com/xd009642/tarpaulin.git" --branch "develop" || echo "cargo-tarpaulin already installed";
-        cargo install cargo-travis --git "https://github.com/daxpedda/cargo-travis.git" --branch "badge" --force || echo "cargo-travis already installed";
-        cargo install-update install-update;
+        cargo install cargo-travis --git "https://github.com/daxpedda/cargo-travis.git" --branch "badge" || echo "cargo-travis already installed";
+        cargo install-update cargo-update;
         RUSTFLAGS="--cfg procmacro2_semver_exempt" cargo install-update cargo-tarpaulin -g;
         cargo install-update cargo-travis -g;
         echo $github_deploy_key | gpg --passphrase-fd 0 ".travis/github_deploy_key.gpg";
