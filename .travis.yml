@@ -34,7 +34,7 @@ script:
     cargo doc --verbose;
   else
     cargo clippy --all-features --benches --verbose -- -D warnings;
-    cargo rustdoc --verbose;
+    cargo rustdoc --verbose -- -Z unstable-options --enable-index-page;
     cargo bench --verbose;
   fi
 
@@ -56,7 +56,7 @@ jobs:
     - cargo clippy --all-features --tests --verbose -- -D warnings
     - cargo fmt --all --verbose -- --check
     - cargo clippy --all-features --benches --verbose -- -D warnings;
-    - cargo rustdoc --verbose -- -Z unstable-options --enable-index-page;
+    - cargo rustdoc --verbose;
     - cargo bench --verbose;
     # install and update cargo subcommands
     # decrypt deploy key
