@@ -49,6 +49,16 @@ jobs:
     script:
     - rustup component add clippy
     - rustup component add rustfmt
+    - cargo build --verbose
+    - cargo build --release --verbose
+    - cargo test --verbose
+    - cargo test --release --verbose
+    - cargo update --locked --verbose
+    - cargo clippy --all-features --verbose -- -D warnings
+    - cargo clippy --all-features --tests --verbose -- -D warnings
+    - cargo fmt --all --verbose -- --check
+    - cargo clippy --all-features --benches --verbose -- -D warnings;
+    - cargo bench --verbose;
     # install and update cargo subcommands
     # decrypt deploy key
     # start ssh agent in background
@@ -68,4 +78,20 @@ jobs:
         eval "$(ssh-agent -s)";
         ssh-add ".travis/github_deploy_key";
         cargo doc-upload --branch $TRAVIS_BRANCH;
+        cargo tarpaulin --out Xml --verbose;
+        bash <(curl -s https://codecov.io/bash);
+        cargo tarpaulin --release --out Xml --verbose;
+        bash <(curl -s https://codecov.io/bash);
       fi
+
+  - os: linux
+    rust: beta
+
+  - os: linux
+    rust: stable
+
+  - os: osx
+    rust: nightly
+
+  - os: windows
+    rust: nightly
