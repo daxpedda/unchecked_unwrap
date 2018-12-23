@@ -1,6 +1,7 @@
 # unchecked_unwrap
 
 [![Crates][ci]][cl] [![Dep][di]][dl] [![Resolution][iri]][irl] [![Issues][ori]][orl] [![License][li]][ll] [![LoC][mlci]][mlcl]
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fdaxpedda%2Funchecked_unwrap.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Fdaxpedda%2Funchecked_unwrap?ref=badge_shield)
 
 [ci]: https://img.shields.io/crates/v/unchecked_unwrap.svg
 [cl]: https://crates.io/crates/unchecked_unwrap/
@@ -89,3 +90,6 @@ You can choose between one of them if you use this work.
 See the [LICENSE](LICENSE) file for details
 
 `SPDX-License-Identifier: MIT OR Apache-2.0`
+
+
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fdaxpedda%2Funchecked_unwrap.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2Fdaxpedda%2Funchecked_unwrap?ref=badge_large)
