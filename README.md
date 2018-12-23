@@ -1,9 +1,12 @@
 # unchecked_unwrap
 
-[![Crates][ci]][cl] [![Resolution][iri]][irl] [![Issues][ori]][orl] [![License][li]][ll] [![LoC][mlci]][mlcl]
+[![Crates][ci]][cl] [![Dep][di]][dl] [![Resolution][iri]][irl] [![Issues][ori]][orl] [![License][li]][ll] [![LoC][mlci]][mlcl]
 
 [ci]: https://img.shields.io/crates/v/unchecked_unwrap.svg
 [cl]: https://crates.io/crates/unchecked_unwrap/
+
+[di]: https://deps.rs/repo/github/daxpedda/unchecked_unwrap/status.svg
+[dl]: https://deps.rs/repo/github/daxpedda/unchecked_unwrap
 
 [iri]: http://isitmaintained.com/badge/resolution/daxpedda/unchecked_unwrap.svg
 [irl]: http://isitmaintained.com/project/daxpedda/unchecked_unwrap

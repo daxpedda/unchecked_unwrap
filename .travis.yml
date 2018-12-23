@@ -26,6 +26,7 @@ script:
 - cargo build --release --verbose
 - cargo test --verbose
 - cargo test --release --verbose
+- cargo update --locked --verbose
 - cargo clippy --all-features --verbose -- -D warnings
 - cargo clippy --all-features --tests --verbose -- -D warnings
 - cargo fmt --all --verbose -- --check
@@ -52,11 +53,11 @@ jobs:
     - cargo build --release --verbose
     - cargo test --verbose
     - cargo test --release --verbose
+    - cargo update --locked --verbose
     - cargo clippy --all-features --verbose -- -D warnings
     - cargo clippy --all-features --tests --verbose -- -D warnings
     - cargo fmt --all --verbose -- --check
     - cargo clippy --all-features --benches --verbose -- -D warnings;
-    - cargo rustdoc --verbose;
     - cargo bench --verbose;
     # install and update cargo subcommands
     # decrypt deploy key
