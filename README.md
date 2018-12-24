@@ -36,7 +36,7 @@
 [mbi]: https://img.shields.io/travis/daxpedda/unchecked_unwrap/stable.svg?label=build:%20master
 [mbl]: https://travis-ci.org/daxpedda/unchecked_unwrap/branches/
 
-[mdi]: https://docs.rs/unchecked_unwrap/badge.svg
+[mdi]: https://github.com/daxpedda/unchecked_unwrap/blob/gh-pages/master/badge.svg
 [mdl]: https://daxpedda.github.io/unchecked_unwrap/master/index.html
 
 [mcci]: https://img.shields.io/codecov/c/github/daxpedda/unchecked_unwrap/master.svg?label=coverage:%20master
