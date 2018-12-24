@@ -36,7 +36,7 @@ script:
     cargo clippy --all-features --verbose -- -D warnings;
     cargo clippy --all-features --tests --verbose -- -D warnings;
 
-    if [ "$TRAVIS_RUST_VERSION" != "nightly" ]; then
+    if [ "$TRAVIS_RUST_VERSION" == "nightly" ]; then
       cargo clippy --all-features --benches --verbose -- -D warnings;
     fi;
   fi
