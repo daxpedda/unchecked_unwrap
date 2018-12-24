@@ -20,20 +20,20 @@
 [mlci]: https://tokei.rs/b1/github/daxpedda/unchecked_unwrap/
 [mlcl]: https://github.com/daxpedda/unchecked_unwrap/
 
-**[Stable](https://github.com/daxpedda/unchecked_unwrap/tree/stable/):** [![Build][sbi]][sbl] [![Docs][sdi]][sdl] [![Coverage][scci]][sccl]
+**[Release](https://github.com/daxpedda/unchecked_unwrap/tree/release/):** [![Build][sbi]][sbl] [![Docs][sdi]][sdl] [![Coverage][scci]][sccl]
 
-[sbi]: https://img.shields.io/travis/daxpedda/unchecked_unwrap/stable.svg?label=build:%20stable
+[sbi]: https://img.shields.io/travis/daxpedda/unchecked_unwrap/release.svg?label=build:%20release
 [sbl]: https://travis-ci.org/daxpedda/unchecked_unwrap/branches/
 
 [sdi]: https://docs.rs/unchecked_unwrap/badge.svg
 [sdl]: https://docs.rs/unchecked_unwrap/
 
-[scci]: https://img.shields.io/codecov/c/github/daxpedda/unchecked_unwrap/stable.svg?label=coverage:%20stable
-[sccl]: https://codecov.io/github/daxpedda/unchecked_unwrap/branch/stable/
+[scci]: https://img.shields.io/codecov/c/github/daxpedda/unchecked_unwrap/release.svg?label=coverage:%20release
+[sccl]: https://codecov.io/github/daxpedda/unchecked_unwrap/branch/release/
 
 **[Master](https://github.com/daxpedda/unchecked_unwrap/):** [![Build][mbi]][mbl] [![Docs][mdi]][mdl] [![Coverage][mcci]][mccl]
 
-[mbi]: https://img.shields.io/travis/daxpedda/unchecked_unwrap/stable.svg?label=build:%20master
+[mbi]: https://img.shields.io/travis/daxpedda/unchecked_unwrap/release.svg?label=build:%20master
 [mbl]: https://travis-ci.org/daxpedda/unchecked_unwrap/branches/
 
 [mdi]: https://github.com/daxpedda/unchecked_unwrap/blob/gh-pages/master/badge.svg
@@ -44,6 +44,11 @@
 
 Adds an unchecked version of `unwrap()` and `expect()` to `Option` and `Result` for the rust programmming language.
 Supports `no_std`.
+
+## branches
+
+* **release** - For releases only.
+* **master** - For active development, PR's and testing.
 
 ## Usage
 
@@ -65,11 +70,16 @@ assert_eq!(unsafe { x.unchecked_expect("the sky is falling down") }, 2);
 
 ## Crate features
 
-**debug_checks**: On by default. Enables the normal checking behaviour with panics when `debug-assertions` is enabled.
+**debug_checks**: On by default. Enables the normal checking behavior with panics when `debug-assertions` is enabled.
 
 ## Testing
 
-Is as simple as `cargo test`.
+Is as simple as `cargo test` and `cargo test --release`.
+
+## Test coverage
+
+Test coverage is currently done by [Tarpaulin](https://github.com/xd009642/tarpaulin), which currently is missing some lines.
+I removed the badge from [Crates.io](https://crates.io/crates/unchecked_unwrap/) because it is misleading.
 
 ## Benchmarking
 

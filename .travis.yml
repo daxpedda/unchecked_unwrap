@@ -2,7 +2,7 @@
 branches:
   only:
   - master
-  - stable
+  - release
 
 language: rust
 
@@ -54,12 +54,12 @@ jobs:
     - cargo update --locked --verbose
     - cargo rustdoc --verbose -- -Z unstable-options --enable-index-page;
     - cargo bench --verbose;
-    - if [ rustup component add clippy ]; then
+    - if rustup component add clippy; then
         cargo clippy --all-features --verbose -- -D warnings;
         cargo clippy --all-features --benches --verbose -- -D warnings;
         cargo clippy --all-features --tests --verbose -- -D warnings;
       fi
-    - if [ rustup component add rustfmt ]; then
+    - if rustup component add rustfmt; then
         cargo fmt --all --verbose -- --check;
       fi
     # install and update cargo subcommands

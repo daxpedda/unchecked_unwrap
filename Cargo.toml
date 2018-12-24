@@ -15,7 +15,8 @@ exclude = [".travis.yml", "codecov.yml"]
 
 [badges]
 travis-ci = { repository = "daxpedda/unchecked_unwrap", branch = "stable" }
-codecov = { repository = "daxpedda/unchecked_unwrap", branch = "stable" }
+# TODO: wait for tarpaulin to fix some issues regarding uncovered lines
+# codecov = { repository = "daxpedda/unchecked_unwrap", branch = "stable" }
 is-it-maintained-issue-resolution = { repository = "daxpedda/unchecked_unwrap" }
 is-it-maintained-open-issues = { repository = "daxpedda/unchecked_unwrap" }
 maintenance = { status = "actively-developed" }
