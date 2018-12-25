@@ -32,16 +32,18 @@ before_script:
   else
     cargo bench --verbose
   fi
-- if rustup component add clippy; then
-    cargo clippy --all-features --verbose -- -D warnings;
-    cargo clippy --all-features --tests --verbose -- -D warnings;
+- |
+  if rustup component add clippy; then
+    cargo clippy --all-features --verbose -- -D warnings
+    cargo clippy --all-features --tests --verbose -- -D warnings
 
     if [ "$TRAVIS_RUST_VERSION" == "nightly-2018-12-23" ]; then
-      cargo clippy --all-features --benches --verbose -- -D warnings;
-    fi;
+      cargo clippy --all-features --benches --verbose -- -D warnings
+    fi
   fi
-- if rustup component add rustfmt; then
-    cargo fmt --all --verbose -- --check;
+- |
+  if rustup component add rustfmt; then
+    cargo fmt --all --verbose -- --check
   fi
 
 # we don't want any default behaviour
@@ -63,22 +65,23 @@ jobs:
     # upload the documentation
     # run coverage
     # upload test coverage
-    - if [ "${TRAVIS_PULL_REQUEST}" == false ]; then
-        cargo install cargo-update || echo "cargo-update already installed";
-        RUSTFLAGS="--cfg procmacro2_semver_exempt" cargo install cargo-tarpaulin --git "https://github.com/xd009642/tarpaulin.git" --branch "develop" || echo "cargo-tarpaulin already installed";
-        cargo install cargo-travis --git "https://github.com/daxpedda/cargo-travis.git" --branch "badge" || echo "cargo-travis already installed";
-        cargo install-update cargo-update;
-        RUSTFLAGS="--cfg procmacro2_semver_exempt" cargo install-update cargo-tarpaulin -g;
-        cargo install-update cargo-travis -g;
-        echo $github_deploy_key | gpg --passphrase-fd 0 ".travis/github_deploy_key.gpg";
-        chmod 600 ".travis/github_deploy_key";
-        eval "$(ssh-agent -s)";
-        ssh-add ".travis/github_deploy_key";
-        cargo doc-upload --branch $TRAVIS_BRANCH || travis_terminate 1;
-        cargo tarpaulin --out Xml --verbose;
-        bash <(curl -s https://codecov.io/bash);
-        cargo tarpaulin --release --out Xml --verbose;
-        bash <(curl -s https://codecov.io/bash);
+    - |
+      if [ "${TRAVIS_PULL_REQUEST}" == false ]; then
+        cargo install cargo-update || echo "cargo-update already installed"
+        RUSTFLAGS="--cfg procmacro2_semver_exempt" cargo install cargo-tarpaulin --git "https://github.com/xd009642/tarpaulin.git" --branch "develop" || echo "cargo-tarpaulin already installed"
+        cargo install cargo-travis --git "https://github.com/daxpedda/cargo-travis.git" --branch "badge" || echo "cargo-travis already installed"
+        cargo install-update cargo-update
+        RUSTFLAGS="--cfg procmacro2_semver_exempt" cargo install-update cargo-tarpaulin -g
+        cargo install-update cargo-travis -g
+        echo $github_deploy_key | gpg --passphrase-fd 0 ".travis/github_deploy_key.gpg"
+        chmod 600 ".travis/github_deploy_key"
+        eval "$(ssh-agent -s)"
+        ssh-add ".travis/github_deploy_key"
+        cargo doc-upload --branch $TRAVIS_BRANCH
+        cargo tarpaulin --out Xml --verbose
+        bash <(curl -s https://codecov.io/bash)
+        cargo tarpaulin --release --out Xml --verbose
+        bash <(curl -s https://codecov.io/bash)
       fi
 
   - os: linux
