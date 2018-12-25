@@ -62,7 +62,6 @@ jobs:
     - cargo test --verbose
     - cargo test --release --verbose
     - cargo update --locked --verbose
-    - cargo rustdoc --verbose -- -Z unstable-options --enable-index-page
     - cargo bench --verbose
     - if rustup component add clippy; then
         set -e;
