@@ -1,5 +1,5 @@
 set -x
-EXIT = 0
+var1=0
 
 cargo build --verbose
 cargo build --release --verbose
@@ -39,7 +39,7 @@ if [ "${TRAVIS_PULL_REQUEST}" == false ] &&  [ "${DEPLOY}" == true ]; then
 	chmod 600 ".travis/github_deploy_key"
 	eval "$(ssh-agent -s)"
 	ssh-add ".travis/github_deploy_key"
-	cargo doc-upload --branch $TRAVIS_BRANCH || EXIT = 1
+	cargo doc-upload --branch $TRAVIS_BRANCH || var1=1
 	cargo tarpaulin --out Xml --verbose
 	bash <(curl -s https://codecov.io/bash)
 	cargo tarpaulin --release --out Xml --verbose
@@ -47,4 +47,4 @@ if [ "${TRAVIS_PULL_REQUEST}" == false ] &&  [ "${DEPLOY}" == true ]; then
 fi
 
 script='exit "$1"'
-sh -c "$script" -- "$EXIT"
+sh -c "$script" -- "$var1"
