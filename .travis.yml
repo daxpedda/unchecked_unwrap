@@ -26,16 +26,17 @@ before_script:
 - cargo test --release --verbose
 - cargo update --locked --verbose
 # nightly has additional features we want to test and use
-- if [ "$TRAVIS_RUST_VERSION" != "nightly" ]; then
-    cargo doc --verbose;
+- |
+  if [ "$TRAVIS_RUST_VERSION" != "nightly-2018-12-23" ]; then
+    cargo doc --verbose
   else
-    cargo bench --verbose;
+    cargo bench --verbose
   fi
 - if rustup component add clippy; then
     cargo clippy --all-features --verbose -- -D warnings;
     cargo clippy --all-features --tests --verbose -- -D warnings;
 
-    if [ "$TRAVIS_RUST_VERSION" == "nightly" ]; then
+    if [ "$TRAVIS_RUST_VERSION" == "nightly-2018-12-23" ]; then
       cargo clippy --all-features --benches --verbose -- -D warnings;
     fi;
   fi
