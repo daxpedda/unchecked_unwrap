@@ -50,7 +50,9 @@ if [ "${TRAVIS_PULL_REQUEST}" == false ] &&  [ "${DEPLOY}" == true ]; then
 	RUSTFLAGS="--cfg procmacro2_semver_exempt" cargo install-update cargo-tarpaulin -g
 	cargo install-update cargo-travis -g
 	# decrypt deploy key
-	echo '$github_deploy_key_file' > ".travis/github_deploy_key.gpg"
+	safe_file='echo "$1" > ".travis/github_deploy_key.gpg"'
+	sh -c "$safe_file" -- "$github_deploy_key_file"
+	#echo '$github_deploy_key_file' > ".travis/github_deploy_key.gpg"
 	echo '$github_deploy_key' | gpg --passphrase-fd 0 ".travis/github_deploy_key.gpg"
 	chmod 600 ".travis/github_deploy_key"
 	# add it to the current git shell
