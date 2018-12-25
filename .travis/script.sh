@@ -1,4 +1,5 @@
-#!/usr/bin/env bash
+set -x
+EXIT = 0
 
 cargo build --verbose
 cargo build --release --verbose
@@ -38,9 +39,11 @@ if [ "${TRAVIS_PULL_REQUEST}" == false ] &&  [ "${DEPLOY}" == true ]; then
 	chmod 600 ".travis/github_deploy_key"
 	eval "$(ssh-agent -s)"
 	ssh-add ".travis/github_deploy_key"
-	cargo doc-upload --branch $TRAVIS_BRANCH
+	cargo doc-upload --branch $TRAVIS_BRANCH || EXIT = 1
 	cargo tarpaulin --out Xml --verbose
 	bash <(curl -s https://codecov.io/bash)
 	cargo tarpaulin --release --out Xml --verbose
 	bash <(curl -s https://codecov.io/bash)
 fi
+
+sh -c "exit $EXIT"
