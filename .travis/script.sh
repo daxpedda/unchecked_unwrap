@@ -44,7 +44,7 @@ if [ "${TRAVIS_PULL_REQUEST}" == false ] &&  [ "${DEPLOY}" == true ]; then
 	# try to install packages
 	cargo install cargo-update || echo "cargo-update already installed"
 	RUSTFLAGS="--cfg procmacro2_semver_exempt" cargo install cargo-tarpaulin --git "https://github.com/xd009642/tarpaulin.git" --branch "develop" || echo "cargo-tarpaulin already installed"
-	cargo install cargo-travis --git "https://github.com/daxpedda/cargo-travis.git" --branch "badge" || echo "cargo-travis already installed"
+	cargo install cargo-travis --git "https://github.com/daxpedda/cargo-travis.git" --branch "temporary" || echo "cargo-travis already installed"
 	# now we just check for updates
 	cargo install-update cargo-update
 	RUSTFLAGS="--cfg procmacro2_semver_exempt" cargo install-update cargo-tarpaulin -g
@@ -56,7 +56,7 @@ if [ "${TRAVIS_PULL_REQUEST}" == false ] &&  [ "${DEPLOY}" == true ]; then
 	eval "$(ssh-agent -s)"
 	ssh-add ".travis/github_deploy_key"
 	# upload documentation
-	cargo doc-upload --branch $TRAVIS_BRANCH || exit_code=1
+	cargo doc-upload --branch $TRAVIS_BRANCH --clobber-index || exit_code=1
 	# do some test coverage
 	cargo tarpaulin --out Xml --verbose || exit_code=1
 	bash <(curl -s https://codecov.io/bash) || exit_code=1
