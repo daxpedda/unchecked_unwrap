@@ -39,7 +39,7 @@ script:
     cargo clippy --all-features --verbose -- -D warnings;
     cargo clippy --all-features --tests --verbose -- -D warnings;
 
-    if [ "$TRAVIS_RUST_VERSION" == "nightly" ]; then,
+    if [ "$TRAVIS_RUST_VERSION" == "nightly" ]; then
       set -e;
       cargo clippy --all-features --benches --verbose -- -D warnings;
     fi;
@@ -70,7 +70,7 @@ jobs:
         cargo clippy --all-features --tests --verbose -- -D warnings;
       fi
     - if rustup component add rustfmt; then
-        set -e;
+        exit 1;
         cargo fmt --all --verbose -- --check;
       fi
     # install and update cargo subcommands
@@ -81,7 +81,6 @@ jobs:
     # run coverage
     # upload test coverage
     - if [ "${TRAVIS_PULL_REQUEST}" == false ]; then
-        set -e;
         cargo install cargo-update || echo "cargo-update already installed";
         RUSTFLAGS="--cfg procmacro2_semver_exempt" cargo install cargo-tarpaulin --git "https://github.com/xd009642/tarpaulin.git" --branch "develop" || echo "cargo-tarpaulin already installed";
         cargo install cargo-travis --git "https://github.com/daxpedda/cargo-travis.git" --branch "badge" || echo "cargo-travis already installed";
