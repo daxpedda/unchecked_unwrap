@@ -84,22 +84,15 @@ jobs:
         chmod 600 ".travis/github_deploy_key";
         eval "$(ssh-agent -s)";
         ssh-add ".travis/github_deploy_key";
-        cargo doc-upload --branch $TRAVIS_BRANCH --clobber-index;
+        cargo doc-upload --branch $TRAVIS_BRANCH;
         cargo tarpaulin --out Xml --verbose;
         bash <(curl -s https://codecov.io/bash);
         cargo tarpaulin --release --out Xml --verbose;
         bash <(curl -s https://codecov.io/bash);
       fi
-    - cargo doc-upload --branch $TRAVIS_BRANCH
 
   - os: linux
     rust: beta
 
   - os: linux
     rust: stable
-
-  - os: osx
-    rust: nightly
-
-  - os: windows
-    rust: nightly
