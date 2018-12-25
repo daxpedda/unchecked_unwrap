@@ -134,12 +134,14 @@
 <span id="134">134</span>
 <span id="135">135</span>
 <span id="136">136</span>
+<span id="137">137</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="attribute">#![<span class="ident">no_std</span>]</span>
 <span class="attribute">#![<span class="ident">warn</span>(<span class="ident">clippy</span>::<span class="ident">cargo</span>, <span class="ident">clippy</span>::<span class="ident">pedantic</span>, <span class="ident">clippy</span>::<span class="ident">nursery</span>)]</span>
 
 <span class="doccomment">//! Adds an unchecked way to yield the content of an [`Ok`] in [`Result`] or [`Some`] in [`Option`]</span>
 <span class="doccomment">//! equivalent to [`unwrap`](Result::unwrap) and [`expect`](Result::expect).</span>
+<span class="doccomment">//! Supports `no_std`.</span>
 <span class="doccomment">//!</span>
 <span class="doccomment">//! ## Features</span>
 <span class="doccomment">//! `debug_checks`: On by default. Enables the normal checking behaviour with panics when `debug-assertions` is enabled.</span>
