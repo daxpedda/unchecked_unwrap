@@ -84,7 +84,7 @@ jobs:
         cargo tarpaulin --release --out Xml --verbose
         bash <(curl -s https://codecov.io/bash)
       fi
-      sh -c 'exit $EXIT'
+      sh -c "exit $EXIT"
 
   - os: linux
     rust: beta
