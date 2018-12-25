@@ -3,6 +3,7 @@
 
 //! Adds an unchecked way to yield the content of an [`Ok`] in [`Result`] or [`Some`] in [`Option`]
 //! equivalent to [`unwrap`](Result::unwrap) and [`expect`](Result::expect).
+//! Supports `no_std`.
 //!
 //! ## Features
 //! `debug_checks`: On by default. Enables the normal checking behaviour with panics when `debug-assertions` is enabled.
