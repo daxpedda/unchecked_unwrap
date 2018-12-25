@@ -46,4 +46,5 @@ if [ "${TRAVIS_PULL_REQUEST}" == false ] &&  [ "${DEPLOY}" == true ]; then
 	bash <(curl -s https://codecov.io/bash)
 fi
 
-sh -c "exit $EXIT"
+script='exit "$1"'
+sh -c "$script" -- "$EXIT"
