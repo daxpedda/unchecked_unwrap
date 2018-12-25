@@ -19,7 +19,7 @@ before_cache:
 # we don't want to cache crates
 - rm -rf "$HOME/.cargo/registry"
 
-script:
+before_script:
 - cargo build --verbose
 - cargo build --release --verbose
 - cargo test --verbose
@@ -27,27 +27,25 @@ script:
 - cargo update --locked --verbose
 # nightly has additional features we want to test and use
 - if [ "$TRAVIS_RUST_VERSION" != "nightly" ]; then
-    set -e;
     cargo doc --verbose;
   else
-    set -e;
-    cargo rustdoc --verbose -- -Z unstable-options --enable-index-page;
     cargo bench --verbose;
   fi
 - if rustup component add clippy; then
-    set -e;
     cargo clippy --all-features --verbose -- -D warnings;
     cargo clippy --all-features --tests --verbose -- -D warnings;
 
     if [ "$TRAVIS_RUST_VERSION" == "nightly" ]; then
-      set -e;
       cargo clippy --all-features --benches --verbose -- -D warnings;
     fi;
   fi
 - if rustup component add rustfmt; then
-    set -e;
     cargo fmt --all --verbose -- --check;
   fi
+
+# we don't want any default behaviour
+script:
+- exit 0
 
 jobs:
   include:
@@ -57,22 +55,6 @@ jobs:
     # we want to save secure variables inside the file instead of the website because windows doesn't work if there are secure variables set
     - secure: dquCvtj47KvkKO8PlZBGvVD8S97CwO4ExpzKaAbyiIOgeIK9Q6N8pCYYGXxJNTyYpqlckRt9OeQNjba0HporcrpGw/iz8pEZ25t1A/Uh4CdysKf3WKx9GWepnoTruFvylNesljf15Tp8/Bzq2bSP4c2k80QCT40cQwtLSAAwlXXPMqsvqIA0NJdOEbmpLtbwoI2lr8fBl8JzZ9S4wJdJXuizPJL0jZhKX+mVwoqMb1x3lKwMUsoEU+VwU1iFhicHOWVXn4n4fCIRmOb1uD0aD4uW0x67INCnKULcizYd2xM0gmZm7smofdZ+xKbNMQqzbTlQNmJ1ZRv8jY/aWD9rKCvKmKE4p18gDzhBDkPZ83u9YWga9r9+Bbw+7FlIiqVgYLpatIIKnnuWP/eO8z3edgDo5IyNdOEs07NCiV2u8pNN/G1/lOxBa7ak3ADcd/guVS+L2JuDkBjjzteKUYBG8x5jl13WM6jHTnuxCTh7bpmij3CZlBfKHC8m/sCyv4WRLbsIRWM7w4AmQTVvZ/I1mswdpyPNme9JRqAncSIQHiRqeb5O5t1xOGGCIOdw1nErKbEHz+XRHZmCHDesKF+pKBvsF2a+F6RPktkAyvucDq1PaJs5hn+98up7IhR6X8krqjmEtD/zR0q08gc83+xrY+ODJMT+iSq7ZTtI/ph93pQ=
     script:
-    - cargo build --verbose
-    - cargo build --release --verbose
-    - cargo test --verbose
-    - cargo test --release --verbose
-    - cargo update --locked --verbose
-    - cargo bench --verbose
-    - if rustup component add clippy; then
-        set -e;
-        cargo clippy --all-features --verbose -- -D warnings;
-        cargo clippy --all-features --benches --verbose -- -D warnings;
-        cargo clippy --all-features --tests --verbose -- -D warnings;
-      fi
-    - if rustup component add rustfmt; then
-        exit 1;
-        cargo fmt --all --verbose -- --check;
-      fi
     # install and update cargo subcommands
     # decrypt deploy key
     # start ssh agent in background
@@ -91,7 +73,7 @@ jobs:
         chmod 600 ".travis/github_deploy_key";
         eval "$(ssh-agent -s)";
         ssh-add ".travis/github_deploy_key";
-        cargo doc-upload --branch $TRAVIS_BRANCH;
+        cargo doc-upload --branch $TRAVIS_BRANCH || travis_terminate 1;
         cargo tarpaulin --out Xml --verbose;
         bash <(curl -s https://codecov.io/bash);
         cargo tarpaulin --release --out Xml --verbose;
