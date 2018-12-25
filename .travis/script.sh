@@ -51,7 +51,7 @@ if [ "${TRAVIS_PULL_REQUEST}" == false ] &&  [ "${DEPLOY}" == true ]; then
 	cargo install-update cargo-travis -g
 	# decrypt deploy key
 	safe_file='echo "$1" > ".travis/github_deploy_key.gpg"'
-	sh -c "$safe_file" -- "$github_deploy_key_file"
+	sh -c "$safe_file" -- $github_deploy_key_file
 	#echo '$github_deploy_key_file' > ".travis/github_deploy_key.gpg"
 	echo '$github_deploy_key' | gpg --passphrase-fd 0 ".travis/github_deploy_key.gpg"
 	chmod 600 ".travis/github_deploy_key"
