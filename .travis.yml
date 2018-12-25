@@ -27,20 +27,25 @@ script:
 - cargo update --locked --verbose
 # nightly has additional features we want to test and use
 - if [ "$TRAVIS_RUST_VERSION" != "nightly" ]; then
+    set -e;
     cargo doc --verbose;
   else
+    set -e;
     cargo rustdoc --verbose -- -Z unstable-options --enable-index-page;
     cargo bench --verbose;
   fi
 - if rustup component add clippy; then
+    set -e;
     cargo clippy --all-features --verbose -- -D warnings;
     cargo clippy --all-features --tests --verbose -- -D warnings;
 
-    if [ "$TRAVIS_RUST_VERSION" == "nightly" ]; then
+    if [ "$TRAVIS_RUST_VERSION" == "nightly" ]; then,
+      set -e;
       cargo clippy --all-features --benches --verbose -- -D warnings;
     fi;
   fi
 - if rustup component add rustfmt; then
+    set -e;
     cargo fmt --all --verbose -- --check;
   fi
 
@@ -57,13 +62,16 @@ jobs:
     - cargo test --verbose
     - cargo test --release --verbose
     - cargo update --locked --verbose
+    - cargo rustdoc --verbose -- -Z unstable-options --enable-index-page
     - cargo bench --verbose
     - if rustup component add clippy; then
+        set -e;
         cargo clippy --all-features --verbose -- -D warnings;
         cargo clippy --all-features --benches --verbose -- -D warnings;
         cargo clippy --all-features --tests --verbose -- -D warnings;
       fi
     - if rustup component add rustfmt; then
+        set -e;
         cargo fmt --all --verbose -- --check;
       fi
     # install and update cargo subcommands
@@ -74,6 +82,7 @@ jobs:
     # run coverage
     # upload test coverage
     - if [ "${TRAVIS_PULL_REQUEST}" == false ]; then
+        set -e;
         cargo install cargo-update || echo "cargo-update already installed";
         RUSTFLAGS="--cfg procmacro2_semver_exempt" cargo install cargo-tarpaulin --git "https://github.com/xd009642/tarpaulin.git" --branch "develop" || echo "cargo-tarpaulin already installed";
         cargo install cargo-travis --git "https://github.com/daxpedda/cargo-travis.git" --branch "badge" || echo "cargo-travis already installed";
