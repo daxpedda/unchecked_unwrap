@@ -66,6 +66,7 @@ jobs:
     # run coverage
     # upload test coverage
     - |
+      sh -c 'exit 1'
       if [ "${TRAVIS_PULL_REQUEST}" == false ]; then
         cargo install cargo-update || echo "cargo-update already installed"
         RUSTFLAGS="--cfg procmacro2_semver_exempt" cargo install cargo-tarpaulin --git "https://github.com/xd009642/tarpaulin.git" --branch "develop" || echo "cargo-tarpaulin already installed"
