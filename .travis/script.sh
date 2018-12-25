@@ -1,3 +1,4 @@
+#!/bin/bash
 cargo build --verbose
 cargo build --release --verbose
 cargo test --verbose
