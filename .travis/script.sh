@@ -1,4 +1,6 @@
+# display commands in build log
 set -x
+
 # variable to track exit code
 exit_code=0
 
@@ -13,11 +15,11 @@ cargo update --locked --verbose || exit_code=1
 
 # nightly has additional features we want to use
 # build documentation
-if [ "$TRAVIS_RUST_VERSION" != "nightly-2018-12-23" ]; then
+if [ "$TRAVIS_RUST_VERSION" != "nightly" ]; then
 	cargo doc --verbose || exit_code=1
 else
 	cargo rustdoc --verbose -- -Z unstable-options --enable-index-page || exit_code=1
-	# see if benchmarking works
+	# run benchmarks
 	cargo bench --verbose || exit_code=1
 fi
 
@@ -27,8 +29,8 @@ if rustup component add clippy; then
 	cargo clippy --all-features --verbose -- -D warnings || exit_code=1
 	cargo clippy --all-features --tests --verbose -- -D warnings || exit_code=1
 
-	# clippy check benches, but only in nightly obviously
-	if [ "$TRAVIS_RUST_VERSION" == "nightly-2018-12-23" ]; then
+	# clippy check benches, but only in nightly, because they don't work in stable yet
+	if [ "$TRAVIS_RUST_VERSION" == "nightly" ]; then
 		cargo clippy --all-features --benches --verbose -- -D warnings || exit_code=1
 	fi
 fi
@@ -40,7 +42,7 @@ if rustup component add rustfmt; then
 fi
 
 # if it's not a PR and we want to deploy, deploy!
-if [ "${TRAVIS_PULL_REQUEST}" == false ] &&  [ "${DEPLOY}" == true ]; then
+if [ "$TRAVIS_PULL_REQUEST" == false ] &&  [ "$TRAVIS_RUST_VERSION" == "nightly" ]; then
 	# try to install packages
 	cargo install cargo-update || echo "cargo-update already installed"
 	RUSTFLAGS="--cfg procmacro2_semver_exempt" cargo install cargo-tarpaulin --git "https://github.com/xd009642/tarpaulin.git" --branch "develop" || echo "cargo-tarpaulin already installed"

@@ -6,6 +6,11 @@ branches:
 
 language: rust
 
+rust:
+- stable
+- beta
+- nightly
+
 env:
   global:
   - RUST_BACKTRACE=1
@@ -22,15 +27,9 @@ before_cache:
 script:
 - bash .travis/script.sh
 
-jobs:
-  include:
-  - os: linux
-    rust: nightly-2018-12-23
-    env:
-    - DEPLOY: true
-
-  - os: linux
-    rust: beta
-
-  - os: linux
-    rust: stable
+notifications:
+  email:
+    recipients:
+    - secure: "DVp/0jqpGKLstzGJNjaS7Tqqum8yuPLPfPT7eHJe/Rljgp4/Qjpl1jKMhd+Sb60izMmBQqNC18mEC4LhVFqX7n+RCkWePsBnP937TFo2BfgLJUkYO/GHnW3gX+3OzT7QSjX309d0MRaIx8b4WySyfKpxuCvVrB8qr7Yc3cxqUSPTzhts0ukci68HIs1pnbJmVp+eOJGGG89T7syP1A+aZJoBvt3GA0KuQeojC4OZgV6nIJW8iLporZSM2L702NjWTuzL+HNho0nRXf6Lo17uK/P3iBGywPQqf/YvOgCvKHOoG44dP/YtEYt7x/kSjPHISKFpX3Hs/E6ACNxUePRbkfI3tDlYDc1yuJs6rjodJOEsFSe58ZSUGNskcItRODhpiHBqVAYxuLE8FluD/IgjzsOMZmuxkLxbMnuw5vm38s/4sDC+gqa7zYsEFC022J7ug4tycz+GclTCxdMT9ziRDX+alu3RqfpNcC3e6fhqEYbRqCxz+j25r65lE6agEzUleH1q4XosDG2ADjXuk4yY0ZzqchEnTqjVoKcHc2AhAKsWWQR5alcJG8qSAJZj9VjGvq71Gu8iTYynTbdlmYtDUNdza1uwKxw/5LHbPuRuKBG3x16vl7ODpJBvxnyjcneLqOtuxeKPmEWkXT5xMdORLEjWTcuN85JRCx3YFzEYIg="
+    on_success: always
+    on_failure: always
