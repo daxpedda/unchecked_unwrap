@@ -60,10 +60,10 @@ if [ "$TRAVIS_PULL_REQUEST" == false ] &&  [ "$TRAVIS_RUST_VERSION" == "nightly"
 	# upload documentation
 	cargo doc-upload --branch $TRAVIS_BRANCH --clobber-index || exit_code=1
 	# do some test coverage
-	cargo tarpaulin --out Xml --verbose || exit_code=1
+	cargo tarpaulin --out Xml --ignore-tests --verbose || exit_code=1
 	bash <(curl -s https://codecov.io/bash) || exit_code=1
 	# do some more test coverage in release mode
-	cargo tarpaulin --release --out Xml --verbose || exit_code=1
+	cargo tarpaulin --release --out Xml --ignore-tests --verbose || exit_code=1
 	bash <(curl -s https://codecov.io/bash) || exit_code=1
 fi
 
