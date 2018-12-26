@@ -14,7 +14,7 @@
 [ori]: http://isitmaintained.com/badge/open/daxpedda/unchecked_unwrap.svg
 [orl]: http://isitmaintained.com/project/daxpedda/unchecked_unwrap
 
-[li]: https://img.shields.io/badge/license-MIT%2FApache--2.0-blue.svg
+[li]: https://img.shields.io/crates/l/unchecked_unwrap.svg
 [ll]: LICENSE
 
 [mlci]: https://tokei.rs/b1/github/daxpedda/unchecked_unwrap/
