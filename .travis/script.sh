@@ -67,7 +67,5 @@ if [ "$TRAVIS_PULL_REQUEST" == false ] &&  [ "$TRAVIS_RUST_VERSION" == "nightly"
 	bash <(curl -s https://codecov.io/bash) || exit_code=1
 fi
 
-# this is just some workaround to pass variables safely
-exit_script='exit "$1"'
 # pass the exit code to travis
-sh -c "$exit_script" -- "$exit_code"
+exit $exit_code
