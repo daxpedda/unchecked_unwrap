@@ -31,5 +31,6 @@ doc_include = []
 test = false
 bench = false
 
+# docs.rs needs some pointers to do proper documentation
 [package.metadata.docs.rs]
 features = ["doc_include"]
