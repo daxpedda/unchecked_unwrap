@@ -70,7 +70,7 @@ Currently the nightly version of rust is needed for benchmarking.
 
 ## CI
 
-This crate is checked daily by CI to make sure that it builds successfully with the newest versions rust stable, beta and nightly.
+This crate is checked daily by CI to make sure that it builds successfully with the newest versions of rust stable, beta and nightly.
 
 ## Alternatives
 
