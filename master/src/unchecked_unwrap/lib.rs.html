@@ -130,15 +130,11 @@
 <span id="130">130</span>
 <span id="131">131</span>
 <span id="132">132</span>
-<span id="133">133</span>
-<span id="134">134</span>
 </pre><div class="example-wrap"><pre class="rust ">
-<span class="attribute">#![<span class="ident">feature</span>(<span class="ident">external_doc</span>)]</span>
-
 <span class="attribute">#![<span class="ident">no_std</span>]</span>
 <span class="attribute">#![<span class="ident">warn</span>(<span class="ident">clippy</span>::<span class="ident">cargo</span>, <span class="ident">clippy</span>::<span class="ident">pedantic</span>, <span class="ident">clippy</span>::<span class="ident">nursery</span>)]</span>
-
-<span class="attribute">#![<span class="ident">doc</span>(<span class="ident">include</span> <span class="op">=</span> <span class="string">&quot;../README.md&quot;</span>)]</span>
+<span class="attribute">#![<span class="ident">cfg_attr</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;doc_include&quot;</span>, <span class="ident">feature</span>(<span class="ident">external_doc</span>))]</span>
+<span class="attribute">#![<span class="ident">cfg_attr</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;doc_include&quot;</span>, <span class="ident">doc</span>(<span class="ident">include</span> <span class="op">=</span> <span class="string">&quot;../README.md&quot;</span>))]</span>
 
 <span class="doccomment">/// Trait for [`unchecked_expect`](trait.UncheckedExpect.html#method.unchecked_expect).</span>
 <span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">UncheckedExpect</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span> {
