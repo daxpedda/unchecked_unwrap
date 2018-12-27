@@ -10,15 +10,18 @@ cargo build --release --verbose || exit_code=1
 # tests
 cargo test --verbose || exit_code=1
 cargo test --release --verbose || exit_code=1
-# check if needs update
-cargo update --locked --verbose || exit_code=1
+
+# we don't want build to break just because there is something not up to date
+if [ $TRAVIS_BRANCH != "release" ]; then
+	cargo update --locked --verbose || exit_code=1
+fi
 
 # nightly has additional features we want to use
 # build documentation
-if [ "$TRAVIS_RUST_VERSION" != "nightly" ]; then
+if [ $TRAVIS_RUST_VERSION != "nightly" ]; then
 	cargo doc --verbose || exit_code=1
 else
-	cargo rustdoc --verbose -- -Z unstable-options --enable-index-page || exit_code=1
+	cargo rustdoc --features doc_include --verbose -- -Z unstable-options --enable-index-page || exit_code=1
 	# run benchmarks
 	cargo bench --verbose || exit_code=1
 fi
@@ -26,31 +29,37 @@ fi
 # check if clippy is present in the toolchain - because sometimes it's missing
 if rustup component add clippy; then
 	# clippy check build and tests
-	cargo clippy --all-features --verbose -- -D warnings || exit_code=1
-	cargo clippy --all-features --tests --verbose -- -D warnings || exit_code=1
+	cargo clippy --verbose -- -D warnings || exit_code=1
+	cargo clippy --tests --verbose -- -D warnings || exit_code=1
 
 	# clippy check benches, but only in nightly, because they don't work in stable yet
-	if [ "$TRAVIS_RUST_VERSION" == "nightly" ]; then
-		cargo clippy --all-features --benches --verbose -- -D warnings || exit_code=1
+	if [ $TRAVIS_RUST_VERSION == "nightly" ]; then
+		cargo clippy --benches --verbose -- -D warnings || exit_code=1
 	fi
 fi
 
 # check if fmt is present in the toolchain - because sometimes it's missing
-if rustup component add rustfmt; then
+# also we don't want to break the build just because some formatting is broken
+if rustup component add rustfmt && [ $TRAVIS_BRANCH != "release" ]; then
 	# check if any formatting is needed
 	cargo fmt --all --verbose -- --check || exit_code=1
 fi
 
 # if it's not a PR and we want to deploy, deploy!
-if [ "$TRAVIS_PULL_REQUEST" == false ] &&  [ "$TRAVIS_RUST_VERSION" == "nightly" ]; then
-	# try to install packages
-	cargo install cargo-update || echo "cargo-update already installed"
-	RUSTFLAGS="--cfg procmacro2_semver_exempt" cargo install cargo-tarpaulin --git "https://github.com/xd009642/tarpaulin.git" --branch "develop" || echo "cargo-tarpaulin already installed"
-	cargo install cargo-travis --git "https://github.com/daxpedda/cargo-travis.git" --branch "temporary" || echo "cargo-travis already installed"
-	# now we just check for updates
+if [ $TRAVIS_PULL_REQUEST == false ] && [ $TRAVIS_RUST_VERSION == "nightly" ]; then
+	# install and update packages
+	cargo install cargo-update
 	cargo install-update cargo-update
+	cargo install cargo-audit
+	cargo install-update cargo-audit
+	RUSTFLAGS="--cfg procmacro2_semver_exempt" cargo install cargo-tarpaulin --git "https://github.com/xd009642/tarpaulin.git" --branch "develop"
 	RUSTFLAGS="--cfg procmacro2_semver_exempt" cargo install-update cargo-tarpaulin -g
+	cargo install cargo-travis --git "https://github.com/daxpedda/cargo-travis.git" --branch "temporary"
 	cargo install-update cargo-travis -g
+
+	# check rust RustSec db
+	cargo audit || exit_code=1
+
 	# decrypt deploy key
 	echo $github_deploy_key | gpg --passphrase-fd 0 ".travis/github_deploy_key.gpg"
 	chmod 600 ".travis/github_deploy_key"
@@ -59,6 +68,7 @@ if [ "$TRAVIS_PULL_REQUEST" == false ] &&  [ "$TRAVIS_RUST_VERSION" == "nightly"
 	ssh-add ".travis/github_deploy_key"
 	# upload documentation
 	cargo doc-upload --branch $TRAVIS_BRANCH --clobber-index || exit_code=1
+
 	# do some test coverage
 	cargo tarpaulin --out Xml --ignore-tests --verbose || exit_code=1
 	bash <(curl -s https://codecov.io/bash) || exit_code=1

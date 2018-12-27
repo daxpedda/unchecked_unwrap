@@ -25,7 +25,7 @@ before_cache:
 - rm -rf "$HOME/.cargo/registry"
 
 script:
-- bash .travis/script.sh
+- bash .travis/build.sh
 
 notifications:
   email:

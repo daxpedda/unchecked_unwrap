@@ -11,7 +11,7 @@ readme = "README.MD"
 keywords = ["unwrap", "unchecked", "expect", "result", "option"]
 categories = ["no-std", "rust-patterns"]
 license = "MIT OR Apache-2.0"
-exclude = [".travis.yml"]
+exclude = ["/.travis.yml", "/.github/*", "/.travis/*"]
 
 [badges]
 travis-ci = { repository = "daxpedda/unchecked_unwrap", branch = "stable" }
@@ -25,7 +25,11 @@ maintenance = { status = "actively-developed" }
 [features]
 default = ["debug_checks"]
 debug_checks = []
+doc_include = []
 
 [lib]
 test = false
 bench = false
+
+[package.metadata.docs.rs]
+features = ["doc_include"]

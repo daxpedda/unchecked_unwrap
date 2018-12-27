@@ -2,6 +2,7 @@
 
 [![Crates.io](https://img.shields.io/crates/v/unchecked_unwrap.svg)](https://crates.io/crates/unchecked_unwrap/)
 [![Deps.rs](https://deps.rs/repo/github/daxpedda/unchecked_unwrap/status.svg)](https://deps.rs/repo/github/daxpedda/unchecked_unwrap)
+[![Commits since](https://img.shields.io/github/commits-since/daxpedda/unchecked_unwrap/latest.svg)](https://github.com/daxpedda/unchecked_unwrap/releases/latest/)
 [![Resolution](http://isitmaintained.com/badge/resolution/daxpedda/unchecked_unwrap.svg)](http://isitmaintained.com/project/daxpedda/unchecked_unwrap)
 [![Issues](http://isitmaintained.com/badge/open/daxpedda/unchecked_unwrap.svg)](http://isitmaintained.com/project/daxpedda/unchecked_unwrap)
 [![License](https://img.shields.io/crates/l/unchecked_unwrap.svg)](https://github.com/daxpedda/unchecked_unwrap/blob/master/LICENSE)
@@ -14,7 +15,7 @@
 
 **[Master](https://github.com/daxpedda/unchecked_unwrap/):**
 [![Build](https://img.shields.io/travis/daxpedda/unchecked_unwrap/master.svg?label=build:%20master)](https://travis-ci.org/daxpedda/unchecked_unwrap/branches/)
-[![Docs](https://github.com/daxpedda/unchecked_unwrap/blob/gh-pages/master/badge.svg)](https://daxpedda.github.io/unchecked_unwrap/master/index.html)
+[![Docs](https://raw.githack.com/daxpedda/unchecked_unwrap/gh-pages/master/badge.svg)](https://daxpedda.github.io/unchecked_unwrap/master/index.html)
 [![Coverage](https://img.shields.io/codecov/c/github/daxpedda/unchecked_unwrap/master.svg?label=coverage:%20master)](https://codecov.io/github/daxpedda/unchecked_unwrap/branch/master/)
 
 Adds an unchecked version of `unwrap()` and `expect()` to `Option` and `Result` for the rust programmming language.
@@ -22,8 +23,8 @@ Supports `no_std`.
 
 ## Branches
 
-* **release** - For releases only.
-* **master** - For active development, PR's and testing.
+* **[release](https://github.com/daxpedda/unchecked_unwrap/tree/release/)** - For releases only.
+* **[master](https://github.com/daxpedda/unchecked_unwrap/)** - For active development, PR's and testing.
 
 ## Usage
 
@@ -47,7 +48,13 @@ assert_eq!(unsafe { x.unchecked_expect("the sky is falling down") }, 2);
 
 **debug_checks**: On by default. Enables the normal checking behavior with panics when `debug-assertions` is enabled.
 
-## Testing
+## Documentation
+
+Documentation is available online in the badge links above.
+Currently nightly is needed for full documentation: `cargo doc --features doc_include`
+If you are not on nightly only use `cargo doc`.
+
+## Tests
 
 Is as simple as `cargo test` and `cargo test --release`.
 
@@ -60,6 +67,10 @@ I removed the badge from [Crates.io](https://crates.io/crates/unchecked_unwrap/)
 
 Is as simple as `cargo bench`.
 Currently the nightly version of rust is needed for benchmarking.
+
+## CI
+
+This crate is checked daily by CI to make sure that it builds successfully with the newest versions rust stable, beta and nightly.
 
 ## Alternatives
 
