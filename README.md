@@ -1,51 +1,26 @@
 # unchecked_unwrap
 
-[![Crates][ci]][cl] [![Dep][di]][dl] [![Resolution][iri]][irl] [![Issues][ori]][orl] [![License][li]][ll] [![LoC][mlci]][mlcl]
+[![Crates.io](https://img.shields.io/crates/v/unchecked_unwrap.svg)](https://crates.io/crates/unchecked_unwrap/)
+[![Deps.rs](https://deps.rs/repo/github/daxpedda/unchecked_unwrap/status.svg)](https://deps.rs/repo/github/daxpedda/unchecked_unwrap)
+[![Resolution](http://isitmaintained.com/badge/resolution/daxpedda/unchecked_unwrap.svg)](http://isitmaintained.com/project/daxpedda/unchecked_unwrap)
+[![Issues](http://isitmaintained.com/badge/open/daxpedda/unchecked_unwrap.svg)](http://isitmaintained.com/project/daxpedda/unchecked_unwrap)
+[![License](https://img.shields.io/crates/l/unchecked_unwrap.svg)](https://github.com/daxpedda/unchecked_unwrap/blob/master/LICENSE)
+[![LoC](https://tokei.rs/b1/github/daxpedda/unchecked_unwrap/)](https://github.com/daxpedda/unchecked_unwrap/)
 
-[ci]: https://img.shields.io/crates/v/unchecked_unwrap.svg
-[cl]: https://crates.io/crates/unchecked_unwrap/
+**[Release](https://github.com/daxpedda/unchecked_unwrap/tree/release/):**
+[![Build](https://img.shields.io/travis/daxpedda/unchecked_unwrap/release.svg?label=build:%20release)](https://travis-ci.org/daxpedda/unchecked_unwrap/branches/)
+[![Docs](https://docs.rs/unchecked_unwrap/badge.svg)](https://docs.rs/unchecked_unwrap/)
+[![Coverage](https://img.shields.io/codecov/c/github/daxpedda/unchecked_unwrap/release.svg?label=coverage:%20release)](https://codecov.io/github/daxpedda/unchecked_unwrap/branch/release/)
 
-[di]: https://deps.rs/repo/github/daxpedda/unchecked_unwrap/status.svg
-[dl]: https://deps.rs/repo/github/daxpedda/unchecked_unwrap
-
-[iri]: http://isitmaintained.com/badge/resolution/daxpedda/unchecked_unwrap.svg
-[irl]: http://isitmaintained.com/project/daxpedda/unchecked_unwrap
-
-[ori]: http://isitmaintained.com/badge/open/daxpedda/unchecked_unwrap.svg
-[orl]: http://isitmaintained.com/project/daxpedda/unchecked_unwrap
-
-[li]: https://img.shields.io/crates/l/unchecked_unwrap.svg
-[ll]: LICENSE
-
-[mlci]: https://tokei.rs/b1/github/daxpedda/unchecked_unwrap/
-[mlcl]: https://github.com/daxpedda/unchecked_unwrap/
-
-**[Release](https://github.com/daxpedda/unchecked_unwrap/tree/release/):** [![Build][sbi]][sbl] [![Docs][sdi]][sdl] [![Coverage][scci]][sccl]
-
-[sbi]: https://img.shields.io/travis/daxpedda/unchecked_unwrap/release.svg?label=build:%20release
-[sbl]: https://travis-ci.org/daxpedda/unchecked_unwrap/branches/
-
-[sdi]: https://docs.rs/unchecked_unwrap/badge.svg
-[sdl]: https://docs.rs/unchecked_unwrap/
-
-[scci]: https://img.shields.io/codecov/c/github/daxpedda/unchecked_unwrap/release.svg?label=coverage:%20release
-[sccl]: https://codecov.io/github/daxpedda/unchecked_unwrap/branch/release/
-
-**[Master](https://github.com/daxpedda/unchecked_unwrap/):** [![Build][mbi]][mbl] [![Docs][mdi]][mdl] [![Coverage][mcci]][mccl]
-
-[mbi]: https://img.shields.io/travis/daxpedda/unchecked_unwrap/master.svg?label=build:%20master
-[mbl]: https://travis-ci.org/daxpedda/unchecked_unwrap/branches/
-
-[mdi]: https://github.com/daxpedda/unchecked_unwrap/blob/gh-pages/master/badge.svg
-[mdl]: https://daxpedda.github.io/unchecked_unwrap/master/index.html
-
-[mcci]: https://img.shields.io/codecov/c/github/daxpedda/unchecked_unwrap/master.svg?label=coverage:%20master
-[mccl]: https://codecov.io/github/daxpedda/unchecked_unwrap/branch/master/
+**[Master](https://github.com/daxpedda/unchecked_unwrap/):**
+[![Build](https://img.shields.io/travis/daxpedda/unchecked_unwrap/master.svg?label=build:%20master)](https://travis-ci.org/daxpedda/unchecked_unwrap/branches/)
+[![Docs](https://github.com/daxpedda/unchecked_unwrap/blob/gh-pages/master/badge.svg)](https://daxpedda.github.io/unchecked_unwrap/master/index.html)
+[![Coverage](https://img.shields.io/codecov/c/github/daxpedda/unchecked_unwrap/master.svg?label=coverage:%20master)](https://codecov.io/github/daxpedda/unchecked_unwrap/branch/master/)
 
 Adds an unchecked version of `unwrap()` and `expect()` to `Option` and `Result` for the rust programmming language.
 Supports `no_std`.
 
-## branches
+## Branches
 
 * **release** - For releases only.
 * **master** - For active development, PR's and testing.
@@ -96,6 +71,6 @@ Currently the nightly version of rust is needed for benchmarking.
 This work is dual-licensed under MIT and Apache 2.0.
 You can choose between one of them if you use this work.
 
-See the [LICENSE](LICENSE) file for details
+See the [LICENSE](https://github.com/daxpedda/unchecked_unwrap/blob/master/LICENSE) file for details
 
 SPDX-License-Identifier: `MIT OR Apache-2.0`
