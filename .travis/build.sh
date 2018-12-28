@@ -67,7 +67,7 @@ if [ $TRAVIS_PULL_REQUEST == false ] && [ $TRAVIS_RUST_VERSION == "nightly" ]; t
 	eval "$(ssh-agent -s)"
 	ssh-add ".travis/github_deploy_key"
 	# upload documentation
-	cargo doc-upload --branch $TRAVIS_BRANCH --clobber-index || exit_code=1
+	cargo doc-upload --branch $TRAVIS_BRANCH --clobber-index --path $TRAVIS_BRANCH/doc/ || exit_code=1
 
 	# do some test coverage
 	cargo tarpaulin --out Xml --ignore-tests --verbose || exit_code=1
