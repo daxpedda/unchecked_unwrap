@@ -14,7 +14,7 @@
 
 **[Master](https://github.com/daxpedda/unchecked_unwrap/):**
 [![Build](https://img.shields.io/travis/daxpedda/unchecked_unwrap/master.svg?label=build:%20master)](https://travis-ci.org/daxpedda/unchecked_unwrap/branches/)
-[![Docs](https://raw.githack.com/daxpedda/unchecked_unwrap/gh-pages/master/doc/badge.svg)](https://daxpedda.github.io/unchecked_unwrap/master/doc/index.html)
+[![Docs](https://daxpedda.github.io/unchecked_unwrap/master/doc/badge.svg)](https://daxpedda.github.io/unchecked_unwrap/master/doc/index.html)
 
 Adds an unchecked version of `unwrap()` and `expect()` to `Option` and `Result` for the rust programming language.
 Supports `no_std`.
