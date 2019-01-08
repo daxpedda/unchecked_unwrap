@@ -52,8 +52,8 @@ if [ $TRAVIS_PULL_REQUEST == false ] && [ $TRAVIS_RUST_VERSION == "nightly" ]; t
 	cargo install-update cargo-update
 	cargo install cargo-audit
 	cargo install-update cargo-audit
-	RUSTFLAGS="--cfg procmacro2_semver_exempt" cargo install cargo-tarpaulin --git "https://github.com/xd009642/tarpaulin.git" --branch "develop"
-	RUSTFLAGS="--cfg procmacro2_semver_exempt" cargo install-update cargo-tarpaulin -g
+	RUSTFLAGS="--cfg procmacro2_semver_exempt" cargo install cargo-tarpaulin
+	RUSTFLAGS="--cfg procmacro2_semver_exempt" cargo install-update cargo-tarpaulin
 	cargo install cargo-travis --git "https://github.com/daxpedda/cargo-travis.git" --branch "temporary"
 	cargo install-update cargo-travis -g
 
