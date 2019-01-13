@@ -54,7 +54,7 @@ if [ $TRAVIS_PULL_REQUEST == false ] && [ $TRAVIS_RUST_VERSION == "nightly" ]; t
 	cargo install-update cargo-audit
 	RUSTFLAGS="--cfg procmacro2_semver_exempt" cargo install cargo-tarpaulin
 	RUSTFLAGS="--cfg procmacro2_semver_exempt" cargo install-update cargo-tarpaulin
-	cargo install cargo-travis --git "https://github.com/daxpedda/cargo-travis.git" --branch "temporary"
+	cargo install cargo-travis --git "https://github.com/daxpedda/cargo-travis.git" --branch "docs_path"
 	cargo install-update cargo-travis -g
 
 	# check rust RustSec db
