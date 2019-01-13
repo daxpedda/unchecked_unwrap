@@ -52,7 +52,7 @@ if [ $TRAVIS_PULL_REQUEST == false ] && [ $TRAVIS_RUST_VERSION == "nightly" ]; t
 	cargo install-update cargo-update
 	cargo install cargo-audit
 	cargo install-update cargo-audit
-	cargo install cargo-travis --git "https://github.com/daxpedda/cargo-travis.git" --branch "temporary"
+	cargo install cargo-travis --git "https://github.com/daxpedda/cargo-travis.git" --branch "docs_path"
 	cargo install-update cargo-travis -g
 
 	# check rust RustSec db
