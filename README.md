@@ -50,7 +50,7 @@ assert_eq!(unsafe { x.unchecked_expect("the sky is falling down") }, 2);
 
 Documentation is available online in the badge links above.
 Currently, nightly is needed for full documentation: `cargo doc --features doc_include`
-If you are not using nightly, use `cargo doc` as usual.
+If you are not on nightly, use `cargo doc` as usual.
 
 ## Tests
 
