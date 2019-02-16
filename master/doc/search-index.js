@@ -1,3 +1,5 @@
-var N = null;var searchIndex = {};
-searchIndex["unchecked_unwrap"]={"doc":"unchecked_unwrap","items":[[8,"UncheckedExpect","unchecked_unwrap","Trait for `unchecked_expect`.",N,N],[10,"unchecked_expect","","Unwraps an [`Option`] or [`Result`], yielding the content…",0,[[["self"],["str"]],["t"]]],[8,"UncheckedUnwrap","","Trait for `unchecked_unwrap`.",N,N],[10,"unchecked_unwrap","","Unwraps an [`Option`] or [`Result`], yielding the content…",1,[[["self"]],["t"]]]],"paths":[[8,"UncheckedExpect"],[8,"UncheckedUnwrap"]]};
+var N=null,E="",T="t",U="u",searchIndex={};
+var R=["unchecked_unwrap","Unwraps an [`Option`] or [`Result`], yielding the content…","UncheckedExpect","UncheckedUnwrap"];
+
+searchIndex[R[0]]={"doc":R[0],"i":[[8,R[2],R[0],"Trait for `unchecked_expect`.",N,N],[10,"unchecked_expect",E,R[1],0,[[["self"],["str"]],[T]]],[8,R[3],E,"Trait for `unchecked_unwrap`.",N,N],[10,R[0],E,R[1],1,[[["self"]],[T]]]],"p":[[8,R[2]],[8,R[3]]]};
 initSearch(searchIndex);addSearchOptions(searchIndex);
