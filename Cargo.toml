@@ -5,8 +5,6 @@ authors = ["daxpedda <daxpedda@users.noreply.github.com>"]
 edition = "2018"
 description = "Adds an unchecked version of `unwrap()` and `expect()` to Option and Result."
 documentation = "https://docs.rs/crate/unchecked_unwrap/"
-# no homepage
-#homepage = "https://github.com/daxpedda/unchecked_unwrap/"
 repository = "https://github.com/daxpedda/unchecked_unwrap/tree/stable/"
 readme = "README.MD"
 keywords = ["unwrap", "unchecked", "expect", "result", "option"]
