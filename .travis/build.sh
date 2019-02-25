@@ -52,10 +52,8 @@ if [ $TRAVIS_PULL_REQUEST == false ] && [ $TRAVIS_RUST_VERSION == "nightly" ]; t
 	cargo install-update cargo-update
 	cargo install cargo-audit
 	cargo install-update cargo-audit
-	RUSTFLAGS="--cfg procmacro2_semver_exempt" cargo install cargo-tarpaulin --git "https://github.com/xd009642/tarpaulin.git" --branch "develop"
-	RUSTFLAGS="--cfg procmacro2_semver_exempt" cargo install-update cargo-tarpaulin -g
-	cargo install cargo-travis --git "https://github.com/daxpedda/cargo-travis.git" --branch "temporary"
-	cargo install-update cargo-travis -g
+	cargo install cargo-travis --git "https://github.com/roblabla/cargo-travis.git"
+	cargo install-update cargo-travis --git
 
 	# check rust RustSec db
 	cargo audit || exit_code=1
@@ -67,14 +65,7 @@ if [ $TRAVIS_PULL_REQUEST == false ] && [ $TRAVIS_RUST_VERSION == "nightly" ]; t
 	eval "$(ssh-agent -s)"
 	ssh-add ".travis/github_deploy_key"
 	# upload documentation
-	cargo doc-upload --branch $TRAVIS_BRANCH --clobber-index || exit_code=1
-
-	# do some test coverage
-	cargo tarpaulin --out Xml --ignore-tests --verbose || exit_code=1
-	bash <(curl -s https://codecov.io/bash) || exit_code=1
-	# do some more test coverage in release mode
-	cargo tarpaulin --release --out Xml --ignore-tests --verbose || exit_code=1
-	bash <(curl -s https://codecov.io/bash) || exit_code=1
+	cargo doc-upload --branch $TRAVIS_BRANCH --clobber-index --path $TRAVIS_BRANCH/doc/ || exit_code=1
 fi
 
 # pass the exit code to travis

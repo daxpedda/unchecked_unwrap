@@ -1,8 +1,0 @@
-        671 ns/iter (+/- 11) checked::expect_option
-        670 ns/iter (+/- 8) checked::expect_result
-        672 ns/iter (+/- 7) checked::unwrap_option
-        670 ns/iter (+/- 15) checked::unwrap_result
-        296 ns/iter (+/- 21) unchecked::expect_option
-        295 ns/iter (+/- 129) unchecked::expect_result
-        295 ns/iter (+/- 30) unchecked::unwrap_option
-        295 ns/iter (+/- 13) unchecked::unwrap_result

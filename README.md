@@ -11,14 +11,12 @@
 **[Release](https://github.com/daxpedda/unchecked_unwrap/tree/release/):**
 [![Build](https://img.shields.io/travis/daxpedda/unchecked_unwrap/release.svg?label=build:%20release)](https://travis-ci.org/daxpedda/unchecked_unwrap/branches/)
 [![Docs](https://docs.rs/unchecked_unwrap/badge.svg)](https://docs.rs/unchecked_unwrap/)
-[![Coverage](https://img.shields.io/codecov/c/github/daxpedda/unchecked_unwrap/release.svg?label=coverage:%20release)](https://codecov.io/github/daxpedda/unchecked_unwrap/branch/release/)
 
 **[Master](https://github.com/daxpedda/unchecked_unwrap/):**
 [![Build](https://img.shields.io/travis/daxpedda/unchecked_unwrap/master.svg?label=build:%20master)](https://travis-ci.org/daxpedda/unchecked_unwrap/branches/)
-[![Docs](https://raw.githack.com/daxpedda/unchecked_unwrap/gh-pages/master/badge.svg)](https://daxpedda.github.io/unchecked_unwrap/master/index.html)
-[![Coverage](https://img.shields.io/codecov/c/github/daxpedda/unchecked_unwrap/master.svg?label=coverage:%20master)](https://codecov.io/github/daxpedda/unchecked_unwrap/branch/master/)
+[![Docs](https://img.shields.io/badge/endpoint.svg?url=https://daxpedda.github.io/unchecked_unwrap/master/doc/badge.json)](https://daxpedda.github.io/unchecked_unwrap/master/doc/index.html)
 
-Adds an unchecked version of `unwrap()` and `expect()` to `Option` and `Result` for the rust programmming language.
+Adds an unchecked version of `unwrap()` and `expect()` to `Option` and `Result` for the rust programming language.
 Supports `no_std`.
 
 ## Branches
@@ -51,17 +49,12 @@ assert_eq!(unsafe { x.unchecked_expect("the sky is falling down") }, 2);
 ## Documentation
 
 Documentation is available online in the badge links above.
-Currently nightly is needed for full documentation: `cargo doc --features doc_include`
-If you are not on nightly only use `cargo doc`.
+Currently, nightly is needed for full documentation: `cargo doc --features doc_include`
+If you are not using nightly, use `cargo doc` as usual.
 
 ## Tests
 
 Is as simple as `cargo test` and `cargo test --release`.
-
-## Test coverage
-
-Test coverage is currently done by [Tarpaulin](https://github.com/xd009642/tarpaulin), which currently is missing some lines.
-I removed the badge from [Crates.io](https://crates.io/crates/unchecked_unwrap/) because it is misleading.
 
 ## Benchmarking
 
@@ -70,7 +63,7 @@ Currently the nightly version of rust is needed for benchmarking.
 
 ## CI
 
-This crate is checked daily by CI to make sure that it builds successfully with the newest versions rust stable, beta and nightly.
+This crate is checked daily by CI to make sure that it builds successfully with the newest versions of rust stable, beta and nightly.
 
 ## Alternatives
 
