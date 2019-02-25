@@ -14,7 +14,7 @@
 
 **[Master](https://github.com/daxpedda/unchecked_unwrap/):**
 [![Build](https://img.shields.io/travis/daxpedda/unchecked_unwrap/master.svg?label=build:%20master)](https://travis-ci.org/daxpedda/unchecked_unwrap/branches/)
-[![Docs](https://daxpedda.github.io/unchecked_unwrap/master/doc/badge.svg)](https://daxpedda.github.io/unchecked_unwrap/master/doc/index.html)
+[![Docs](https://img.shields.io/badge/endpoint.svg?url=https://daxpedda.github.io/unchecked_unwrap/master/doc/badge.json)](https://daxpedda.github.io/unchecked_unwrap/master/doc/index.html)
 
 Adds an unchecked version of `unwrap()` and `expect()` to `Option` and `Result` for the rust programming language.
 Supports `no_std`.
@@ -50,7 +50,7 @@ assert_eq!(unsafe { x.unchecked_expect("the sky is falling down") }, 2);
 
 Documentation is available online in the badge links above.
 Currently, nightly is needed for full documentation: `cargo doc --features doc_include`
-If you are not on nightly, use `cargo doc` as usual.
+If you are not using nightly, use `cargo doc` as usual.
 
 ## Tests
 

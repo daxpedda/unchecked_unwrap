@@ -52,8 +52,8 @@ if [ $TRAVIS_PULL_REQUEST == false ] && [ $TRAVIS_RUST_VERSION == "nightly" ]; t
 	cargo install-update cargo-update
 	cargo install cargo-audit
 	cargo install-update cargo-audit
-	cargo install cargo-travis --git "https://github.com/daxpedda/cargo-travis.git" --branch "doc_upload_patch"
-	cargo install-update cargo-travis -g
+	cargo install cargo-travis --git "https://github.com/roblabla/cargo-travis.git"
+	cargo install-update cargo-travis --git
 
 	# check rust RustSec db
 	cargo audit || exit_code=1
