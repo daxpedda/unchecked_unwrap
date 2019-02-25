@@ -24,6 +24,7 @@ default = ["debug_checks"]
 debug_checks = []
 doc_include = []
 
+# cleaning some output from `cargo test` and `cargo bench`
 [lib]
 test = false
 bench = false

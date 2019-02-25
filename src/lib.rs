@@ -1,7 +1,6 @@
 #![no_std]
 #![warn(clippy::cargo, clippy::pedantic, clippy::nursery)]
-#![cfg_attr(feature = "doc_include", feature(external_doc))]
-#![cfg_attr(feature = "doc_include", doc(include = "../README.md"))]
+#![cfg_attr(feature = "doc_include", feature(external_doc), doc(include = "../README.md"))]
 
 /// Trait for [`unchecked_expect`](trait.UncheckedExpect.html#method.unchecked_expect).
 pub trait UncheckedExpect<T> {

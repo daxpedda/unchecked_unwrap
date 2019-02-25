@@ -27,7 +27,7 @@ assignees: ''
 <!-- or ideas how to implement the addition or change -->
 
 **Version**
- - OS: <!-- e.g. Windows, OSX or Linux. -->
+ - OS: <!-- e.g. Linux, OS X or Windows. -->
  - Rust: <!-- from `cargo version`, e.g. 1.32.0-nightly -->
 
 **Notes**
