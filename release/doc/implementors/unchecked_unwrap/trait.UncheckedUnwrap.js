@@ -6,5 +6,4 @@ implementors["unchecked_unwrap"] = [];
             } else {
                 window.pending_implementors = implementors;
             }
-        
-})()
+        })()
