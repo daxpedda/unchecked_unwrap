@@ -17,7 +17,7 @@ jobs:
     steps:
       - name: Install Rust
         uses: hecrj/setup-rust-action@v1
-      - name: Download Cache
+      - name: Cache
         uses: actions/cache@v1
         id: cache
         with:
@@ -29,9 +29,7 @@ jobs:
           mv ~/.cargo-cache/.crates.toml ~/.cargo
           mv ~/.cargo-cache/.crates2.json ~/.cargo
           mv ~/.cargo-cache/bin/cargo-audit ~/.cargo/bin
-      - name: Delete Cache
-        if: steps.cache.outputs.cache-hit == 'true'
-        run: rm -r ~/.cargo-cache/
+          rm -r ~/.cargo-cache/
       - name: Install cargo-audit
         id: install
         run: cargo -v install cargo-audit
@@ -40,19 +38,12 @@ jobs:
       - name: Audit
         run: cargo audit -D
       - name: Package Cache
-        if: always() && steps.install.outcome == 'success'
         run: |
           mkdir ~/.cargo-cache
           mv ~/.cargo/.crates.toml ~/.cargo-cache
           mv ~/.cargo/.crates2.json ~/.cargo-cache
           mkdir ~/.cargo-cache/bin
           mv ~/.cargo/bin/cargo-audit ~/.cargo-cache/bin
-      - name: Upload Cache
-        if: always() && steps.install.outcome == 'success'
-        uses: actions/cache@v1
-        with:
-          path: ~/.cargo-cache
-          key: 1
 
   prettier:
     if: github.event_name != 'schedule'
