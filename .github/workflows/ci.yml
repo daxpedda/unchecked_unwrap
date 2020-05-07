@@ -90,24 +90,25 @@ jobs:
           rust-version: ${{ matrix.rust.channel }}
           components: rustfmt, clippy
       - name: Checkout
+        id: checkout
         uses: actions/checkout@v2
       - name: Build
         run: cargo -v build ${{ matrix.feature }} ${{ matrix.profile }}
       - name: Clippy
-        if: steps.Checkout.outcome == 'success'
+        if: steps.checkout.outcome == 'success'
         continue-on-error: ${{ matrix.rust.continue-on-error }}
         run: cargo clippy -v --all-targets ${{ matrix.feature }} ${{ matrix.profile }} -- -D warnings
       - name: Test
-        if: steps.Checkout.outcome == 'success'
+        if: steps.checkout.outcome == 'success'
         run: cargo -v test ${{ matrix.feature }} ${{ matrix.profile }}
       - name: Bench
-        if: steps.Checkout.outcome == 'success' && matrix.rust.channel == 'nightly'
+        if: steps.checkout.outcome == 'success' && matrix.rust.channel == 'nightly'
         run: cargo -v bench ${{ matrix.feature }} ${{ matrix.profile }}
       - name: Documentation
-        if: steps.Checkout.outcome == 'success'
+        if: steps.checkout.outcome == 'success'
         run: cargo -v doc --no-deps --document-private-items ${{ matrix.feature }} ${{ matrix.profile }}
       - name: Rust Formatting
-        if: steps.Checkout.outcome == 'success'
+        if: steps.checkout.outcome == 'success'
         continue-on-error: ${{ matrix.rust.continue-on-error }}
         run: cargo fmt -v --all -- --check
 
@@ -157,25 +158,26 @@ jobs:
           rust-version: ${{ matrix.rust.channel }}
           components: rustfmt, clippy
       - name: Checkout
+        id: checkout
         uses: actions/checkout@v2
         with:
           ref: ${{ matrix.branch }}
       - name: Build
         run: cargo -v build ${{ matrix.feature }} ${{ matrix.profile }}
       - name: Clippy
-        if: steps.Checkout.outcome == 'success'
+        if: steps.checkout.outcome == 'success'
         continue-on-error: ${{ matrix.rust.continue-on-error }}
         run: cargo clippy -v --all-targets ${{ matrix.feature }} ${{ matrix.profile }} -- -D warnings
       - name: Test
-        if: steps.Checkout.outcome == 'success'
+        if: steps.checkout.outcome == 'success'
         run: cargo -v test ${{ matrix.feature }} ${{ matrix.profile }}
       - name: Bench
-        if: steps.Checkout.outcome == 'success' && matrix.rust.channel == 'nightly'
+        if: steps.checkout.outcome == 'success' && matrix.rust.channel == 'nightly'
         run: cargo --verbose bench ${{ matrix.feature }} ${{ matrix.profile }}
       - name: Documentation
-        if: steps.Checkout.outcome == 'success'
+        if: steps.checkout.outcome == 'success'
         run: cargo -v doc --no-deps --document-private-items ${{ matrix.feature }} ${{ matrix.profile }}
       - name: Rust Formatting
-        if: steps.Checkout.outcome == 'success'
+        if: steps.checkout.outcome == 'success'
         continue-on-error: ${{ matrix.rust.continue-on-error }}
         run: cargo fmt -v --all -- --check
