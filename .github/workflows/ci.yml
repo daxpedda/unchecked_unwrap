@@ -42,7 +42,7 @@ jobs:
         run: |
           mv ~/.cargo/.crates.toml ~/.cargo-cache
           mv ~/.cargo/.crates2.json ~/.cargo-cache
-          mkdir ~/.cargo/bin
+          mkdir ~/.cargo-cache/bin
           mv ~/.cargo/bin/cargo-audit ~/.cargo-cache/bin
           mv ~/.cargo/advisory-db ~/.cargo-cache/advisory-db
       - name: Upload Cache
@@ -93,22 +93,23 @@ jobs:
         id: checkout
         uses: actions/checkout@v2
       - name: Build
+        id: build
         run: cargo -v build ${{ matrix.feature }} ${{ matrix.profile }}
       - name: Clippy
-        if: steps.checkout.outcome == 'success'
+        if: always() && steps.checkout.outcome == 'success'
         continue-on-error: ${{ matrix.rust.continue-on-error }}
         run: cargo clippy -v --all-targets ${{ matrix.feature }} ${{ matrix.profile }} -- -D warnings
       - name: Test
-        if: steps.checkout.outcome == 'success'
+        if: always() && steps.build.outcome == 'success'
         run: cargo -v test ${{ matrix.feature }} ${{ matrix.profile }}
       - name: Bench
-        if: steps.checkout.outcome == 'success' && matrix.rust.channel == 'nightly'
+        if: always() && steps.build.outcome == 'success' && matrix.rust.channel == 'nightly'
         run: cargo -v bench ${{ matrix.feature }} ${{ matrix.profile }}
       - name: Documentation
-        if: steps.checkout.outcome == 'success'
+        if: always() && steps.checkout.outcome == 'success'
         run: cargo -v doc --no-deps --document-private-items ${{ matrix.feature }} ${{ matrix.profile }}
       - name: Rust Formatting
-        if: steps.checkout.outcome == 'success'
+        if: always() && steps.checkout.outcome == 'success'
         continue-on-error: ${{ matrix.rust.continue-on-error }}
         run: cargo fmt -v --all -- --check
 
@@ -163,21 +164,22 @@ jobs:
         with:
           ref: ${{ matrix.branch }}
       - name: Build
+        id: build
         run: cargo -v build ${{ matrix.feature }} ${{ matrix.profile }}
       - name: Clippy
-        if: steps.checkout.outcome == 'success'
+        if: always() && steps.checkout.outcome == 'success'
         continue-on-error: ${{ matrix.rust.continue-on-error }}
         run: cargo clippy -v --all-targets ${{ matrix.feature }} ${{ matrix.profile }} -- -D warnings
       - name: Test
-        if: steps.checkout.outcome == 'success'
+        if: always() && steps.build.outcome == 'success'
         run: cargo -v test ${{ matrix.feature }} ${{ matrix.profile }}
       - name: Bench
-        if: steps.checkout.outcome == 'success' && matrix.rust.channel == 'nightly'
+        if: always() && steps.build.outcome == 'success' && matrix.rust.channel == 'nightly'
         run: cargo --verbose bench ${{ matrix.feature }} ${{ matrix.profile }}
       - name: Documentation
-        if: steps.checkout.outcome == 'success'
+        if: always() && steps.checkout.outcome == 'success'
         run: cargo -v doc --no-deps --document-private-items ${{ matrix.feature }} ${{ matrix.profile }}
       - name: Rust Formatting
-        if: steps.checkout.outcome == 'success'
+        if: always() && steps.checkout.outcome == 'success'
         continue-on-error: ${{ matrix.rust.continue-on-error }}
         run: cargo fmt -v --all -- --check
