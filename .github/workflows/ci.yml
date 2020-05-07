@@ -31,7 +31,7 @@ jobs:
           mv ~/.cargo-cache/bin/cargo-audit ~/.cargo/bin
       - name: Delete Cache
         if: steps.cache.outputs.cache-hit == 'true'
-        run: rmdir -r ~/.cargo-cache/
+        run: rm -r ~/.cargo-cache/
       - name: Install cargo-audit
         id: install
         run: cargo -v install cargo-audit
