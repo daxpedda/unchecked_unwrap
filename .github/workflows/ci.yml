@@ -40,6 +40,7 @@ jobs:
       - name: Package Cache
         if: github.event_name != 'schedule'
         run: |
+          mkdir ~/.cargo-cache
           mv ~/.cargo/.crates.toml ~/.cargo-cache
           mv ~/.cargo/.crates2.json ~/.cargo-cache
           mkdir ~/.cargo-cache/bin
