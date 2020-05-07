@@ -23,7 +23,7 @@ jobs:
           path: ~/.cargo-cache
           key: 1
       - name: Unpack Cache
-        if: steps.cache.outputs.cache-hit == true
+        if: steps.cache.outputs.cache-hit == 'true'
         run: |
           mv ~/.cargo-cache/.crates.toml ~/.cargo
           mv ~/.cargo-cache/.crates2.json ~/.cargo
