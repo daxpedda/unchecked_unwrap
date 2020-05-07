@@ -22,7 +22,7 @@ jobs:
       - name: Documentation
         run: cargo -v doc --features nightly --no-deps --document-private-items
       - name: Deploy
-        if: ${{ success() }}
+        if: success()
         uses: JamesIves/github-pages-deploy-action@releases/v3
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

@@ -98,7 +98,7 @@ jobs:
       - name: Test
         run: cargo -v test ${{ matrix.feature }} ${{ matrix.profile }}
       - name: Bench
-        if: ${{ matrix.rust.channel == nightly }}
+        if: matrix.rust.channel == 'nightly'
         run: cargo -v bench ${{ matrix.feature }} ${{ matrix.profile }}
       - name: Documentation
         run: cargo -v doc --no-deps --document-private-items ${{ matrix.feature }} ${{ matrix.profile }}
@@ -163,7 +163,7 @@ jobs:
       - name: Test
         run: cargo -v test ${{ matrix.feature }} ${{ matrix.profile }}
       - name: Bench
-        if: ${{ matrix.rust.channel == nightly }}
+        if: matrix.rust.channel == 'nightly'
         run: cargo --verbose bench ${{ matrix.feature }} ${{ matrix.profile }}
       - name: Documentation
         run: cargo -v doc --no-deps --document-private-items ${{ matrix.feature }} ${{ matrix.profile }}
