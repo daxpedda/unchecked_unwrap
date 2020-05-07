@@ -12,6 +12,7 @@
     feature(external_doc, track_caller),
     doc(include = "../README.md")
 )]
+//#![cfg_attr(not(feature = "nightly"), doc(""))]
 
 use core::fmt::Debug;
 
