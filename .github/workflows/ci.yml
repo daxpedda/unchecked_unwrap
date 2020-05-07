@@ -31,7 +31,7 @@ jobs:
           mkdir ~/.cargo/advisory-db
           mv ~/.cargo-cache/advisory-db ~/.cargo/advisory-db
       - name: Install cargo-audit
-        run: cargo --verbose install cargo-audit
+        run: cargo -v install cargo-audit
       - name: Checkout
         if: github.event_name != 'schedule'
         uses: actions/checkout@v2
@@ -105,7 +105,7 @@ jobs:
         run: cargo -v test ${{ matrix.feature }} ${{ matrix.profile }}
       - name: Bench
         if: always() && steps.build.outcome == 'success' && matrix.rust.channel == 'nightly'
-        run: cargo -v bench ${{ matrix.feature }} ${{ matrix.profile }}
+        run: cargo -v bench ${{ matrix.feature }}
       - name: Documentation
         if: always() && steps.checkout.outcome == 'success'
         run: cargo -v doc --no-deps --document-private-items ${{ matrix.feature }} ${{ matrix.profile }}
@@ -176,7 +176,7 @@ jobs:
         run: cargo -v test ${{ matrix.feature }} ${{ matrix.profile }}
       - name: Bench
         if: always() && steps.build.outcome == 'success' && matrix.rust.channel == 'nightly'
-        run: cargo --verbose bench ${{ matrix.feature }} ${{ matrix.profile }}
+        run: cargo -v bench ${{ matrix.feature }}
       - name: Documentation
         if: always() && steps.checkout.outcome == 'success'
         run: cargo -v doc --no-deps --document-private-items ${{ matrix.feature }} ${{ matrix.profile }}
