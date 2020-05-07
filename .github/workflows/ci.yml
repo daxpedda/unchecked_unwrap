@@ -40,7 +40,7 @@ jobs:
       - name: Audit
         run: cargo audit -D
       - name: Package Cache
-        if: always() && steps.checkout.install == 'success'
+        if: always() && steps.install.outcome == 'success'
         run: |
           mkdir ~/.cargo-cache
           mv ~/.cargo/.crates.toml ~/.cargo-cache
@@ -48,7 +48,7 @@ jobs:
           mkdir ~/.cargo-cache/bin
           mv ~/.cargo/bin/cargo-audit ~/.cargo-cache/bin
       - name: Upload Cache
-        if: always() && steps.checkout.install == 'success'
+        if: always() && steps.install.outcome == 'success'
         uses: actions/cache@v1
         with:
           path: ~/.cargo-cache
