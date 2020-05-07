@@ -15,7 +15,7 @@ jobs:
     steps:
       - name: Install Rust
         uses: hecrj/setup-rust-action@v1
-      - name: DownloadCache
+      - name: Download Cache
         if: github.event_name != 'schedule'
         uses: actions/cache@v1
         id: cache
@@ -23,10 +23,10 @@ jobs:
           path: ~/.cargo-cache
           key: 1
       - name: Unpack Cache
-        if: steps.cache.outputs.cache-hit == 'true'
+        if: steps.cache.outputs.cache-hit == true
         run: |
           mv ~/.cargo-cache/.crates.toml ~/.cargo
-          mv ~/.cargo-cache/.crates2.toml ~/.cargo
+          mv ~/.cargo-cache/.crates2.json ~/.cargo
           mv ~/.cargo-cache/bin/cargo-audit ~/.cargo/bin
           mkdir ~/.cargo/advisory-db
           mv ~/.cargo-cache/advisory-db ~/.cargo/advisory-db
@@ -41,7 +41,7 @@ jobs:
         if: github.event_name != 'schedule'
         run: |
           mv ~/.cargo/.crates.toml ~/.cargo-cache
-          mv ~/.cargo/.crates2.toml ~/.cargo-cache
+          mv ~/.cargo/.crates2.json ~/.cargo-cache
           mv ~/.cargo/bin/cargo-audit ~/.cargo-cache/bin
           mv ~/.cargo/advisory-db ~/.cargo-cache/advisory-db
       - name: Upload Cache
@@ -58,7 +58,7 @@ jobs:
 
     steps:
       - name: Install Prettier
-        run: npm install -g prettier prettier-plugin-toml
+        run: npm install --save-dev --save-exact prettier prettier-plugin-toml
       - name: Checkout
         uses: actions/checkout@v2
       - name: Prettier
@@ -71,13 +71,13 @@ jobs:
       fail-fast: false
       matrix:
         rust:
-          - { channel: stable, fail: true }
-          - { channel: beta, fail: true }
-          - { channel: nightly, fail: false }
+          - { channel: stable, continue-on-error: false }
+          - { channel: beta, continue-on-error: false }
+          - { channel: nightly, continue-on-error: true }
         feature: [--no-default-features, ""]
         profile: ["", --release]
         include:
-          - rust: { channel: nightly, fail: false }
+          - rust: { channel: nightly, continue-on-error: true }
             feature: --features nightly
 
     runs-on: ubuntu-latest
@@ -93,7 +93,7 @@ jobs:
       - name: Build
         run: cargo -v build ${{ matrix.feature }} ${{ matrix.profile }}
       - name: Clippy
-        continue-on-error: ${{ matrix.rust.fail }}
+        continue-on-error: ${{ matrix.rust.continue-on-error }}
         run: cargo clippy -v --all-targets ${{ matrix.feature }} ${{ matrix.profile }} -- -D warnings
       - name: Test
         run: cargo -v test ${{ matrix.feature }} ${{ matrix.profile }}
@@ -103,7 +103,7 @@ jobs:
       - name: Documentation
         run: cargo -v doc --no-deps --document-private-items ${{ matrix.feature }} ${{ matrix.profile }}
       - name: Rust Formatting
-        continue-on-error: ${{ matrix.rust.fail }}
+        continue-on-error: ${{ matrix.rust.continue-on-error }}
         run: cargo fmt -v --all -- --check
 
   schedule-prettier:
@@ -118,7 +118,7 @@ jobs:
 
     steps:
       - name: Install Prettier
-        run: npm install -g prettier prettier-plugin-toml
+        run: npm install --save-dev --save-exact prettier prettier-plugin-toml
       - name: Checkout
         uses: actions/checkout@v2
         with:
@@ -133,14 +133,14 @@ jobs:
       fail-fast: false
       matrix:
         rust:
-          - { channel: stable, fail: true }
-          - { channel: beta, fail: true }
-          - { channel: nightly, fail: false }
+          - { channel: stable, continue-on-error: false }
+          - { channel: beta, continue-on-error: false }
+          - { channel: nightly, continue-on-error: true }
         feature: [--no-default-features, ""]
         profile: ["", --release]
         branch: ["master", "release"]
         include:
-          - rust: { channel: nightly, fail: false }
+          - rust: { channel: nightly, continue-on-error: true }
             feature: --features nightly
 
     runs-on: ubuntu-latest
@@ -158,7 +158,7 @@ jobs:
       - name: Build
         run: cargo -v build ${{ matrix.feature }} ${{ matrix.profile }}
       - name: Clippy
-        continue-on-error: ${{ matrix.rust.fail }}
+        continue-on-error: ${{ matrix.rust.continue-on-error }}
         run: cargo clippy -v --all-targets ${{ matrix.feature }} ${{ matrix.profile }} -- -D warnings
       - name: Test
         run: cargo -v test ${{ matrix.feature }} ${{ matrix.profile }}
@@ -168,5 +168,5 @@ jobs:
       - name: Documentation
         run: cargo -v doc --no-deps --document-private-items ${{ matrix.feature }} ${{ matrix.profile }}
       - name: Rust Formatting
-        continue-on-error: ${{ matrix.rust.fail }}
+        continue-on-error: ${{ matrix.rust.continue-on-error }}
         run: cargo fmt -v --all -- --check
