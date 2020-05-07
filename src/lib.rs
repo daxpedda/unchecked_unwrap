@@ -1,16 +1,28 @@
 #![no_std]
-#![warn(clippy::cargo, clippy::pedantic, clippy::nursery)]
-#![cfg_attr(feature = "doc_include", feature(external_doc))]
-#![cfg_attr(feature = "doc_include", doc(include = "../README.md"))]
+#![warn(
+    clippy::all,
+    clippy::cargo,
+    clippy::missing_docs_in_private_items,
+    clippy::pedantic,
+    clippy::nursery,
+    missing_docs
+)]
+#![cfg_attr(
+    feature = "nightly",
+    feature(external_doc, track_caller),
+    doc(include = "../README.md")
+)]
 
-/// Trait for [`unchecked_expect`](trait.UncheckedExpect.html#method.unchecked_expect).
+use core::fmt::Debug;
+
+/// Trait for [`unchecked_expect`](UncheckedExpect::unchecked_expect).
 pub trait UncheckedExpect<T> {
     /// Unwraps an [`Option`] or [`Result`], yielding the content of a [`Some`] or [`Ok`].
     /// This is the unchecked alternative to [`Option::expect`] and [`Result::expect`].
     ///
     /// # Panics
     ///
-    /// Only panics if `debug_assertions` and the feature `debug_checks` is enabled.
+    /// Only panics if `debug_assertions` and <span class="module-item"><span class="stab portability" style="margin-right: 0">`feature="debug_checks"`</span></span> is enabled.
     ///
     /// Panics if the value is a [`None`] or [`Err`], with a custom panic message provided by `msg`
     /// and if [`Result`] with the content of the [`Err`].
@@ -25,7 +37,7 @@ pub trait UncheckedExpect<T> {
     /// # Examples
     ///
     /// ```
-    /// # use unchecked_unwrap::*;
+    /// use unchecked_unwrap::UncheckedExpect;
     ///
     /// let x = Some("value");
     /// assert_eq!(unsafe { x.unchecked_expect("the world is ending") }, "value");
@@ -33,17 +45,18 @@ pub trait UncheckedExpect<T> {
     /// let x: Result<u32, &str> = Ok(2);
     /// assert_eq!(unsafe { x.unchecked_expect("the sky is falling down") }, 2);
     /// ```
+    #[cfg_attr(feature = "nightly", track_caller)]
     unsafe fn unchecked_expect(self, msg: &str) -> T;
 }
 
-/// Trait for [`unchecked_unwrap`](trait.UncheckedUnwrap.html#method.unchecked_unwrap).
+/// Trait for [`unchecked_unwrap`](UncheckedUnwrap::unchecked_unwrap).
 pub trait UncheckedUnwrap<T> {
     /// Unwraps an [`Option`] or [`Result`], yielding the content of a [`Some`] or [`Ok`].
     /// This is the unchecked alternative to [`Option::unwrap`] and [`Result::unwrap`].
     ///
     /// # Panics
     ///
-    /// Only panics if `debug_assertions` and the feature `debug_checks` is enabled.
+    /// Only panics if `debug_assertions` and <span class="module-item"><span class="stab portability" style="margin-right: 0">`feature="debug_checks"`</span></span> is enabled.
     ///
     /// Panics if the value is a [`None`] or [`Err`], if [`Result`] with a panic massage provided by
     /// the [`Err`]'s value.
@@ -58,7 +71,7 @@ pub trait UncheckedUnwrap<T> {
     /// # Examples
     ///
     /// ```
-    /// use unchecked_unwrap::*;
+    /// use unchecked_unwrap::UncheckedUnwrap;
     ///
     /// let x = Some("air");
     /// assert_eq!(unsafe { x.unchecked_unwrap() }, "air");
@@ -66,6 +79,7 @@ pub trait UncheckedUnwrap<T> {
     /// let x: Result<u32, &str> = Ok(2);
     /// assert_eq!(unsafe { x.unchecked_unwrap() }, 2);
     /// ```
+    #[cfg_attr(feature = "nightly", track_caller)]
     unsafe fn unchecked_unwrap(self) -> T;
 }
 
@@ -73,8 +87,7 @@ impl<T> UncheckedExpect<T> for Option<T> {
     /// Unwraps an [`Option`], yielding the content of a [`Some`].
     /// This is the unchecked alternative to [`expect`](Option::expect).
     unsafe fn unchecked_expect(self, msg: &str) -> T {
-        if cfg!(debug_assertions) {
-            #[cfg(feature = "debug_checks")]
+        if cfg!(debug_assertions) && cfg!(feature = "debug_checks") {
             self.expect(msg)
         } else if let Some(value) = self {
             value
@@ -84,12 +97,11 @@ impl<T> UncheckedExpect<T> for Option<T> {
     }
 }
 
-impl<T, E: core::fmt::Debug> UncheckedExpect<T> for Result<T, E> {
+impl<T, E: Debug> UncheckedExpect<T> for Result<T, E> {
     /// Unwraps a [`Result`], yielding the content of an [`Ok`].
     /// This is the unchecked alternative to [`expect`](Result::expect).
     unsafe fn unchecked_expect(self, msg: &str) -> T {
-        if cfg!(debug_assertions) {
-            #[cfg(feature = "debug_checks")]
+        if cfg!(debug_assertions) && cfg!(feature = "debug_checks") {
             self.expect(msg)
         } else if let Ok(value) = self {
             value
@@ -103,9 +115,7 @@ impl<T> UncheckedUnwrap<T> for Option<T> {
     /// Unwraps a [`Option`], yielding the content of an [`Some`].
     /// This is the unchecked alternative to [`unwrap`](Option::unwrap).
     unsafe fn unchecked_unwrap(self) -> T {
-        if cfg!(debug_assertions) {
-            #[cfg(feature = "debug_checks")]
-            #[allow(clippy::option_unwrap_used)]
+        if cfg!(debug_assertions) && cfg!(feature = "debug_checks") {
             self.unwrap()
         } else if let Some(value) = self {
             value
@@ -115,13 +125,11 @@ impl<T> UncheckedUnwrap<T> for Option<T> {
     }
 }
 
-impl<T, E: core::fmt::Debug> UncheckedUnwrap<T> for Result<T, E> {
+impl<T, E: Debug> UncheckedUnwrap<T> for Result<T, E> {
     /// Unwraps a [`Result`], yielding the content of an [`Ok`].
     /// This is the unchecked alternative to [`unwrap`](Result::unwrap).
     unsafe fn unchecked_unwrap(self) -> T {
-        if cfg!(debug_assertions) {
-            #[cfg(feature = "debug_checks")]
-            #[allow(clippy::result_unwrap_used)]
+        if cfg!(debug_assertions) && cfg!(feature = "debug_checks") {
             self.unwrap()
         } else if let Ok(value) = self {
             value

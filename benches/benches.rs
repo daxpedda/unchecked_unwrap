@@ -1,6 +1,14 @@
 #![no_std]
+#![cfg(feature = "nightly")]
 #![feature(test)]
-#![warn(clippy::cargo, clippy::pedantic, clippy::nursery)]
+#![warn(
+    clippy::all,
+    clippy::cargo,
+    clippy::missing_docs_in_private_items,
+    clippy::pedantic,
+    clippy::nursery,
+    missing_docs
+)]
 
 mod checked {
     extern crate test;
@@ -55,7 +63,7 @@ mod checked {
 mod unchecked {
     extern crate test;
     use self::test::{black_box, Bencher};
-    use unchecked_unwrap::*;
+    use unchecked_unwrap::{UncheckedExpect, UncheckedUnwrap};
 
     #[bench]
     fn expect_option(bencher: &mut Bencher) {

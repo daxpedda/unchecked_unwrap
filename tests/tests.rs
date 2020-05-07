@@ -1,6 +1,13 @@
 #![no_std]
-#![warn(clippy::cargo, clippy::pedantic, clippy::nursery)]
-use unchecked_unwrap::*;
+#![warn(
+    clippy::all,
+    clippy::cargo,
+    clippy::missing_docs_in_private_items,
+    clippy::pedantic,
+    clippy::nursery,
+    missing_docs
+)]
+use unchecked_unwrap::{UncheckedExpect, UncheckedUnwrap};
 
 #[test]
 fn option_expect_success() {

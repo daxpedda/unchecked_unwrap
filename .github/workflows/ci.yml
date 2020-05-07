@@ -1,0 +1,172 @@
+name: CI
+
+on:
+  push:
+    branches-ignore: [gh-pages]
+  pull_request:
+    branches-ignore: [gh-pages]
+  schedule:
+    - cron: "0 0 * * *"
+
+jobs:
+  cargo-audit:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Install Rust
+        uses: hecrj/setup-rust-action@v1
+      - name: DownloadCache
+        if: github.event_name != 'schedule'
+        uses: actions/cache@v1
+        id: cache
+        with:
+          path: ~/.cargo-cache
+          key: 1
+      - name: Unpack Cache
+        if: steps.cache.outputs.cache-hit == 'true'
+        run: |
+          mv ~/.cargo-cache/.crates.toml ~/.cargo
+          mv ~/.cargo-cache/.crates2.toml ~/.cargo
+          mv ~/.cargo-cache/bin/cargo-audit ~/.cargo/bin
+          mkdir ~/.cargo/advisory-db
+          mv ~/.cargo-cache/advisory-db ~/.cargo/advisory-db
+      - name: Install cargo-audit
+        run: cargo --verbose install cargo-audit
+      - name: Checkout
+        if: github.event_name != 'schedule'
+        uses: actions/checkout@v2
+      - name: Audit
+        run: cargo audit -D
+      - name: Package Cache
+        if: github.event_name != 'schedule'
+        run: |
+          mv ~/.cargo/.crates.toml ~/.cargo-cache
+          mv ~/.cargo/.crates2.toml ~/.cargo-cache
+          mv ~/.cargo/bin/cargo-audit ~/.cargo-cache/bin
+          mv ~/.cargo/advisory-db ~/.cargo-cache/advisory-db
+      - name: Upload Cache
+        if: github.event_name != 'schedule'
+        uses: actions/cache@v1
+        with:
+          path: ~/.cargo-cache
+          key: 1
+
+  prettier:
+    if: github.event_name != 'schedule'
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Install Prettier
+        run: npm install -g prettier prettier-plugin-toml
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Prettier
+        run: prettier -l .
+
+  ci:
+    if: github.event_name != 'schedule'
+
+    strategy:
+      fail-fast: false
+      matrix:
+        rust:
+          - { channel: stable, fail: true }
+          - { channel: beta, fail: true }
+          - { channel: nightly, fail: false }
+        feature: [--no-default-features, ""]
+        profile: ["", --release]
+        include:
+          - rust: { channel: nightly, fail: false }
+            feature: --features nightly
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Install Rust
+        uses: hecrj/setup-rust-action@v1
+        with:
+          rust-version: ${{ matrix.rust.channel }}
+          components: rustfmt, clippy
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Build
+        run: cargo -v build ${{ matrix.feature }} ${{ matrix.profile }}
+      - name: Clippy
+        continue-on-error: ${{ matrix.rust.fail }}
+        run: cargo clippy -v --all-targets ${{ matrix.feature }} ${{ matrix.profile }} -- -D warnings
+      - name: Test
+        run: cargo -v test ${{ matrix.feature }} ${{ matrix.profile }}
+      - name: Bench
+        if: ${{ matrix.rust.channel == nightly }}
+        run: cargo -v bench ${{ matrix.feature }} ${{ matrix.profile }}
+      - name: Documentation
+        run: cargo -v doc --no-deps --document-private-items ${{ matrix.feature }} ${{ matrix.profile }}
+      - name: Rust Formatting
+        continue-on-error: ${{ matrix.rust.fail }}
+        run: cargo fmt -v --all -- --check
+
+  schedule-prettier:
+    if: github.event_name == 'schedule'
+
+    strategy:
+      fail-fast: false
+      matrix:
+        branch: ["master", "release"]
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Install Prettier
+        run: npm install -g prettier prettier-plugin-toml
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          ref: ${{ matrix.branch }}
+      - name: Prettier
+        run: prettier -l .
+
+  schedule-ci:
+    if: github.event_name == 'schedule'
+
+    strategy:
+      fail-fast: false
+      matrix:
+        rust:
+          - { channel: stable, fail: true }
+          - { channel: beta, fail: true }
+          - { channel: nightly, fail: false }
+        feature: [--no-default-features, ""]
+        profile: ["", --release]
+        branch: ["master", "release"]
+        include:
+          - rust: { channel: nightly, fail: false }
+            feature: --features nightly
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Install Rust
+        uses: hecrj/setup-rust-action@v1
+        with:
+          rust-version: ${{ matrix.rust.channel }}
+          components: rustfmt, clippy
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          ref: ${{ matrix.branch }}
+      - name: Build
+        run: cargo -v build ${{ matrix.feature }} ${{ matrix.profile }}
+      - name: Clippy
+        continue-on-error: ${{ matrix.rust.fail }}
+        run: cargo clippy -v --all-targets ${{ matrix.feature }} ${{ matrix.profile }} -- -D warnings
+      - name: Test
+        run: cargo -v test ${{ matrix.feature }} ${{ matrix.profile }}
+      - name: Bench
+        if: ${{ matrix.rust.channel == nightly }}
+        run: cargo --verbose bench ${{ matrix.feature }} ${{ matrix.profile }}
+      - name: Documentation
+        run: cargo -v doc --no-deps --document-private-items ${{ matrix.feature }} ${{ matrix.profile }}
+      - name: Rust Formatting
+        continue-on-error: ${{ matrix.rust.fail }}
+        run: cargo fmt -v --all -- --check
