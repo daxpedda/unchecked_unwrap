@@ -1,6 +1,13 @@
 #![no_std]
-#![warn(clippy::cargo, clippy::pedantic, clippy::nursery)]
-use unchecked_unwrap::*;
+#![warn(
+    clippy::all,
+    clippy::cargo,
+    clippy::missing_docs_in_private_items,
+    clippy::pedantic,
+    clippy::nursery,
+    missing_docs
+)]
+use unchecked_unwrap::{UncheckedExpect, UncheckedUnwrap};
 
 #[test]
 fn option_expect_success() {
@@ -10,7 +17,7 @@ fn option_expect_success() {
 }
 
 #[test]
-#[cfg(debug_assertions)]
+#[cfg(all(debug_assertions, feature = "debug_checks"))]
 #[should_panic(expected = "test")]
 fn option_expect_failure() {
     let option: Option<()> = None;
@@ -26,7 +33,7 @@ fn result_expect_success() {
 }
 
 #[test]
-#[cfg(debug_assertions)]
+#[cfg(all(debug_assertions, feature = "debug_checks"))]
 #[should_panic(expected = "test")]
 fn result_expect_failure() {
     let result: Result<(), _> = Err(());
@@ -42,7 +49,7 @@ fn option_unwrap_success() {
 }
 
 #[test]
-#[cfg(debug_assertions)]
+#[cfg(all(debug_assertions, feature = "debug_checks"))]
 #[should_panic(expected = "called `Option::unwrap()` on a `None` value")]
 fn option_unwrap_failure() {
     let option: Option<()> = None;
@@ -58,7 +65,7 @@ fn result_unwrap_success() {
 }
 
 #[test]
-#[cfg(debug_assertions)]
+#[cfg(all(debug_assertions, feature = "debug_checks"))]
 #[should_panic(expected = "called `Result::unwrap()` on an `Err` value: ()")]
 fn result_unwrap_failure() {
     let result: Result<(), _> = Err(());

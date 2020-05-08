@@ -1,28 +1,25 @@
 [package]
 name = "unchecked_unwrap"
-version = "1.0.1"
-authors = ["daxpedda <daxpedda@users.noreply.github.com>"]
+version = "2.0.0"
+authors = ["daxpedda <daxpedda@gmail.com>"]
 edition = "2018"
 description = "Adds an unchecked version of `unwrap()` and `expect()` to Option and Result."
-documentation = "https://docs.rs/crate/unchecked_unwrap/"
+readme = "README.md"
 repository = "https://github.com/daxpedda/unchecked_unwrap/tree/stable/"
-readme = "README.MD"
+license = "MIT OR Apache-2.0"
 keywords = ["unwrap", "unchecked", "expect", "result", "option"]
 categories = ["no-std", "rust-patterns"]
-license = "MIT OR Apache-2.0"
-exclude = ["/.travis.yml", "/.github/*", "/.travis/*"]
+exclude = ["/.github"]
 
 [badges]
-travis-ci = { repository = "daxpedda/unchecked_unwrap", branch = "stable" }
-# this looks excessive for a small library like that
-# is-it-maintained-issue-resolution = { repository = "daxpedda/unchecked_unwrap" }
-# is-it-maintained-open-issues = { repository = "daxpedda/unchecked_unwrap" }
-maintenance = { status = "actively-developed" }
+is-it-maintained-issue-resolution = { repository = "daxpedda/unchecked_unwrap" }
+is-it-maintained-open-issues = { repository = "daxpedda/unchecked_unwrap" }
+maintenance = { status = "passively-developed" }
 
 [features]
 default = ["debug_checks"]
 debug_checks = []
-doc_include = []
+nightly = []
 
 # cleaning some output from `cargo test` and `cargo bench`
 [lib]
@@ -31,4 +28,5 @@ bench = false
 
 # docs.rs needs some pointers to do proper documentation
 [package.metadata.docs.rs]
-features = ["doc_include"]
+features = ["nightly"]
+targets = ["x86_64-unknown-linux-gnu"]
