@@ -78,7 +78,12 @@ jobs:
           - --release
         include:
           - rust: { channel: nightly, continue-on-error: true }
-            feature: --features nightly
+            feature:
+              - --features nightly
+              - --no-default-features --features nightly
+            profile:
+              - ""
+              - --release
 
     runs-on: ubuntu-latest
 
@@ -179,7 +184,15 @@ jobs:
           - release
         include:
           - rust: { channel: nightly, continue-on-error: true }
-            feature: --features nightly
+            feature:
+              - --features nightly
+              - --no-default-features --features nightly
+            profile:
+              - ""
+              - --release
+            branch:
+              - master
+              - release
 
     runs-on: ubuntu-latest
 
