@@ -1,12 +1,12 @@
 # unchecked_unwrap
 
 [![Crates.io](https://img.shields.io/crates/v/unchecked_unwrap.svg)](https://crates.io/crates/unchecked_unwrap/)
-[![Deps.rs](https://deps.rs/repo/github/daxpedda/unchecked_unwrap/status.svg)](https://deps.rs/repo/github/daxpedda/unchecked_unwrap)
-[![Commits since](https://img.shields.io/github/commits-since/daxpedda/unchecked_unwrap/latest.svg)](https://github.com/daxpedda/unchecked_unwrap/releases/latest/)
+[![Libraries.io](https://img.shields.io/librariesio/release/cargo/unchecked_unwrap)](https://libraries.io/cargo/unchecked_unwrap)
+[![Commits since](https://img.shields.io/github/commits-since/daxpedda/unchecked_unwrap/latest)](https://github.com/daxpedda/unchecked_unwrap/releases/latest/)
 [![Resolution](http://isitmaintained.com/badge/resolution/daxpedda/unchecked_unwrap.svg)](http://isitmaintained.com/project/daxpedda/unchecked_unwrap)
 [![Issues](http://isitmaintained.com/badge/open/daxpedda/unchecked_unwrap.svg)](http://isitmaintained.com/project/daxpedda/unchecked_unwrap)
-[![License](https://img.shields.io/crates/l/unchecked_unwrap.svg)](https://github.com/daxpedda/unchecked_unwrap/blob/master/LICENSE)
-[![LoC](https://tokei.rs/b1/github/daxpedda/unchecked_unwrap/)](https://github.com/daxpedda/unchecked_unwrap/)
+[![License](https://img.shields.io/crates/l/unchecked_unwrap)](https://github.com/daxpedda/unchecked_unwrap/blob/master/LICENSE)
+[![LoC](https://tokei.rs/b1/github/daxpedda/unchecked_unwrap)](https://github.com/daxpedda/unchecked_unwrap/)
 
 **[Release](https://github.com/daxpedda/unchecked_unwrap/tree/release/):**
 [![Build](https://github.com/daxpedda/unchecked_unwrap/workflows/CI/badge.svg?branch=release)](https://github.com/daxpedda/unchecked_unwrap/actions?query=workflow%3ACI+branch%3Arelease)
