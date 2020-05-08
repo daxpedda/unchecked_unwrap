@@ -30,3 +30,4 @@ jobs:
           BRANCH: gh-pages
           FOLDER: target/doc/
           TARGET_FOLDER: master/doc/
+          CLEAN: true
