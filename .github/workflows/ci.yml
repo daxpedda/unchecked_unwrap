@@ -2,9 +2,11 @@ name: CI
 
 on:
   push:
-    branches-ignore: [gh-pages]
+    branches-ignore:
+      - gh-pages
   pull_request:
-    branches-ignore: [gh-pages]
+    branches-ignore:
+      - gh-pages
   schedule:
     - cron: "0 0 * * *"
 
@@ -22,7 +24,7 @@ jobs:
         id: cache
         with:
           path: ~/.cargo-cache
-          key: 1
+          key: cargo-audit
       - name: Unpack Cache
         if: steps.cache.outputs.cache-hit == 'true'
         run: |
@@ -68,8 +70,12 @@ jobs:
           - { channel: stable, continue-on-error: false }
           - { channel: beta, continue-on-error: false }
           - { channel: nightly, continue-on-error: true }
-        feature: [--no-default-features, ""]
-        profile: ["", --release]
+        feature:
+          - --no-default-features
+          - ""
+        profile:
+          - ""
+          - --release
         include:
           - rust: { channel: nightly, continue-on-error: true }
             feature: --features nightly
@@ -90,13 +96,12 @@ jobs:
         run: cargo -v build ${{ matrix.feature }} ${{ matrix.profile }}
       - name: Clippy
         if: always() && steps.checkout.outcome == 'success'
-        continue-on-error: ${{ matrix.rust.continue-on-error }}
         run: cargo clippy -v --all-targets ${{ matrix.feature }} ${{ matrix.profile }} -- -D warnings
       - name: Test
         if: always() && steps.build.outcome == 'success'
         run: cargo -v test ${{ matrix.feature }} ${{ matrix.profile }}
       - name: Bench
-        if: always() && steps.build.outcome == 'success' && matrix.rust.channel == 'nightly'
+        if: always() && steps.build.outcome == 'success' && matrix.rust.channel == 'nightly' && matrix.profile == '--release'
         run: cargo -v bench ${{ matrix.feature }}
       - name: Documentation
         if: always() && steps.checkout.outcome == 'success'
@@ -106,13 +111,40 @@ jobs:
         continue-on-error: ${{ matrix.rust.continue-on-error }}
         run: cargo fmt -v --all -- --check
 
+  schedule-cargo-audit:
+    if: github.event_name == 'schedule'
+
+    strategy:
+      fail-fast: false
+      matrix:
+        branch:
+          - master
+          - release
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Install Rust
+        uses: hecrj/setup-rust-action@v1
+      - name: Install cargo-audit
+        id: install
+        run: cargo -v install cargo-audit
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          ref: ${{ matrix.branch }}
+      - name: Audit
+        run: cargo audit -D
+
   schedule-prettier:
     if: github.event_name == 'schedule'
 
     strategy:
       fail-fast: false
       matrix:
-        branch: ["master", "release"]
+        branch:
+          - master
+          - release
 
     runs-on: ubuntu-latest
 
@@ -136,9 +168,15 @@ jobs:
           - { channel: stable, continue-on-error: false }
           - { channel: beta, continue-on-error: false }
           - { channel: nightly, continue-on-error: true }
-        feature: [--no-default-features, ""]
-        profile: ["", --release]
-        branch: ["master", "release"]
+        feature:
+          - --no-default-features
+          - ""
+        profile:
+          - ""
+          - --release
+        branch:
+          - master
+          - release
         include:
           - rust: { channel: nightly, continue-on-error: true }
             feature: --features nightly
@@ -161,13 +199,12 @@ jobs:
         run: cargo -v build ${{ matrix.feature }} ${{ matrix.profile }}
       - name: Clippy
         if: always() && steps.checkout.outcome == 'success'
-        continue-on-error: ${{ matrix.rust.continue-on-error }}
         run: cargo clippy -v --all-targets ${{ matrix.feature }} ${{ matrix.profile }} -- -D warnings
       - name: Test
         if: always() && steps.build.outcome == 'success'
         run: cargo -v test ${{ matrix.feature }} ${{ matrix.profile }}
       - name: Bench
-        if: always() && steps.build.outcome == 'success' && matrix.rust.channel == 'nightly'
+        if: always() && steps.build.outcome == 'success' && matrix.rust.channel == 'nightly' && matrix.profile == '--release'
         run: cargo -v bench ${{ matrix.feature }}
       - name: Documentation
         if: always() && steps.checkout.outcome == 'success'
@@ -176,26 +213,3 @@ jobs:
         if: always() && steps.checkout.outcome == 'success'
         continue-on-error: ${{ matrix.rust.continue-on-error }}
         run: cargo fmt -v --all -- --check
-
-  schedule-cargo-audit:
-    if: github.event_name == 'schedule'
-
-    strategy:
-      fail-fast: false
-      matrix:
-        branch: ["master", "release"]
-
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Install Rust
-        uses: hecrj/setup-rust-action@v1
-      - name: Install cargo-audit
-        id: install
-        run: cargo -v install cargo-audit
-      - name: Checkout
-        uses: actions/checkout@v2
-        with:
-          ref: ${{ matrix.branch }}
-      - name: Audit
-        run: cargo audit -D
