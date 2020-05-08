@@ -21,6 +21,8 @@ jobs:
         with:
           ref: master
       - name: Documentation
+        env:
+          RUSTDOCFLAGS: -Z unstable-options --enable-index-page
         run: cargo -v doc --features nightly --no-deps --document-private-items
       - name: Deploy
         if: success()
