@@ -1,0 +1,32 @@
+name: docs
+
+on:
+  push:
+    branches:
+      - master
+  schedule:
+    - cron: "0 0 * * *"
+
+jobs:
+  Documentation:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Install Rust
+        uses: hecrj/setup-rust-action@v1
+        with:
+          rust-version: nightly
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          ref: master
+      - name: Documentation
+        run: cargo -v doc --features nightly --no-deps --document-private-items
+      - name: Deploy
+        if: success()
+        uses: JamesIves/github-pages-deploy-action@releases/v3
+        with:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          BRANCH: /target/doc/
+          FOLDER: /public/
+          TARGET_FOLDER: /master/doc/
