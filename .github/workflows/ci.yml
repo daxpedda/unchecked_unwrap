@@ -73,20 +73,22 @@ jobs:
         feature:
           - --no-default-features
           - ""
-          - --no-default-features --features nightly
-          - --features nightly
         profile:
           - ""
           - --release
-        exclude:
-          - rust: { channel: stable, continue-on-error: false }
+        include:
+          - rust: { channel: nightly, continue-on-error: true }
             feature: --no-default-features --features nightly
-          - rust: { channel: stable, continue-on-error: false }
-            feature: --features nightly
-          - rust: { channel: beta, continue-on-error: false }
+            profile: ""
+          - rust: { channel: nightly, continue-on-error: true }
             feature: --no-default-features --features nightly
-          - rust: { channel: beta, continue-on-error: false }
+            profile: "--release"
+          - rust: { channel: nightly, continue-on-error: true }
             feature: --features nightly
+            profile: ""
+          - rust: { channel: nightly, continue-on-error: true }
+            feature: --features nightly
+            profile: "--release"
 
     runs-on: ubuntu-latest
 
@@ -185,15 +187,39 @@ jobs:
         branch:
           - master
           - release
-        exclude:
-          - rust: { channel: stable, continue-on-error: false }
+        include:
+          - rust: { channel: nightly, continue-on-error: true }
             feature: --no-default-features --features nightly
-          - rust: { channel: stable, continue-on-error: false }
-            feature: --features nightly
-          - rust: { channel: beta, continue-on-error: false }
+            profile: ""
+            branch: master
+          - rust: { channel: nightly, continue-on-error: true }
             feature: --no-default-features --features nightly
-          - rust: { channel: beta, continue-on-error: false }
+            profile: "--release"
+            branch: master
+          - rust: { channel: nightly, continue-on-error: true }
+            feature: --no-default-features --features nightly
+            profile: ""
+            branch: release
+          - rust: { channel: nightly, continue-on-error: true }
+            feature: --no-default-features --features nightly
+            profile: "--release"
+            branch: release
+          - rust: { channel: nightly, continue-on-error: true }
             feature: --features nightly
+            profile: ""
+            branch: master
+          - rust: { channel: nightly, continue-on-error: true }
+            feature: --features nightly
+            profile: "--release"
+            branch: master
+          - rust: { channel: nightly, continue-on-error: true }
+            feature: --features nightly
+            profile: ""
+            branch: release
+          - rust: { channel: nightly, continue-on-error: true }
+            feature: --features nightly
+            profile: "--release"
+            branch: release
 
     runs-on: ubuntu-latest
 
