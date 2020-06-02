@@ -53,7 +53,7 @@ mod checked {
 
         bencher.iter(|| {
             for _ in 0..1000 {
-                #[allow(clippy::option_unwrap_used)]
+                #[allow(clippy::unwrap_used)]
                 black_box(black_box(result).unwrap());
             }
         });

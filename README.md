@@ -2,7 +2,6 @@
 
 [![Crates.io](https://img.shields.io/crates/v/unchecked_unwrap.svg)](https://crates.io/crates/unchecked_unwrap/)
 [![Libraries.io](https://img.shields.io/librariesio/release/cargo/unchecked_unwrap)](https://libraries.io/cargo/unchecked_unwrap)
-[![Commits since](https://img.shields.io/github/commits-since/daxpedda/unchecked_unwrap/latest)](https://github.com/daxpedda/unchecked_unwrap/releases/latest/)
 [![Resolution](https://isitmaintained.com/badge/resolution/daxpedda/unchecked_unwrap.svg)](http://isitmaintained.com/project/daxpedda/unchecked_unwrap)
 [![Issues](https://isitmaintained.com/badge/open/daxpedda/unchecked_unwrap.svg)](http://isitmaintained.com/project/daxpedda/unchecked_unwrap)
 [![License](https://img.shields.io/crates/l/unchecked_unwrap)](https://github.com/daxpedda/unchecked_unwrap/blob/master/LICENSE)
@@ -73,6 +72,10 @@ This crate is checked daily by CI to make sure that it builds successfully with 
 
 - **[unsafe-unwrap-rs](https://github.com/nvzqz/unsafe-unwrap-rs/)** - [![Crates.io](https://img.shields.io/crates/v/unsafe-unwrap.svg)](https://crates.io/crates/unsafe-unwrap/)
 - **[unsafe-unwrap](https://github.com/Vurich/unsafe-unwrap/)**
+
+## Changelog
+
+See the [CHANGELOG](https://github.com/daxpedda/unchecked_unwrap/blob/master/CHANGELOG.md) file for details
 
 ## License
 
