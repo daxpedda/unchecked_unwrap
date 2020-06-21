@@ -67,14 +67,14 @@ assert_eq!(unsafe { x.unchecked_expect("the sky is falling down") }, 2);
   </thead>
   <tbody>
     <tr>
-      <td>
+      <td vlign="top">
         <pre lang="rust">
 fn test_checked(value: Option<&str>) -> &str {
     value.unwrap()
 }
         </pre>
       </td>
-      <td>
+      <td vlign="top">
         <pre lang="rust">
 fn test_unchecked(value: Option<&str>) -> &str {
     unsafe { value.unchecked_unwrap() }
@@ -83,23 +83,19 @@ fn test_unchecked(value: Option<&str>) -> &str {
       </td>
     </tr>
     <tr>
-      <td>
-        <pre lang="asm">
-mov     rdx, rsi
+      <td vlign="top">
+<pre lang="asm">mov     rdx, rsi
 mov     rax, rdi
-ret
-        </pre>
+ret</pre>
       </td>
-      <td>
-        <pre lang="asm">
-push    rax
+      <td vlign="top">
+<pre lang="asm">push    rax
 test    rdi, rdi
 je      .LBB2_1       // panic handler
 mov     rdx, rsi
 mov     rax, rdi
 pop     rcx
-ret
-        </pre>
+ret</pre>
       </td>
     </tr>
   </tbody>
@@ -109,9 +105,9 @@ ret
 
 - **debug_checks** - On by default. Enables the normal checking behavior with panics when `cfg(debug-assertions)` is enabled.
 - **nightly**
-  - Enables full documentation through [`feature(external_doc)`](https://doc.rust-lang.org/unstable-book/language-features/external-doc.html).
-  - Enables benchmarking through [`feature(test)`](https://doc.rust-lang.org/unstable-book/library-features/test.html).
-  - Enables implicit caller location through [`feature(track_caller)`](https://doc.rust-lang.org/unstable-book/language-features/track-caller.html).
+  - Enables full documentation through [`feature = "external_doc"`](https://doc.rust-lang.org/unstable-book/language-features/external-doc.html).
+  - Enables benchmarking through [`feature = "test"`](https://doc.rust-lang.org/unstable-book/library-features/test.html).
+  - Enables implicit caller location through [`feature = "track_caller"`](https://doc.rust-lang.org/unstable-book/language-features/track-caller.html).
 
 ## Documentation
 
@@ -126,7 +122,7 @@ Is as simple as `cargo test` and `cargo test --release`.
 ## Benchmarks
 
 Is as simple as `cargo bench`.
-Currently the nightly version of rust and the `feature="nightly"` is needed for benchmarking.
+Currently the nightly version of rust and the `feature = "nightly"` is needed for benchmarking.
 
 A sample result from the CI running on Github Actions:
 
