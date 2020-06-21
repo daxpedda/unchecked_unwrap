@@ -18,22 +18,27 @@ use core::fmt::Debug;
 
 /// Trait for [`unchecked_expect`](UncheckedExpect::unchecked_expect).
 pub trait UncheckedExpect<T> {
-    /// Unwraps an [`Option`] or [`Result`], yielding the content of a [`Some`] or [`Ok`].
-    /// This is the unchecked alternative to [`Option::expect`] and [`Result::expect`].
+    /// Unwraps an [`Option`] or [`Result`], yielding the content of a [`Some`]
+    /// or [`Ok`]. This is the unchecked alternative to [`Option::expect`]
+    /// and [`Result::expect`].
     ///
     /// # Panics
     ///
-    /// Only panics if `debug_assertions` and <span class="module-item"><span class="stab portability" style="margin-right: 0">`feature="debug_checks"`</span></span> is enabled.
+    /// Only panics if `cfg(debug_assertions)` and <span
+    /// class="module-item"><span class="stab portability" style="margin-right:
+    /// 0">`feature="debug_checks"`</span></span> is enabled.
     ///
-    /// Panics if the value is a [`None`] or [`Err`], with a custom panic message provided by `msg`
-    /// and if [`Result`] with the content of the [`Err`].
+    /// Panics if the value is a [`None`] or [`Err`], with a custom panic
+    /// message provided by `msg` and if [`Result`] with the content of the
+    /// [`Err`].
     ///
     /// # Safety
     ///
-    /// Callers of this function are responsible that [`Option`] or [`Result`] carries a [`Some`] or
-    /// [`Ok`].
+    /// Callers of this function are responsible that [`Option`] or [`Result`]
+    /// carries a [`Some`] or [`Ok`].
     ///
-    /// Failing that, the returned value may reference invalid memory or cause undefined behaviour.
+    /// Failing that, the returned value may reference invalid memory or cause
+    /// undefined behaviour.
     ///
     /// # Examples
     ///
@@ -41,7 +46,10 @@ pub trait UncheckedExpect<T> {
     /// use unchecked_unwrap::UncheckedExpect;
     ///
     /// let x = Some("value");
-    /// assert_eq!(unsafe { x.unchecked_expect("the world is ending") }, "value");
+    /// assert_eq!(
+    ///     unsafe { x.unchecked_expect("the world is ending") },
+    ///     "value"
+    /// );
     ///
     /// let x: Result<u32, &str> = Ok(2);
     /// assert_eq!(unsafe { x.unchecked_expect("the sky is falling down") }, 2);
@@ -52,22 +60,26 @@ pub trait UncheckedExpect<T> {
 
 /// Trait for [`unchecked_unwrap`](UncheckedUnwrap::unchecked_unwrap).
 pub trait UncheckedUnwrap<T> {
-    /// Unwraps an [`Option`] or [`Result`], yielding the content of a [`Some`] or [`Ok`].
-    /// This is the unchecked alternative to [`Option::unwrap`] and [`Result::unwrap`].
+    /// Unwraps an [`Option`] or [`Result`], yielding the content of a [`Some`]
+    /// or [`Ok`]. This is the unchecked alternative to [`Option::unwrap`]
+    /// and [`Result::unwrap`].
     ///
     /// # Panics
     ///
-    /// Only panics if `debug_assertions` and <span class="module-item"><span class="stab portability" style="margin-right: 0">`feature="debug_checks"`</span></span> is enabled.
+    /// Only panics if `cfg(debug_assertions)` and <span
+    /// class="module-item"><span class="stab portability" style="margin-right:
+    /// 0">`feature="debug_checks"`</span></span> is enabled.
     ///
-    /// Panics if the value is a [`None`] or [`Err`], if [`Result`] with a panic massage provided by
-    /// the [`Err`]'s value.
+    /// Panics if the value is a [`None`] or [`Err`], if [`Result`] with a panic
+    /// massage provided by the [`Err`]'s value.
     ///
     /// # Safety
     ///
-    /// Callers of this function are responsible that [`Option`] or [`Result`] carries a [`Some`] or
-    /// [`Ok`].
+    /// Callers of this function are responsible that [`Option`] or [`Result`]
+    /// carries a [`Some`] or [`Ok`].
     ///
-    /// Failing that, the returned value may reference invalid memory or cause undefined behaviour.
+    /// Failing that, the returned value may reference invalid memory or cause
+    /// undefined behaviour.
     ///
     /// # Examples
     ///
