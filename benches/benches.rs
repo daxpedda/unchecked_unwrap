@@ -16,7 +16,7 @@ mod checked {
 
     #[bench]
     fn expect_option(bencher: &mut Bencher) {
-        let option = Some(&0);
+        let option = Some("test");
 
         bencher.iter(|| {
             for _ in 0..1000 {
@@ -27,7 +27,7 @@ mod checked {
 
     #[bench]
     fn expect_result(bencher: &mut test::Bencher) {
-        let result: Result<_, ()> = Ok(&0);
+        let result: Result<_, ()> = Ok("test");
 
         bencher.iter(|| {
             for _ in 0..1000 {
@@ -38,7 +38,7 @@ mod checked {
 
     #[bench]
     fn unwrap_option(bencher: &mut test::Bencher) {
-        let option = Some(&0);
+        let option = Some("test");
 
         bencher.iter(|| {
             for _ in 0..1000 {
@@ -49,7 +49,7 @@ mod checked {
 
     #[bench]
     fn unwrap_result(bencher: &mut test::Bencher) {
-        let result: Result<_, ()> = Ok(&0);
+        let result: Result<_, ()> = Ok("test");
 
         bencher.iter(|| {
             for _ in 0..1000 {
@@ -67,7 +67,7 @@ mod unchecked {
 
     #[bench]
     fn expect_option(bencher: &mut Bencher) {
-        let option = Some(&0);
+        let option = Some("test");
 
         bencher.iter(|| {
             for _ in 0..1000 {
@@ -80,7 +80,7 @@ mod unchecked {
 
     #[bench]
     fn expect_result(bencher: &mut Bencher) {
-        let result: Result<_, ()> = Ok(&0);
+        let result: Result<_, ()> = Ok("test");
 
         bencher.iter(|| {
             for _ in 0..1000 {
@@ -93,7 +93,7 @@ mod unchecked {
 
     #[bench]
     fn unwrap_option(bencher: &mut Bencher) {
-        let option = Some(&0);
+        let option = Some("test");
 
         bencher.iter(|| {
             for _ in 0..1000 {
@@ -106,7 +106,7 @@ mod unchecked {
 
     #[bench]
     fn unwrap_result(bencher: &mut Bencher) {
-        let result: Result<_, ()> = Ok(&0);
+        let result: Result<_, ()> = Ok("test");
 
         bencher.iter(|| {
             for _ in 0..1000 {
