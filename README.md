@@ -66,29 +66,25 @@ assert_eq!(unsafe { x.unchecked_expect("the sky is falling down") }, 2);
     </tr>
   </thead>
   <tbody>
-    <tr>
-      <td vlign="top">
-        <pre lang="rust">
-fn test_checked(value: Option<&str>) -> &str {
+    <tr valign="top">
+      <td>
+<pre lang="rust">fn test_checked(value: Option<&str>) -> &str {
     value.unwrap()
-}
-        </pre>
+}</pre>
       </td>
-      <td vlign="top">
-        <pre lang="rust">
-fn test_unchecked(value: Option<&str>) -> &str {
+      <td>
+<pre lang="rust">fn test_unchecked(value: Option<&str>) -> &str {
     unsafe { value.unchecked_unwrap() }
-}
-        </pre>
+}</pre>
       </td>
     </tr>
-    <tr>
-      <td vlign="top">
+    <tr valign="top">
+      <td>
 <pre lang="asm">mov     rdx, rsi
 mov     rax, rdi
 ret</pre>
       </td>
-      <td vlign="top">
+      <td>
 <pre lang="asm">push    rax
 test    rdi, rdi
 je      .LBB2_1       // panic handler
