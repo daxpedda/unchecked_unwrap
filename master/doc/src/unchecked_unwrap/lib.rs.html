@@ -139,6 +139,18 @@
 <span id="139">139</span>
 <span id="140">140</span>
 <span id="141">141</span>
+<span id="142">142</span>
+<span id="143">143</span>
+<span id="144">144</span>
+<span id="145">145</span>
+<span id="146">146</span>
+<span id="147">147</span>
+<span id="148">148</span>
+<span id="149">149</span>
+<span id="150">150</span>
+<span id="151">151</span>
+<span id="152">152</span>
+<span id="153">153</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="attribute">#![<span class="ident">no_std</span>]</span>
 <span class="attribute">#![<span class="ident">warn</span>(
@@ -160,22 +172,27 @@
 
 <span class="doccomment">/// Trait for [`unchecked_expect`](UncheckedExpect::unchecked_expect).</span>
 <span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">UncheckedExpect</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span> {
-    <span class="doccomment">/// Unwraps an [`Option`] or [`Result`], yielding the content of a [`Some`] or [`Ok`].</span>
-    <span class="doccomment">/// This is the unchecked alternative to [`Option::expect`] and [`Result::expect`].</span>
+    <span class="doccomment">/// Unwraps an [`Option`] or [`Result`], yielding the content of a [`Some`]</span>
+    <span class="doccomment">/// or [`Ok`]. This is the unchecked alternative to [`Option::expect`]</span>
+    <span class="doccomment">/// and [`Result::expect`].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Panics</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Only panics if `debug_assertions` and &lt;span class=&quot;module-item&quot;&gt;&lt;span class=&quot;stab portability&quot; style=&quot;margin-right: 0&quot;&gt;`feature=&quot;debug_checks&quot;`&lt;/span&gt;&lt;/span&gt; is enabled.</span>
+    <span class="doccomment">/// Only panics if `cfg(debug_assertions)` and &lt;span</span>
+    <span class="doccomment">/// class=&quot;module-item&quot;&gt;&lt;span class=&quot;stab portability&quot; style=&quot;margin-right:</span>
+    <span class="doccomment">/// 0&quot;&gt;`feature=&quot;debug_checks&quot;`&lt;/span&gt;&lt;/span&gt; is enabled.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Panics if the value is a [`None`] or [`Err`], with a custom panic message provided by `msg`</span>
-    <span class="doccomment">/// and if [`Result`] with the content of the [`Err`].</span>
+    <span class="doccomment">/// Panics if the value is a [`None`] or [`Err`], with a custom panic</span>
+    <span class="doccomment">/// message provided by `msg` and if [`Result`] with the content of the</span>
+    <span class="doccomment">/// [`Err`].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Safety</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Callers of this function are responsible that [`Option`] or [`Result`] carries a [`Some`] or</span>
-    <span class="doccomment">/// [`Ok`].</span>
+    <span class="doccomment">/// Callers of this function are responsible that [`Option`] or [`Result`]</span>
+    <span class="doccomment">/// carries a [`Some`] or [`Ok`].</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Failing that, the returned value may reference invalid memory or cause undefined behaviour.</span>
+    <span class="doccomment">/// Failing that, the returned value may reference invalid memory or cause</span>
+    <span class="doccomment">/// undefined behaviour.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Examples</span>
     <span class="doccomment">///</span>
@@ -183,7 +200,10 @@
     <span class="doccomment">/// use unchecked_unwrap::UncheckedExpect;</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// let x = Some(&quot;value&quot;);</span>
-    <span class="doccomment">/// assert_eq!(unsafe { x.unchecked_expect(&quot;the world is ending&quot;) }, &quot;value&quot;);</span>
+    <span class="doccomment">/// assert_eq!(</span>
+    <span class="doccomment">///     unsafe { x.unchecked_expect(&quot;the world is ending&quot;) },</span>
+    <span class="doccomment">///     &quot;value&quot;</span>
+    <span class="doccomment">/// );</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// let x: Result&lt;u32, &amp;str&gt; = Ok(2);</span>
     <span class="doccomment">/// assert_eq!(unsafe { x.unchecked_expect(&quot;the sky is falling down&quot;) }, 2);</span>
@@ -194,22 +214,26 @@
 
 <span class="doccomment">/// Trait for [`unchecked_unwrap`](UncheckedUnwrap::unchecked_unwrap).</span>
 <span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">UncheckedUnwrap</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span> {
-    <span class="doccomment">/// Unwraps an [`Option`] or [`Result`], yielding the content of a [`Some`] or [`Ok`].</span>
-    <span class="doccomment">/// This is the unchecked alternative to [`Option::unwrap`] and [`Result::unwrap`].</span>
+    <span class="doccomment">/// Unwraps an [`Option`] or [`Result`], yielding the content of a [`Some`]</span>
+    <span class="doccomment">/// or [`Ok`]. This is the unchecked alternative to [`Option::unwrap`]</span>
+    <span class="doccomment">/// and [`Result::unwrap`].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Panics</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Only panics if `debug_assertions` and &lt;span class=&quot;module-item&quot;&gt;&lt;span class=&quot;stab portability&quot; style=&quot;margin-right: 0&quot;&gt;`feature=&quot;debug_checks&quot;`&lt;/span&gt;&lt;/span&gt; is enabled.</span>
+    <span class="doccomment">/// Only panics if `cfg(debug_assertions)` and &lt;span</span>
+    <span class="doccomment">/// class=&quot;module-item&quot;&gt;&lt;span class=&quot;stab portability&quot; style=&quot;margin-right:</span>
+    <span class="doccomment">/// 0&quot;&gt;`feature=&quot;debug_checks&quot;`&lt;/span&gt;&lt;/span&gt; is enabled.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Panics if the value is a [`None`] or [`Err`], if [`Result`] with a panic massage provided by</span>
-    <span class="doccomment">/// the [`Err`]&#39;s value.</span>
+    <span class="doccomment">/// Panics if the value is a [`None`] or [`Err`], if [`Result`] with a panic</span>
+    <span class="doccomment">/// massage provided by the [`Err`]&#39;s value.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Safety</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Callers of this function are responsible that [`Option`] or [`Result`] carries a [`Some`] or</span>
-    <span class="doccomment">/// [`Ok`].</span>
+    <span class="doccomment">/// Callers of this function are responsible that [`Option`] or [`Result`]</span>
+    <span class="doccomment">/// carries a [`Some`] or [`Ok`].</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Failing that, the returned value may reference invalid memory or cause undefined behaviour.</span>
+    <span class="doccomment">/// Failing that, the returned value may reference invalid memory or cause</span>
+    <span class="doccomment">/// undefined behaviour.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Examples</span>
     <span class="doccomment">///</span>

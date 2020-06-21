@@ -1,23 +1,38 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="API documentation for the Rust `unchecked_unwrap` crate."><meta name="keywords" content="rust, rustlang, rust-lang, unchecked_unwrap"><title>unchecked_unwrap - Rust</title><link rel="stylesheet" type="text/css" href="../normalize.css"><link rel="stylesheet" type="text/css" href="../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../dark.css"><link rel="stylesheet" type="text/css" href="../light.css" id="themeStyle"><script src="../storage.js"></script><noscript><link rel="stylesheet" href="../noscript.css"></noscript><link rel="shortcut icon" href="../favicon.ico"><style type="text/css">#crate-search{background-image:url("../down-arrow.svg");}</style></head><body class="rustdoc mod"><!--[if lte IE 8]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu">&#9776;</div><a href='../unchecked_unwrap/index.html'><div class='logo-container'><img src='../rust-logo.png' alt='logo'></div></a><p class='location'>Crate unchecked_unwrap</p><div class="sidebar-elems"><a id='all-types' href='all.html'><p>See all unchecked_unwrap's items</p></a><div class="block items"><ul><li><a href="#traits">Traits</a></li></ul></div><p class='location'></p><script>window.sidebarCurrent = {name: 'unchecked_unwrap', ty: 'mod', relpath: '../'};</script></div></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!"><img src="../brush.svg" width="18" alt="Pick another theme!"></button><div id="theme-choices"></div></div><script src="../theme.js"></script><nav class="sub"><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input" name="search" disabled autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><a id="settings-menu" href="../settings.html"><img src="../wheel.svg" width="18" alt="Change settings"></a></div></form></nav><section id="main" class="content"><h1 class='fqn'><span class='out-of-band'><span id='render-detail'><a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">[<span class='inner'>&#x2212;</span>]</a></span><a class='srclink' href='../src/unchecked_unwrap/lib.rs.html#1-141' title='goto source code'>[src]</a></span><span class='in-band'>Crate <a class="mod" href=''>unchecked_unwrap</a></span></h1><div class='docblock'><h1 id="unchecked_unwrap" class="section-header"><a href="#unchecked_unwrap">unchecked_unwrap</a></h1>
-<p><a href="https://crates.io/crates/unchecked_unwrap/"><img src="https://img.shields.io/crates/v/unchecked_unwrap.svg" alt="Crates.io" /></a>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="API documentation for the Rust `unchecked_unwrap` crate."><meta name="keywords" content="rust, rustlang, rust-lang, unchecked_unwrap"><title>unchecked_unwrap - Rust</title><link rel="stylesheet" type="text/css" href="../normalize.css"><link rel="stylesheet" type="text/css" href="../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../dark.css"><link rel="stylesheet" type="text/css" href="../light.css" id="themeStyle"><script src="../storage.js"></script><noscript><link rel="stylesheet" href="../noscript.css"></noscript><link rel="shortcut icon" href="../favicon.ico"><style type="text/css">#crate-search{background-image:url("../down-arrow.svg");}</style></head><body class="rustdoc mod"><!--[if lte IE 8]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu">&#9776;</div><a href='../unchecked_unwrap/index.html'><div class='logo-container'><img src='../rust-logo.png' alt='logo'></div></a><p class='location'>Crate unchecked_unwrap</p><div class="sidebar-elems"><a id='all-types' href='all.html'><p>See all unchecked_unwrap's items</p></a><div class="block items"><ul><li><a href="#traits">Traits</a></li></ul></div><p class='location'></p><script>window.sidebarCurrent = {name: 'unchecked_unwrap', ty: 'mod', relpath: '../'};</script></div></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!"><img src="../brush.svg" width="18" alt="Pick another theme!"></button><div id="theme-choices"></div></div><script src="../theme.js"></script><nav class="sub"><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input" name="search" disabled autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><a id="settings-menu" href="../settings.html"><img src="../wheel.svg" width="18" alt="Change settings"></a></div></form></nav><section id="main" class="content"><h1 class='fqn'><span class='out-of-band'><span id='render-detail'><a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">[<span class='inner'>&#x2212;</span>]</a></span><a class='srclink' href='../src/unchecked_unwrap/lib.rs.html#1-153' title='goto source code'>[src]</a></span><span class='in-band'>Crate <a class="mod" href=''>unchecked_unwrap</a></span></h1><div class='docblock'><h1 id="unchecked_unwrap" class="section-header"><a href="#unchecked_unwrap">unchecked_unwrap</a></h1>
+<p><a href="https://crates.io/crates/unchecked_unwrap"><img src="https://img.shields.io/crates/v/unchecked_unwrap.svg" alt="Crates.io" /></a>
 <a href="https://libraries.io/cargo/unchecked_unwrap"><img src="https://img.shields.io/librariesio/release/cargo/unchecked_unwrap" alt="Libraries.io" /></a>
-<a href="https://github.com/daxpedda/unchecked_unwrap/releases/latest/"><img src="https://img.shields.io/github/commits-since/daxpedda/unchecked_unwrap/latest" alt="Commits since" /></a>
+<a href="https://github.com/daxpedda/unchecked_unwrap/releases/latest"><img src="https://img.shields.io/github/commits-since/daxpedda/unchecked_unwrap/latest" alt="Commits since" /></a>
 <a href="http://isitmaintained.com/project/daxpedda/unchecked_unwrap"><img src="https://isitmaintained.com/badge/resolution/daxpedda/unchecked_unwrap.svg" alt="Resolution" /></a>
 <a href="http://isitmaintained.com/project/daxpedda/unchecked_unwrap"><img src="https://isitmaintained.com/badge/open/daxpedda/unchecked_unwrap.svg" alt="Issues" /></a>
 <a href="https://github.com/daxpedda/unchecked_unwrap/blob/master/LICENSE"><img src="https://img.shields.io/crates/l/unchecked_unwrap" alt="License" /></a>
-<a href="https://github.com/daxpedda/unchecked_unwrap/"><img src="https://tokei.rs/b1/github/daxpedda/unchecked_unwrap" alt="LoC" /></a></p>
-<p><strong><a href="https://github.com/daxpedda/unchecked_unwrap/tree/release/">Release</a>:</strong>
+<a href="https://github.com/daxpedda/unchecked_unwrap"><img src="https://tokei.rs/b1/github/daxpedda/unchecked_unwrap" alt="LoC" /></a></p>
+<p><strong><a href="https://github.com/daxpedda/unchecked_unwrap/tree/release">Release</a>:</strong>
 <a href="https://github.com/daxpedda/unchecked_unwrap/actions?query=workflow%3ACI+branch%3Arelease"><img src="https://github.com/daxpedda/unchecked_unwrap/workflows/CI/badge.svg?branch=release" alt="Build" /></a>
-<a href="https://docs.rs/unchecked_unwrap/"><img src="https://docs.rs/unchecked_unwrap/badge.svg" alt="Docs" /></a></p>
-<p><strong><a href="https://github.com/daxpedda/unchecked_unwrap/">Master</a>:</strong>
+<a href="https://docs.rs/unchecked_unwrap"><img src="https://docs.rs/unchecked_unwrap/badge.svg" alt="Docs" /></a></p>
+<p><strong><a href="https://github.com/daxpedda/unchecked_unwrap">Master</a>:</strong>
 <a href="https://github.com/daxpedda/unchecked_unwrap/actions?query=workflow%3ACI+branch%3Amaster"><img src="https://github.com/daxpedda/unchecked_unwrap/workflows/CI/badge.svg?branch=master" alt="Build" /></a>
 <a href="https://daxpedda.github.io/unchecked_unwrap/master/doc/index.html"><img src="https://github.com/daxpedda/unchecked_unwrap/workflows/docs/badge.svg" alt="Docs" /></a></p>
+<h2 id="table-of-contents" class="section-header"><a href="#table-of-contents">Table of contents</a></h2>
+<ul>
+<li><a href="#description">Description</a></li>
+<li><a href="#branches">Branches</a></li>
+<li><a href="#usage">Usage</a></li>
+<li><a href="#crate-features">Crate features</a></li>
+<li><a href="#documentation">Documentation</a></li>
+<li><a href="#tests">Tests</a></li>
+<li><a href="#benchmarks">Benchmarks</a></li>
+<li><a href="#alternatives">Alternatives</a></li>
+<li><a href="#changelog">Changelog</a></li>
+<li><a href="#license">License</a></li>
+<li><a href="#contribution">Contribution</a></li>
+</ul>
+<h2 id="description" class="section-header"><a href="#description">Description</a></h2>
 <p>Adds an unchecked version of <code>unwrap()</code> and <code>expect()</code> to <code>Option</code> and <code>Result</code> for the rust programming language.
 Supports <code>no_std</code>.</p>
 <h2 id="branches" class="section-header"><a href="#branches">Branches</a></h2>
 <ul>
-<li><strong><a href="https://github.com/daxpedda/unchecked_unwrap/tree/release/">release</a></strong> - For releases only.</li>
-<li><strong><a href="https://github.com/daxpedda/unchecked_unwrap/">master</a></strong> - For active development, PR's and testing.</li>
+<li><strong><a href="https://github.com/daxpedda/unchecked_unwrap/tree/release">release</a></strong> - For releases only.</li>
+<li><strong><a href="https://github.com/daxpedda/unchecked_unwrap">master</a></strong> - For active development, PR's and testing.</li>
 </ul>
 <h2 id="usage" class="section-header"><a href="#usage">Usage</a></h2>
 <div class="example-wrap"><pre class="rust rust-example-rendered">
@@ -34,14 +49,52 @@ Supports <code>no_std</code>.</p>
 
 <span class="kw">let</span> <span class="ident">x</span>: <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">u32</span>, <span class="kw-2">&amp;</span><span class="ident">str</span><span class="op">&gt;</span> <span class="op">=</span> <span class="prelude-val">Ok</span>(<span class="number">2</span>);
 <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="kw">unsafe</span> { <span class="ident">x</span>.<span class="ident">unchecked_expect</span>(<span class="string">&quot;the sky is falling down&quot;</span>) }, <span class="number">2</span>);</pre></div>
+<table>
+  <thead>
+    <tr>
+      <th>checked</th>
+      <th>unchecked</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr valign="top">
+      <td>
+<pre lang="rust">fn test_checked(value: Option<&str>) -> &str {
+    value.unwrap()
+}</pre>
+      </td>
+      <td>
+<pre lang="rust">fn test_unchecked(value: Option<&str>) -> &str {
+    unsafe { value.unchecked_unwrap() }
+}</pre>
+      </td>
+    </tr>
+    <tr valign="top">
+      <td>
+<pre lang="asm">mov     rdx, rsi
+mov     rax, rdi
+ret</pre>
+      </td>
+      <td>
+<pre lang="asm">push    rax
+test    rdi, rdi
+je      .LBB2_1       // panic handler
+mov     rdx, rsi
+mov     rax, rdi
+pop     rcx
+ret</pre>
+      </td>
+    </tr>
+  </tbody>
+</table>
 <h2 id="crate-features" class="section-header"><a href="#crate-features">Crate features</a></h2>
 <ul>
-<li><strong>debug_checks</strong> - On by default. Enables the normal checking behavior with panics when <code>debug-assertions</code> is enabled.</li>
+<li><strong>debug_checks</strong> - On by default. Enables the normal checking behavior with panics when <code>cfg(debug-assertions)</code> is enabled.</li>
 <li><strong>nightly</strong>
 <ul>
-<li>Enables full documentation through <a href="https://doc.rust-lang.org/unstable-book/language-features/external-doc.html"><code>feature(external_doc)</code></a>.</li>
-<li>Enables benchmarking through <a href="https://doc.rust-lang.org/unstable-book/library-features/test.html"><code>feature(test)</code></a>.</li>
-<li>Enables implicit caller location through <a href="https://doc.rust-lang.org/unstable-book/language-features/track-caller.html"><code>feature(track_caller)</code></a>.</li>
+<li>Enables full documentation through <a href="https://doc.rust-lang.org/unstable-book/language-features/external-doc.html"><code>feature = &quot;external_doc&quot;</code></a>.</li>
+<li>Enables benchmarking through <a href="https://doc.rust-lang.org/unstable-book/library-features/test.html"><code>feature = &quot;test&quot;</code></a>.</li>
+<li>Enables implicit caller location through <a href="https://doc.rust-lang.org/unstable-book/language-features/track-caller.html"><code>feature = &quot;track_caller&quot;</code></a>.</li>
 </ul>
 </li>
 </ul>
@@ -51,23 +104,41 @@ Currently, nightly is needed for full documentation: <code>cargo doc --features 
 If you are not using nightly, use <code>cargo doc</code> as usual.</p>
 <h2 id="tests" class="section-header"><a href="#tests">Tests</a></h2>
 <p>Is as simple as <code>cargo test</code> and <code>cargo test --release</code>.</p>
-<h2 id="benchmarking" class="section-header"><a href="#benchmarking">Benchmarking</a></h2>
+<h2 id="benchmarks" class="section-header"><a href="#benchmarks">Benchmarks</a></h2>
 <p>Is as simple as <code>cargo bench</code>.
-Currently the nightly version of rust and the <code>feature=&quot;nightly&quot;</code> is needed for benchmarking.</p>
-<h2 id="ci" class="section-header"><a href="#ci">CI</a></h2>
-<p>This crate is checked daily by CI to make sure that it builds successfully with the newest versions of rust stable, beta and nightly.</p>
+Currently the nightly version of rust and the <code>feature = &quot;nightly&quot;</code> is needed for benchmarking.</p>
+<p>A sample result from the CI running on Github Actions:</p>
+
+<div class='information'><div class='tooltip ignore'>ⓘ<span class='tooltiptext'>This example is not tested</span></div></div><div class="example-wrap"><pre class="rust rust-example-rendered ignore">
+<span class="ident">test</span> <span class="ident">checked</span>::<span class="ident">expect_option</span>   ... <span class="ident">bench</span>:         <span class="number">798</span> <span class="ident">ns</span><span class="op">/</span><span class="ident">iter</span> (<span class="op">+</span><span class="op">/</span><span class="op">-</span> <span class="number">90</span>)
+<span class="ident">test</span> <span class="ident">checked</span>::<span class="ident">expect_result</span>   ... <span class="ident">bench</span>:         <span class="number">724</span> <span class="ident">ns</span><span class="op">/</span><span class="ident">iter</span> (<span class="op">+</span><span class="op">/</span><span class="op">-</span> <span class="number">109</span>)
+<span class="ident">test</span> <span class="ident">checked</span>::<span class="ident">unwrap_option</span>   ... <span class="ident">bench</span>:         <span class="number">802</span> <span class="ident">ns</span><span class="op">/</span><span class="ident">iter</span> (<span class="op">+</span><span class="op">/</span><span class="op">-</span> <span class="number">52</span>)
+<span class="ident">test</span> <span class="ident">checked</span>::<span class="ident">unwrap_result</span>   ... <span class="ident">bench</span>:         <span class="number">743</span> <span class="ident">ns</span><span class="op">/</span><span class="ident">iter</span> (<span class="op">+</span><span class="op">/</span><span class="op">-</span> <span class="number">176</span>)
+<span class="ident">test</span> <span class="ident">unchecked</span>::<span class="ident">expect_option</span> ... <span class="ident">bench</span>:         <span class="number">407</span> <span class="ident">ns</span><span class="op">/</span><span class="ident">iter</span> (<span class="op">+</span><span class="op">/</span><span class="op">-</span> <span class="number">93</span>)
+<span class="ident">test</span> <span class="ident">unchecked</span>::<span class="ident">expect_result</span> ... <span class="ident">bench</span>:         <span class="number">374</span> <span class="ident">ns</span><span class="op">/</span><span class="ident">iter</span> (<span class="op">+</span><span class="op">/</span><span class="op">-</span> <span class="number">48</span>)
+<span class="ident">test</span> <span class="ident">unchecked</span>::<span class="ident">unwrap_option</span> ... <span class="ident">bench</span>:         <span class="number">345</span> <span class="ident">ns</span><span class="op">/</span><span class="ident">iter</span> (<span class="op">+</span><span class="op">/</span><span class="op">-</span> <span class="number">53</span>)
+<span class="ident">test</span> <span class="ident">unchecked</span>::<span class="ident">unwrap_result</span> ... <span class="ident">bench</span>:         <span class="number">407</span> <span class="ident">ns</span><span class="op">/</span><span class="ident">iter</span> (<span class="op">+</span><span class="op">/</span><span class="op">-</span> <span class="number">22</span>)</pre></div>
 <h2 id="alternatives" class="section-header"><a href="#alternatives">Alternatives</a></h2>
 <ul>
-<li><strong><a href="https://github.com/nvzqz/unsafe-unwrap-rs/">unsafe-unwrap-rs</a></strong> - <a href="https://crates.io/crates/unsafe-unwrap/"><img src="https://img.shields.io/crates/v/unsafe-unwrap.svg" alt="Crates.io" /></a></li>
-<li><strong><a href="https://github.com/Vurich/unsafe-unwrap/">unsafe-unwrap</a></strong></li>
+<li><strong><a href="https://github.com/nvzqz/unsafe-unwrap-rs">unsafe-unwrap-rs</a></strong> - <a href="https://crates.io/crates/unsafe-unwrap"><img src="https://img.shields.io/crates/v/unsafe-unwrap.svg" alt="Crates.io" /></a></li>
+<li><strong><a href="https://github.com/Vurich/unsafe-unwrap">unsafe-unwrap</a></strong></li>
 </ul>
+<p>Both alternatives and this crate are quite the same except that this crate provides additional features that can be toggled with cargo features. See <a href="#crate-features">crate features</a> for details.</p>
 <h2 id="changelog" class="section-header"><a href="#changelog">Changelog</a></h2>
 <p>See the <a href="https://github.com/daxpedda/unchecked_unwrap/blob/master/CHANGELOG.md">CHANGELOG</a> file for details</p>
 <h2 id="license" class="section-header"><a href="#license">License</a></h2>
-<p>This work is dual-licensed under MIT and Apache 2.0.
-You can choose between one of them if you use this work.</p>
-<p>See the <a href="https://github.com/daxpedda/unchecked_unwrap/blob/master/LICENSE">LICENSE</a> file for details</p>
-<p>SPDX-License-Identifier: <code>MIT OR Apache-2.0</code></p>
+<p>Licensed under either of</p>
+<ul>
+<li>Apache License, Version 2.0
+(<a href="LICENSE-APACHE">LICENSE-APACHE</a> or http://www.apache.org/licenses/LICENSE-2.0)</li>
+<li>MIT license
+(<a href="LICENSE-MIT">LICENSE-MIT</a> or http://opensource.org/licenses/MIT)</li>
+</ul>
+<p>at your option.</p>
+<h2 id="contribution" class="section-header"><a href="#contribution">Contribution</a></h2>
+<p>Unless you explicitly state otherwise, any contribution intentionally submitted
+for inclusion in the work by you, as defined in the Apache-2.0 license, shall be
+dual licensed as above, without any additional terms or conditions.</p>
 </div><h2 id='traits' class='section-header'><a href="#traits">Traits</a></h2>
 <table><tr class='module-item'><td><a class="trait" href="trait.UncheckedExpect.html" title='unchecked_unwrap::UncheckedExpect trait'>UncheckedExpect</a></td><td class='docblock-short'><p>Trait for <a href="../unchecked_unwrap/trait.UncheckedExpect.html#tymethod.unchecked_expect"><code>unchecked_expect</code></a>.</p>
 </td></tr><tr class='module-item'><td><a class="trait" href="trait.UncheckedUnwrap.html" title='unchecked_unwrap::UncheckedUnwrap trait'>UncheckedUnwrap</a></td><td class='docblock-short'><p>Trait for <a href="../unchecked_unwrap/trait.UncheckedUnwrap.html#tymethod.unchecked_unwrap"><code>unchecked_unwrap</code></a>.</p>
