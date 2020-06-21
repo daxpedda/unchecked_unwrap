@@ -61,45 +61,45 @@ assert_eq!(unsafe { x.unchecked_expect("the sky is falling down") }, 2);
 <table>
   <thead>
     <tr>
-      <td>checked</td>
-      <td>unchecked</td>
+      <th>checked</th>
+      <th>unchecked</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <td>
-        ```rust
-        fn test_checked(value: Option<&str>) -> &str {
-            value.unwrap()
-        }
-        ```
+        <pre lang="rust">
+          fn test_checked(value: Option<&str>) -> &str {
+              value.unwrap()
+          }
+        </pre>
       </td>
       <td>
-        ```rust
-        fn test_unchecked(value: Option<&str>) -> &str {
-            unsafe { value.unchecked_unwrap() }
-        }
-        ```
+        <pre lang="rust">
+          fn test_unchecked(value: Option<&str>) -> &str {
+              unsafe { value.unchecked_unwrap() }
+          }
+        </pre>
       </td>
     </tr>
     <tr>
       <td>
-        ```asm
-        mov     rdx, rsi
-        mov     rax, rdi
-        ret
-        ```
+        <pre lang="asm">
+          mov     rdx, rsi
+          mov     rax, rdi
+          ret
+        </pre>
       </td>
       <td>
-        ```asm
-        push    rax
-        test    rdi, rdi
-        je      .LBB2_1       // panic handler
-        mov     rdx, rsi
-        mov     rax, rdi
-        pop     rcx
-        ret
-        ```
+        <pre lang="asm">
+          push    rax
+          test    rdi, rdi
+          je      .LBB2_1       // panic handler
+          mov     rdx, rsi
+          mov     rax, rdi
+          pop     rcx
+          ret
+        </pre>
       </td>
     </tr>
   </tbody>
@@ -130,7 +130,7 @@ Currently the nightly version of rust and the `feature="nightly"` is needed for 
 
 A sample result from the CI running on Github Actions:
 
-```
+```ignore
 test checked::expect_option   ... bench:         798 ns/iter (+/- 90)
 test checked::expect_result   ... bench:         724 ns/iter (+/- 109)
 test checked::unwrap_option   ... bench:         802 ns/iter (+/- 52)
