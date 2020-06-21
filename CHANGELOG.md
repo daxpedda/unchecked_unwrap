@@ -40,5 +40,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - **BREAKING**: renamed `feature="doc_include"` to `feature="nightly"`
 
+[2.0.2]: https://github.com/daxpedda/unchecked_unwrap/releases/tag/v2.0.2
 [2.0.1]: https://github.com/daxpedda/unchecked_unwrap/releases/tag/v2.0.1
 [2.0.0]: https://github.com/daxpedda/unchecked_unwrap/releases/tag/v2.0.0
