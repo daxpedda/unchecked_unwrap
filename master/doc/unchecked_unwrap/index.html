@@ -27,12 +27,14 @@
 <li><a href="#contribution">Contribution</a></li>
 </ul>
 <h2 id="description" class="section-header"><a href="#description">Description</a></h2>
-<p>Adds an unchecked version of <code>unwrap()</code> and <code>expect()</code> to <code>Option</code> and <code>Result</code> for the rust programming language.
-Supports <code>no_std</code>.</p>
+<p>Adds an unchecked version of <code>unwrap()</code> and <code>expect()</code> to <code>Option</code> and <code>Result</code>
+for the rust programming language. Supports <code>no_std</code>.</p>
 <h2 id="branches" class="section-header"><a href="#branches">Branches</a></h2>
 <ul>
-<li><strong><a href="https://github.com/daxpedda/unchecked_unwrap/tree/release">release</a></strong> - For releases only.</li>
-<li><strong><a href="https://github.com/daxpedda/unchecked_unwrap">master</a></strong> - For active development, PR's and testing.</li>
+<li><strong><a href="https://github.com/daxpedda/unchecked_unwrap/tree/release">release</a></strong> - For
+releases only.</li>
+<li><strong><a href="https://github.com/daxpedda/unchecked_unwrap">master</a></strong> - For active
+development, PR's and testing.</li>
 </ul>
 <h2 id="usage" class="section-header"><a href="#usage">Usage</a></h2>
 <div class="example-wrap"><pre class="rust rust-example-rendered">
@@ -89,24 +91,28 @@ ret</pre>
 </table>
 <h2 id="crate-features" class="section-header"><a href="#crate-features">Crate features</a></h2>
 <ul>
-<li><strong>debug_checks</strong> - On by default. Enables the normal checking behavior with panics when <code>cfg(debug-assertions)</code> is enabled.</li>
+<li><strong>debug_checks</strong> - On by default. Enables the normal checking behavior with
+panics when <code>cfg(debug-assertions)</code> is enabled.</li>
 <li><strong>nightly</strong>
 <ul>
-<li>Enables full documentation through <a href="https://doc.rust-lang.org/unstable-book/language-features/external-doc.html"><code>feature = &quot;external_doc&quot;</code></a>.</li>
-<li>Enables benchmarking through <a href="https://doc.rust-lang.org/unstable-book/library-features/test.html"><code>feature = &quot;test&quot;</code></a>.</li>
-<li>Enables implicit caller location through <a href="https://doc.rust-lang.org/unstable-book/language-features/track-caller.html"><code>feature = &quot;track_caller&quot;</code></a>.</li>
+<li>Enables full documentation through
+<a href="https://doc.rust-lang.org/unstable-book/language-features/external-doc.html"><code>feature = &quot;external_doc&quot;</code></a>.</li>
+<li>Enables benchmarking through
+<a href="https://doc.rust-lang.org/unstable-book/library-features/test.html"><code>feature = &quot;test&quot;</code></a>.</li>
+<li>Enables implicit caller location through
+<a href="https://doc.rust-lang.org/unstable-book/language-features/track-caller.html"><code>feature = &quot;track_caller&quot;</code></a>.</li>
 </ul>
 </li>
 </ul>
 <h2 id="documentation" class="section-header"><a href="#documentation">Documentation</a></h2>
-<p>Documentation is available online in the badge links above.
-Currently, nightly is needed for full documentation: <code>cargo doc --features nightly</code>
-If you are not using nightly, use <code>cargo doc</code> as usual.</p>
+<p>Documentation is available online in the badge links above. Currently, nightly
+is needed for full documentation: <code>cargo doc --features nightly</code> If you are not
+using nightly, use <code>cargo doc</code> as usual.</p>
 <h2 id="tests" class="section-header"><a href="#tests">Tests</a></h2>
 <p>Is as simple as <code>cargo test</code> and <code>cargo test --release</code>.</p>
 <h2 id="benchmarks" class="section-header"><a href="#benchmarks">Benchmarks</a></h2>
-<p>Is as simple as <code>cargo bench</code>.
-Currently the nightly version of rust and the <code>feature = &quot;nightly&quot;</code> is needed for benchmarking.</p>
+<p>Is as simple as <code>cargo bench</code>. Currently the nightly version of rust and the
+<code>feature = &quot;nightly&quot;</code> is needed for benchmarking.</p>
 <p>A sample result from the CI running on Github Actions:</p>
 
 <div class='information'><div class='tooltip ignore'>ⓘ<span class='tooltiptext'>This example is not tested</span></div></div><div class="example-wrap"><pre class="rust rust-example-rendered ignore">
@@ -120,19 +126,23 @@ Currently the nightly version of rust and the <code>feature = &quot;nightly&quot
 <span class="ident">test</span> <span class="ident">unchecked</span>::<span class="ident">unwrap_result</span> ... <span class="ident">bench</span>:         <span class="number">407</span> <span class="ident">ns</span><span class="op">/</span><span class="ident">iter</span> (<span class="op">+</span><span class="op">/</span><span class="op">-</span> <span class="number">22</span>)</pre></div>
 <h2 id="alternatives" class="section-header"><a href="#alternatives">Alternatives</a></h2>
 <ul>
-<li><strong><a href="https://github.com/nvzqz/unsafe-unwrap-rs">unsafe-unwrap-rs</a></strong> - <a href="https://crates.io/crates/unsafe-unwrap"><img src="https://img.shields.io/crates/v/unsafe-unwrap.svg" alt="Crates.io" /></a></li>
+<li><strong><a href="https://github.com/nvzqz/unsafe-unwrap-rs">unsafe-unwrap-rs</a></strong> -
+<a href="https://crates.io/crates/unsafe-unwrap"><img src="https://img.shields.io/crates/v/unsafe-unwrap.svg" alt="Crates.io" /></a></li>
 <li><strong><a href="https://github.com/Vurich/unsafe-unwrap">unsafe-unwrap</a></strong></li>
 </ul>
-<p>Both alternatives and this crate are quite the same except that this crate provides additional features that can be toggled with cargo features. See <a href="#crate-features">crate features</a> for details.</p>
+<p>Both alternatives and this crate are quite the same except that this crate
+provides additional features that can be toggled with cargo features. See
+<a href="#crate-features">crate features</a> for details.</p>
 <h2 id="changelog" class="section-header"><a href="#changelog">Changelog</a></h2>
-<p>See the <a href="https://github.com/daxpedda/unchecked_unwrap/blob/master/CHANGELOG.md">CHANGELOG</a> file for details</p>
+<p>See the
+<a href="https://github.com/daxpedda/unchecked_unwrap/blob/master/CHANGELOG.md">CHANGELOG</a>
+file for details</p>
 <h2 id="license" class="section-header"><a href="#license">License</a></h2>
 <p>Licensed under either of</p>
 <ul>
-<li>Apache License, Version 2.0
-(<a href="LICENSE-APACHE">LICENSE-APACHE</a> or http://www.apache.org/licenses/LICENSE-2.0)</li>
-<li>MIT license
-(<a href="LICENSE-MIT">LICENSE-MIT</a> or http://opensource.org/licenses/MIT)</li>
+<li>Apache License, Version 2.0 (<a href="LICENSE-APACHE">LICENSE-APACHE</a> or
+http://www.apache.org/licenses/LICENSE-2.0)</li>
+<li>MIT license (<a href="LICENSE-MIT">LICENSE-MIT</a> or http://opensource.org/licenses/MIT)</li>
 </ul>
 <p>at your option.</p>
 <h2 id="contribution" class="section-header"><a href="#contribution">Contribution</a></h2>
