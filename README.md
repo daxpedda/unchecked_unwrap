@@ -32,13 +32,15 @@
 
 ## Description
 
-Adds an unchecked version of `unwrap()` and `expect()` to `Option` and `Result` for the rust programming language.
-Supports `no_std`.
+Adds an unchecked version of `unwrap()` and `expect()` to `Option` and `Result`
+for the rust programming language. Supports `no_std`.
 
 ## Branches
 
-- **[release](https://github.com/daxpedda/unchecked_unwrap/tree/release)** - For releases only.
-- **[master](https://github.com/daxpedda/unchecked_unwrap)** - For active development, PR's and testing.
+- **[release](https://github.com/daxpedda/unchecked_unwrap/tree/release)** - For
+  releases only.
+- **[master](https://github.com/daxpedda/unchecked_unwrap)** - For active
+  development, PR's and testing.
 
 ## Usage
 
@@ -99,17 +101,21 @@ ret</pre>
 
 ## Crate features
 
-- **debug_checks** - On by default. Enables the normal checking behavior with panics when `cfg(debug-assertions)` is enabled.
+- **debug_checks** - On by default. Enables the normal checking behavior with
+  panics when `cfg(debug-assertions)` is enabled.
 - **nightly**
-  - Enables full documentation through [`feature = "external_doc"`](https://doc.rust-lang.org/unstable-book/language-features/external-doc.html).
-  - Enables benchmarking through [`feature = "test"`](https://doc.rust-lang.org/unstable-book/library-features/test.html).
-  - Enables implicit caller location through [`feature = "track_caller"`](https://doc.rust-lang.org/unstable-book/language-features/track-caller.html).
+  - Enables full documentation through
+    [`feature = "external_doc"`](https://doc.rust-lang.org/unstable-book/language-features/external-doc.html).
+  - Enables benchmarking through
+    [`feature = "test"`](https://doc.rust-lang.org/unstable-book/library-features/test.html).
+  - Enables implicit caller location through
+    [`feature = "track_caller"`](https://doc.rust-lang.org/unstable-book/language-features/track-caller.html).
 
 ## Documentation
 
-Documentation is available online in the badge links above.
-Currently, nightly is needed for full documentation: `cargo doc --features nightly`
-If you are not using nightly, use `cargo doc` as usual.
+Documentation is available online in the badge links above. Currently, nightly
+is needed for full documentation: `cargo doc --features nightly` If you are not
+using nightly, use `cargo doc` as usual.
 
 ## Tests
 
@@ -117,8 +123,8 @@ Is as simple as `cargo test` and `cargo test --release`.
 
 ## Benchmarks
 
-Is as simple as `cargo bench`.
-Currently the nightly version of rust and the `feature = "nightly"` is needed for benchmarking.
+Is as simple as `cargo bench`. Currently the nightly version of rust and the
+`feature = "nightly"` is needed for benchmarking.
 
 A sample result from the CI running on Github Actions:
 
@@ -135,23 +141,27 @@ test unchecked::unwrap_result ... bench:         407 ns/iter (+/- 22)
 
 ## Alternatives
 
-- **[unsafe-unwrap-rs](https://github.com/nvzqz/unsafe-unwrap-rs)** - [![Crates.io](https://img.shields.io/crates/v/unsafe-unwrap.svg)](https://crates.io/crates/unsafe-unwrap)
+- **[unsafe-unwrap-rs](https://github.com/nvzqz/unsafe-unwrap-rs)** -
+  [![Crates.io](https://img.shields.io/crates/v/unsafe-unwrap.svg)](https://crates.io/crates/unsafe-unwrap)
 - **[unsafe-unwrap](https://github.com/Vurich/unsafe-unwrap)**
 
-Both alternatives and this crate are quite the same except that this crate provides additional features that can be toggled with cargo features. See [crate features](#crate-features) for details.
+Both alternatives and this crate are quite the same except that this crate
+provides additional features that can be toggled with cargo features. See
+[crate features](#crate-features) for details.
 
 ## Changelog
 
-See the [CHANGELOG](https://github.com/daxpedda/unchecked_unwrap/blob/master/CHANGELOG.md) file for details
+See the
+[CHANGELOG](https://github.com/daxpedda/unchecked_unwrap/blob/master/CHANGELOG.md)
+file for details
 
 ## License
 
 Licensed under either of
 
-- Apache License, Version 2.0
-  ([LICENSE-APACHE](LICENSE-APACHE) or http://www.apache.org/licenses/LICENSE-2.0)
-- MIT license
-  ([LICENSE-MIT](LICENSE-MIT) or http://opensource.org/licenses/MIT)
+- Apache License, Version 2.0 ([LICENSE-APACHE](LICENSE-APACHE) or
+  http://www.apache.org/licenses/LICENSE-2.0)
+- MIT license ([LICENSE-MIT](LICENSE-MIT) or http://opensource.org/licenses/MIT)
 
 at your option.
 

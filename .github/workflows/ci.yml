@@ -95,16 +95,22 @@ jobs:
         run: cargo -v build ${{ matrix.feature }} ${{ matrix.profile }}
       - name: Clippy
         if: always() && steps.checkout.outcome == 'success'
-        run: cargo clippy -v --all-targets ${{ matrix.feature }} ${{ matrix.profile }} -- -D warnings
+        run:
+          cargo clippy -v --all-targets ${{ matrix.feature }} ${{ matrix.profile
+          }} -- -D warnings
       - name: Test
         if: always() && steps.build.outcome == 'success'
         run: cargo -v test ${{ matrix.feature }} ${{ matrix.profile }}
       - name: Bench
-        if: always() && steps.build.outcome == 'success' && matrix.rust.channel == 'nightly' && matrix.profile == '--release'
+        if:
+          always() && steps.build.outcome == 'success' && matrix.rust.channel ==
+          'nightly' && matrix.profile == '--release'
         run: cargo -v bench ${{ matrix.feature }}
       - name: Documentation
         if: always() && steps.checkout.outcome == 'success'
-        run: cargo -v doc --no-deps --document-private-items ${{ matrix.feature }} ${{ matrix.profile }}
+        run:
+          cargo -v doc --no-deps --document-private-items ${{ matrix.feature }}
+          ${{ matrix.profile }}
       - name: Rust Formatting
         if: always() && steps.checkout.outcome == 'success'
         continue-on-error: ${{ matrix.rust.continue-on-error }}
@@ -237,16 +243,22 @@ jobs:
         run: cargo -v build ${{ matrix.feature }} ${{ matrix.profile }}
       - name: Clippy
         if: always() && steps.checkout.outcome == 'success'
-        run: cargo clippy -v --all-targets ${{ matrix.feature }} ${{ matrix.profile }} -- -D warnings
+        run:
+          cargo clippy -v --all-targets ${{ matrix.feature }} ${{ matrix.profile
+          }} -- -D warnings
       - name: Test
         if: always() && steps.build.outcome == 'success'
         run: cargo -v test ${{ matrix.feature }} ${{ matrix.profile }}
       - name: Bench
-        if: always() && steps.build.outcome == 'success' && matrix.rust.channel == 'nightly' && matrix.profile == '--release'
+        if:
+          always() && steps.build.outcome == 'success' && matrix.rust.channel ==
+          'nightly' && matrix.profile == '--release'
         run: cargo -v bench ${{ matrix.feature }}
       - name: Documentation
         if: always() && steps.checkout.outcome == 'success'
-        run: cargo -v doc --no-deps --document-private-items ${{ matrix.feature }} ${{ matrix.profile }}
+        run:
+          cargo -v doc --no-deps --document-private-items ${{ matrix.feature }}
+          ${{ matrix.profile }}
       - name: Rust Formatting
         if: always() && steps.checkout.outcome == 'success'
         continue-on-error: ${{ matrix.rust.continue-on-error }}
