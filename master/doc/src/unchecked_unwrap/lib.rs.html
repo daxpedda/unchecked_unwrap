@@ -151,6 +151,8 @@
 <span id="151">151</span>
 <span id="152">152</span>
 <span id="153">153</span>
+<span id="154">154</span>
+<span id="155">155</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="attribute">#![<span class="ident">no_std</span>]</span>
 <span class="attribute">#![<span class="ident">warn</span>(
@@ -161,6 +163,8 @@
     <span class="ident">clippy</span>::<span class="ident">nursery</span>,
     <span class="ident">missing_docs</span>
 )]</span>
+<span class="comment">// Until `track_caller` trickles down to stable.</span>
+<span class="attribute">#![<span class="ident">allow</span>(<span class="ident">stable_features</span>)]</span>
 <span class="attribute">#![<span class="ident">cfg_attr</span>(
     <span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;nightly&quot;</span>,
     <span class="ident">feature</span>(<span class="ident">external_doc</span>, <span class="ident">track_caller</span>),
