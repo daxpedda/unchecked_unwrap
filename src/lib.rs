@@ -7,6 +7,8 @@
     clippy::nursery,
     missing_docs
 )]
+// Until `track_caller` trickles down to stable.
+#![allow(stable_features)]
 #![cfg_attr(
     feature = "nightly",
     feature(external_doc, track_caller),

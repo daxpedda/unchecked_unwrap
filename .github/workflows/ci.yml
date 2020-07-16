@@ -245,7 +245,7 @@ jobs:
         if: always() && steps.checkout.outcome == 'success'
         run:
           cargo clippy -v --all-targets ${{ matrix.feature }} ${{ matrix.profile
-          }} -- -D warnings
+          }}
       - name: Test
         if: always() && steps.build.outcome == 'success'
         run: cargo -v test ${{ matrix.feature }} ${{ matrix.profile }}
