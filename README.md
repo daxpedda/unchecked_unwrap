@@ -82,17 +82,17 @@ assert_eq!(unsafe { x.unchecked_expect("the sky is falling down") }, 2);
     </tr>
     <tr valign="top">
       <td>
-<pre lang="asm">mov     rdx, rsi
-mov     rax, rdi
-ret</pre>
-      </td>
-      <td>
 <pre lang="asm">push    rax
 test    rdi, rdi
 je      .LBB2_1       // panic handler
 mov     rdx, rsi
 mov     rax, rdi
 pop     rcx
+ret</pre>
+      </td>
+      <td>
+<pre lang="asm">mov     rdx, rsi
+mov     rax, rdi
 ret</pre>
       </td>
     </tr>
