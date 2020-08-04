@@ -102,7 +102,7 @@ impl<T> UncheckedExpect<T> for Option<T> {
     /// Unwraps an [`Option`], yielding the content of a [`Some`].
     /// This is the unchecked alternative to [`expect`](Option::expect).
     unsafe fn unchecked_expect(self, msg: &str) -> T {
-        #[allow(clippy::option_if_let_else)]
+        #[allow(clippy::unknown_clippy_lints, clippy::option_if_let_else)]
         if cfg!(debug_assertions) && cfg!(feature = "debug_checks") {
             self.expect(msg)
         } else if let Some(value) = self {
@@ -131,7 +131,7 @@ impl<T> UncheckedUnwrap<T> for Option<T> {
     /// Unwraps a [`Option`], yielding the content of an [`Some`].
     /// This is the unchecked alternative to [`unwrap`](Option::unwrap).
     unsafe fn unchecked_unwrap(self) -> T {
-        #[allow(clippy::option_if_let_else)]
+        #[allow(clippy::unknown_clippy_lints, clippy::option_if_let_else)]
         if cfg!(debug_assertions) && cfg!(feature = "debug_checks") {
             self.unwrap()
         } else if let Some(value) = self {
