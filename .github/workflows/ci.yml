@@ -97,7 +97,7 @@ jobs:
         if: always() && steps.checkout.outcome == 'success'
         run:
           cargo clippy -v --all-targets ${{ matrix.feature }} ${{ matrix.profile
-          }} -- -D warnings
+          }} -- -F warnings
       - name: Test
         if: always() && steps.build.outcome == 'success'
         run: cargo -v test ${{ matrix.feature }} ${{ matrix.profile }}
@@ -114,7 +114,7 @@ jobs:
       - name: Rust Formatting
         if: always() && steps.checkout.outcome == 'success'
         continue-on-error: ${{ matrix.rust.continue-on-error }}
-        run: cargo fmt -v --all -- --check
+        run: cargo fmt -v -- --check
 
   schedule-cargo-audit:
     if: github.event_name == 'schedule'
@@ -245,7 +245,7 @@ jobs:
         if: always() && steps.checkout.outcome == 'success'
         run:
           cargo clippy -v --all-targets ${{ matrix.feature }} ${{ matrix.profile
-          }}
+          }} -- -F warnings
       - name: Test
         if: always() && steps.build.outcome == 'success'
         run: cargo -v test ${{ matrix.feature }} ${{ matrix.profile }}
@@ -262,4 +262,4 @@ jobs:
       - name: Rust Formatting
         if: always() && steps.checkout.outcome == 'success'
         continue-on-error: ${{ matrix.rust.continue-on-error }}
-        run: cargo fmt -v --all -- --check
+        run: cargo fmt -v -- --check
