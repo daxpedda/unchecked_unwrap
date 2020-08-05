@@ -108,6 +108,8 @@ jobs:
         run: cargo -v bench ${{ matrix.feature }}
       - name: Documentation
         if: always() && steps.checkout.outcome == 'success'
+        env:
+          RUSTDOCFLAGS: -F warnings
         run:
           cargo -v doc --no-deps --document-private-items ${{ matrix.feature }}
           ${{ matrix.profile }}
@@ -245,7 +247,7 @@ jobs:
         if: always() && steps.checkout.outcome == 'success'
         run:
           cargo clippy -v --all-targets ${{ matrix.feature }} ${{ matrix.profile
-          }} -- -F warnings
+          }}
       - name: Test
         if: always() && steps.build.outcome == 'success'
         run: cargo -v test ${{ matrix.feature }} ${{ matrix.profile }}
