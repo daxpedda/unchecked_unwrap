@@ -89,7 +89,7 @@ jobs:
           - rust: { channel: beta, feature: "" }
             features: --no-default-features
             profile: ""
-          - rust: { channel: beta, feature: --features nightly }
+          - rust: { channel: nightly, feature: --features nightly }
             features: --no-default-features
             profile: ""
 
