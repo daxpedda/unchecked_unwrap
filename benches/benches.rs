@@ -12,6 +12,7 @@
 
 mod checked {
     extern crate test;
+
     use self::test::{black_box, Bencher};
 
     #[bench]
@@ -62,8 +63,9 @@ mod checked {
 
 mod unchecked {
     extern crate test;
+
     use self::test::{black_box, Bencher};
-    use unchecked_unwrap::{UncheckedExpect, UncheckedUnwrap};
+    use unchecked_unwrap::UncheckedUnwrap;
 
     #[bench]
     fn expect_option(bencher: &mut Bencher) {

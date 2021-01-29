@@ -3,8 +3,6 @@
 [![Crates.io](https://img.shields.io/crates/v/unchecked_unwrap.svg)](https://crates.io/crates/unchecked_unwrap)
 [![Libraries.io](https://img.shields.io/librariesio/release/cargo/unchecked_unwrap)](https://libraries.io/cargo/unchecked_unwrap)
 [![Commits since](https://img.shields.io/github/commits-since/daxpedda/unchecked_unwrap/latest)](https://github.com/daxpedda/unchecked_unwrap/releases/latest)
-[![Resolution](https://isitmaintained.com/badge/resolution/daxpedda/unchecked_unwrap.svg)](http://isitmaintained.com/project/daxpedda/unchecked_unwrap)
-[![Issues](https://isitmaintained.com/badge/open/daxpedda/unchecked_unwrap.svg)](http://isitmaintained.com/project/daxpedda/unchecked_unwrap)
 [![License](https://img.shields.io/crates/l/unchecked_unwrap)](https://github.com/daxpedda/unchecked_unwrap/blob/master/LICENSE)
 [![LoC](https://tokei.rs/b1/github/daxpedda/unchecked_unwrap)](https://github.com/daxpedda/unchecked_unwrap)
 
@@ -45,7 +43,7 @@ for the rust programming language. Supports `no_std`.
 ## Usage
 
 ```rust
-use unchecked_unwrap::*;
+use unchecked_unwrap::UncheckedUnwrap;
 
 let x = Some("air");
 assert_eq!(unsafe { x.unchecked_unwrap() }, "air");
@@ -108,8 +106,6 @@ ret</pre>
     [`feature = "external_doc"`](https://doc.rust-lang.org/unstable-book/language-features/external-doc.html).
   - Enables benchmarking through
     [`feature = "test"`](https://doc.rust-lang.org/unstable-book/library-features/test.html).
-  - Enables implicit caller location through
-    [`feature = "track_caller"`](https://doc.rust-lang.org/unstable-book/language-features/track-caller.html).
 
 ## Documentation
 
@@ -160,8 +156,9 @@ file for details
 Licensed under either of
 
 - Apache License, Version 2.0 ([LICENSE-APACHE](LICENSE-APACHE) or
-  http://www.apache.org/licenses/LICENSE-2.0)
-- MIT license ([LICENSE-MIT](LICENSE-MIT) or http://opensource.org/licenses/MIT)
+  <http://www.apache.org/licenses/LICENSE-2.0>)
+- MIT license ([LICENSE-MIT](LICENSE-MIT) or
+  <http://opensource.org/licenses/MIT>)
 
 at your option.
 

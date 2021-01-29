@@ -7,7 +7,8 @@
     clippy::nursery,
     missing_docs
 )]
-use unchecked_unwrap::{UncheckedExpect, UncheckedUnwrap};
+
+use unchecked_unwrap::UncheckedUnwrap;
 
 #[test]
 fn option_expect_success() {

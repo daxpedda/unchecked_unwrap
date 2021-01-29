@@ -1,6 +1,6 @@
 [package]
 name = "unchecked_unwrap"
-version = "2.0.2"
+version = "3.0.0"
 authors = ["daxpedda <daxpedda@gmail.com>"]
 edition = "2018"
 description = "Adds an unchecked version of `unwrap()` and `expect()` to Option and Result."
@@ -9,12 +9,7 @@ repository = "https://github.com/daxpedda/unchecked_unwrap/tree/release"
 license = "MIT OR Apache-2.0"
 keywords = ["unwrap", "unchecked", "expect", "result", "option"]
 categories = ["no-std", "rust-patterns"]
-exclude = ["/.github"]
-
-[badges]
-is-it-maintained-issue-resolution = { repository = "daxpedda/unchecked_unwrap" }
-is-it-maintained-open-issues = { repository = "daxpedda/unchecked_unwrap" }
-maintenance = { status = "passively-maintained" }
+exclude = [".github"]
 
 [features]
 default = ["debug_checks"]
