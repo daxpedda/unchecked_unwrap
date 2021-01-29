@@ -1,0 +1,70 @@
+name: lint
+
+on:
+  push:
+    branches:
+      - master
+      - release
+  pull_request:
+    branches:
+      - master
+      - release
+  schedule:
+    - cron: 0 0 * * *
+
+jobs:
+  build-matrix:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Push
+        if: github.event_name == 'push'
+        run:
+          echo >>$GITHUB_ENV BRANCHES=[\"$(echo ${{ github.ref }}|cut -c12- )\"]
+      - name: Pull request
+        if: github.event_name == 'pull_request'
+        run: echo >>$GITHUB_ENV BRANCHES=[\"${{ github.ref }}\"]
+      - name: Schedule
+        if: github.event_name == 'schedule'
+        run: echo >>$GITHUB_ENV BRANCHES=[\"master\", \"release\"]
+      - name: Set matrix
+        id: matrix
+        run: echo "::set-output name=matrix::$BRANCHES"
+
+    outputs:
+      matrix: ${{ steps.matrix.outputs.matrix }}
+
+  clippy:
+    needs: build-matrix
+
+    strategy:
+      fail-fast: false
+      matrix:
+        rust:
+          - { channel: stable, feature: "" }
+          - { channel: beta, feature: "" }
+          - { channel: nightly, feature: --features nightly }
+        branch: ${{ fromJson(needs.build-matrix.outputs.matrix) }}
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Install Rust
+        uses: hecrj/setup-rust-action@v1
+        with:
+          rust-version: ${{ matrix.rust.channel }}
+          components: clippy
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          ref: ${{ matrix.branch }}
+      - name: Clippy
+        run:
+          cargo clippy -v --all-targets ${{ matrix.rust.feature }} -- -D
+          warnings
+      - name: Documentation
+        env:
+          RUSTDOCFLAGS: -D warnings
+        run:
+          cargo -v doc --no-deps --document-private-items --workspace ${{
+          matrix.rust.feature }}
