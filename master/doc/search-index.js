@@ -1,4 +1,4 @@
 var searchIndex = JSON.parse('{\
-"unchecked_unwrap":{"doc":"unchecked_unwrapCrates.io Libraries.io Commits since…","i":[[8,"UncheckedExpect","unchecked_unwrap","Trait for `unchecked_expect`.",null,null],[10,"unchecked_expect","","Unwraps an [`Option`] or [`Result`], yielding the content…",0,[[]]],[8,"UncheckedUnwrap","","Trait for `unchecked_unwrap`.",null,null],[10,"unchecked_unwrap","","Unwraps an [`Option`] or [`Result`], yielding the content…",1,[[]]]],"p":[[8,"UncheckedExpect"],[8,"UncheckedUnwrap"]]}\
+"unchecked_unwrap":{"doc":"unchecked_unwrapCrates.io Libraries.io Commits since …","i":[[8,"UncheckedUnwrap","unchecked_unwrap","Trait for <code>unchecked_expect</code> and <code>unchecked_unwrap</code>.",null,null],[10,"unchecked_expect","","Unwraps an [<code>Option</code>] or [<code>Result</code>], yielding the content of …",0,[[]]],[10,"unchecked_unwrap","","Unwraps an [<code>Option</code>] or [<code>Result</code>], yielding the content of …",0,[[]]]],"p":[[8,"UncheckedUnwrap"]]}\
 }');
 addSearchOptions(searchIndex);initSearch(searchIndex);
