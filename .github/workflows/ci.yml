@@ -76,7 +76,8 @@ jobs:
           - { channel: stable, feature: "" }
           - { channel: beta, feature: "" }
           - { channel: nightly, feature: --features nightly }
-        feature: ""
+        feature:
+          - ""
         profile:
           - ""
           - --release

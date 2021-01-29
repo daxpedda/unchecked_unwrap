@@ -96,6 +96,7 @@ pub trait UncheckedUnwrap<T> {
 
 impl<T> UncheckedUnwrap<T> for Option<T> {
     unsafe fn unchecked_unwrap(self) -> T {
+        #[allow(clippy::option_if_let_else)]
         if cfg!(debug_assertions) && cfg!(feature = "debug_checks") {
             self.unwrap()
         } else if let Some(value) = self {
@@ -106,6 +107,7 @@ impl<T> UncheckedUnwrap<T> for Option<T> {
     }
 
     unsafe fn unchecked_expect(self, msg: &str) -> T {
+        #[allow(clippy::option_if_let_else)]
         if cfg!(debug_assertions) && cfg!(feature = "debug_checks") {
             self.expect(msg)
         } else if let Some(value) = self {
@@ -118,6 +120,7 @@ impl<T> UncheckedUnwrap<T> for Option<T> {
 
 impl<T, E: Debug> UncheckedUnwrap<T> for Result<T, E> {
     unsafe fn unchecked_unwrap(self) -> T {
+        #[allow(clippy::option_if_let_else)]
         if cfg!(debug_assertions) && cfg!(feature = "debug_checks") {
             self.unwrap()
         } else if let Ok(value) = self {
@@ -128,6 +131,7 @@ impl<T, E: Debug> UncheckedUnwrap<T> for Result<T, E> {
     }
 
     unsafe fn unchecked_expect(self, msg: &str) -> T {
+        #[allow(clippy::option_if_let_else)]
         if cfg!(debug_assertions) && cfg!(feature = "debug_checks") {
             self.expect(msg)
         } else if let Ok(value) = self {
