@@ -49,7 +49,6 @@ jobs:
         uses: hecrj/setup-rust-action@v1
       - name: Cache
         uses: actions/cache@v2
-        id: cache
         with:
           path: |
             ~/.cargo/.crates.toml
@@ -57,7 +56,6 @@ jobs:
             ~/.cargo/bin/cargo-audit
           key: cargo-audit
       - name: Install cargo-audit
-        id: install
         run: cargo -v install cargo-audit
       - name: Checkout
         uses: actions/checkout@v2
@@ -110,6 +108,12 @@ jobs:
           cargo -v build ${{ matrix.feature }} ${{ matrix.rust.feature }} ${{
           matrix.profile }}
       - name: Test
+        if: always() && steps.build.outcome == 'success'
         run:
           cargo -v test ${{ matrix.feature }} ${{ matrix.rust.feature }} ${{
           matrix.profile }}
+      - name: Bench
+        if:
+          always() && steps.build.outcome == 'success' && matrix.rust.channel ==
+          'nightly' && matrix.profile == '--release'
+        run: cargo -v bench ${{ matrix.feature }} ${{ matrix.rust.feature }}
