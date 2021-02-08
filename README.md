@@ -33,6 +33,10 @@
 Adds an unchecked version of `unwrap()` and `expect()` to `Option` and `Result`
 for the rust programming language. Supports `no_std`.
 
+Provides a stable alternative until the
+[official implementation](https://github.com/rust-lang/rust/issues/81383) is
+stabilized.
+
 ## Branches
 
 - **[release](https://github.com/daxpedda/unchecked_unwrap/tree/release)** - For
