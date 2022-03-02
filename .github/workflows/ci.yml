@@ -58,7 +58,7 @@ jobs:
       - name: Install cargo-audit
         run: cargo -v install cargo-audit
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           ref: ${{ matrix.branch }}
       - name: Audit
@@ -99,7 +99,7 @@ jobs:
         with:
           rust-version: ${{ matrix.rust.channel }}
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           ref: ${{ matrix.branch }}
       - name: Build
