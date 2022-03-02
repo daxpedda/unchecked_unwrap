@@ -55,7 +55,7 @@ jobs:
           rust-version: ${{ matrix.rust.channel }}
           components: clippy
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           ref: ${{ matrix.branch }}
       - name: Clippy
