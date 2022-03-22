@@ -1,7 +1,6 @@
 [package]
 name = "unchecked_unwrap"
-version = "3.0.0"
-authors = ["daxpedda <daxpedda@gmail.com>"]
+version = "4.0.0"
 edition = "2018"
 description = "Adds an unchecked version of `unwrap()` and `expect()` to Option and Result."
 readme = "README.md"
