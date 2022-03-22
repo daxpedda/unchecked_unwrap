@@ -39,11 +39,7 @@ Since Rust v1.58 this crate is useless, see:
 ## Description
 
 Adds an unchecked version of `unwrap()` and `expect()` to `Option` and `Result`
-for the rust programming language. Supports `no_std`.
-
-Provides a stable alternative until the
-[official implementation](https://github.com/rust-lang/rust/issues/81383) is
-stabilized.
+for the Rust programming language. Supports `no_std`.
 
 ## Branches
 
@@ -124,7 +120,7 @@ Is as simple as `cargo test` and `cargo test --release`.
 
 ## Benchmarks
 
-Is as simple as `cargo bench`. Currently the nightly version of rust is needed
+Is as simple as `cargo bench`. Currently the nightly version of Rust is needed
 for benchmarking.
 
 A sample result from the CI running on Github Actions:
