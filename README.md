@@ -14,6 +14,14 @@
 [![Build](https://github.com/daxpedda/unchecked_unwrap/workflows/CI/badge.svg?branch=master)](https://github.com/daxpedda/unchecked_unwrap/actions?query=workflow%3ACI+branch%3Amaster)
 [![Docs](https://github.com/daxpedda/unchecked_unwrap/workflows/docs/badge.svg)](https://daxpedda.github.io/unchecked_unwrap/master/doc/index.html)
 
+## WARNING ⚠️
+
+Since Rust v1.58 this crate is useless, see:
+
+- [`Result::unwrap_unchecked`](https://doc.rust-lang.org/core/result/enum.Result.html#method.unwrap_unchecked)
+- [`Result::unwrap_err_unchecked`](https://doc.rust-lang.org/core/result/enum.Result.html#method.unwrap_err_unchecked)
+- [`Option::unwrap_unchecked`](https://doc.rust-lang.org/core/option/enum.Option.html#method.unwrap_unchecked)
+
 ## Table of contents
 
 - [Description](#description)
@@ -105,17 +113,10 @@ ret</pre>
 
 - **debug_checks** - On by default. Enables the normal checking behavior with
   panics when `cfg(debug-assertions)` is enabled.
-- **nightly**
-  - Enables full documentation through
-    [`feature = "external_doc"`](https://doc.rust-lang.org/unstable-book/language-features/external-doc.html).
-  - Enables benchmarking through
-    [`feature = "test"`](https://doc.rust-lang.org/unstable-book/library-features/test.html).
 
 ## Documentation
 
-Documentation is available online in the badge links above. Currently, nightly
-is needed for full documentation: `cargo doc --features nightly` If you are not
-using nightly, use `cargo doc` as usual.
+Documentation is available online in the badge links above.
 
 ## Tests
 
@@ -123,8 +124,8 @@ Is as simple as `cargo test` and `cargo test --release`.
 
 ## Benchmarks
 
-Is as simple as `cargo bench`. Currently the nightly version of rust and the
-`feature = "nightly"` is needed for benchmarking.
+Is as simple as `cargo bench`. Currently the nightly version of rust is needed
+for benchmarking.
 
 A sample result from the CI running on Github Actions:
 

@@ -41,9 +41,9 @@ jobs:
       fail-fast: false
       matrix:
         rust:
-          - { channel: stable, feature: "" }
-          - { channel: beta, feature: "" }
-          - { channel: nightly, feature: --features nightly }
+          - stable
+          - beta
+          - nightly
         branch: ${{ fromJson(needs.build-matrix.outputs.matrix) }}
 
     runs-on: ubuntu-latest
@@ -52,19 +52,15 @@ jobs:
       - name: Install Rust
         uses: hecrj/setup-rust-action@v1
         with:
-          rust-version: ${{ matrix.rust.channel }}
+          rust-version: ${{ matrix.rust }}
           components: clippy
       - name: Checkout
         uses: actions/checkout@v3
         with:
           ref: ${{ matrix.branch }}
       - name: Clippy
-        run:
-          cargo clippy -v --all-targets ${{ matrix.rust.feature }} -- -D
-          warnings
+        run: cargo clippy -v -- -D warnings
       - name: Documentation
         env:
           RUSTDOCFLAGS: -D warnings
-        run:
-          cargo -v doc --no-deps --document-private-items --workspace ${{
-          matrix.rust.feature }}
+        run: cargo -v doc --no-deps --document-private-items --workspace

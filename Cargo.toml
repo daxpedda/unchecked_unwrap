@@ -10,11 +10,11 @@ license = "MIT OR Apache-2.0"
 keywords = ["unwrap", "unchecked", "expect", "result", "option"]
 categories = ["no-std", "rust-patterns"]
 exclude = [".github"]
+rust-version = "1.54"
 
 [features]
 default = ["debug_checks"]
 debug_checks = []
-nightly = []
 
 # cleaning some output from `cargo test` and `cargo bench`
 [lib]
@@ -23,5 +23,4 @@ bench = false
 
 # docs.rs needs some pointers to do proper documentation
 [package.metadata.docs.rs]
-features = ["nightly"]
 targets = ["x86_64-unknown-linux-gnu"]

@@ -1,5 +1,3 @@
-#![no_std]
-#![cfg(feature = "nightly")]
 #![feature(test)]
 #![warn(
     clippy::all,

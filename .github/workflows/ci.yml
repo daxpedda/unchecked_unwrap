@@ -71,9 +71,9 @@ jobs:
       fail-fast: false
       matrix:
         rust:
-          - { channel: stable, feature: "" }
-          - { channel: beta, feature: "" }
-          - { channel: nightly, feature: --features nightly }
+          - stable
+          - beta
+          - nightly
         feature:
           - ""
         profile:
@@ -81,14 +81,14 @@ jobs:
           - --release
         branch: ${{ fromJson(needs.build-matrix.outputs.matrix) }}
         include:
-          - rust: { channel: stable, feature: "" }
-            features: --no-default-features
+          - rust: stable
+            feature: --no-default-features
             profile: ""
-          - rust: { channel: beta, feature: "" }
-            features: --no-default-features
+          - rust: beta
+            feature: --no-default-features
             profile: ""
-          - rust: { channel: nightly, feature: --features nightly }
-            features: --no-default-features
+          - rust: nightly
+            feature: --no-default-features
             profile: ""
 
     runs-on: ubuntu-latest
@@ -97,23 +97,19 @@ jobs:
       - name: Install Rust
         uses: hecrj/setup-rust-action@v1
         with:
-          rust-version: ${{ matrix.rust.channel }}
+          rust-version: ${{ matrix.rust }}
       - name: Checkout
         uses: actions/checkout@v3
         with:
           ref: ${{ matrix.branch }}
       - name: Build
         id: build
-        run:
-          cargo -v build ${{ matrix.feature }} ${{ matrix.rust.feature }} ${{
-          matrix.profile }}
+        run: cargo -v build ${{ matrix.feature }} ${{ matrix.profile }}
       - name: Test
         if: always() && steps.build.outcome == 'success'
-        run:
-          cargo -v test ${{ matrix.feature }} ${{ matrix.rust.feature }} ${{
-          matrix.profile }}
+        run: cargo -v test ${{ matrix.feature }} ${{ matrix.profile }}
       - name: Bench
         if:
-          always() && steps.build.outcome == 'success' && matrix.rust.channel ==
+          always() && steps.build.outcome == 'success' && matrix.rust ==
           'nightly' && matrix.profile == '--release'
-        run: cargo -v bench ${{ matrix.feature }} ${{ matrix.rust.feature }}
+        run: cargo -v bench ${{ matrix.feature }}
